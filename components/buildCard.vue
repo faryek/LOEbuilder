@@ -22,12 +22,19 @@
         color: white;
     }
     .card{
-        width: 200px;
-        height: 100px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 25px;
+        width: 45%;
+        height: 200px;
         border: 3px;
+        padding: 15px;
+    }
+    .card img{
+        border-radius: 25px;
     }
     .card:hover{
         border: 3px solid;
-        border-color: #4D3F20;
+        border-color: #9b7e41;
+        padding: 12px;
     }
 </style>
