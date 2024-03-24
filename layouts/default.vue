@@ -8,7 +8,7 @@
                             <NuxtLink to="/" class="text-2xl fonted">Билды</NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink to="/build/" class="text-2xl fonted">Создать билд</NuxtLink>
+                            <NuxtLink to="/build/" class="text-2xl fonted">Мои билды</NuxtLink>
                         </li>
                         <li>
                             <NuxtLink to="/guide/" class="text-2xl fonted">Руководство</NuxtLink>

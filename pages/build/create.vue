@@ -1,14 +1,13 @@
 <template>
     <div>
-        <buildCard></buildCard>
+        
     </div>
 </template>
 
 <script setup>
 
-
 </script>
 
-<style>
+<style scoped>
 
 </style>
