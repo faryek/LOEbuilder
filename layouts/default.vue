@@ -87,4 +87,17 @@
     color: white;
 }
 
+html {
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+	background-color: black;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #9b7e41;
+    border-radius: 10px;
+}
 </style>

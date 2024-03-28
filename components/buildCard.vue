@@ -1,5 +1,5 @@
 <template>
-    <NuxtLink :to="`/build/${id}`" class="card flex flex-row gap-2">
+    <NuxtLink :to="`/build/${id}`" class="card border-shine flex flex-row gap-2">
         <img src="../assets/img/classes/Антихрист/Medium.png" alt="">
         <div class="right flex flex-col">
             <h2 class="right__league font">{{league}}</h2>
@@ -45,20 +45,15 @@ p {
     border-radius: 25px;
     width: 45%;
     height: 200px;
-    border: 3px;
     padding: 15px;
+    border: 3px solid rgba(0,0,0,0);
 }
+
 
 .card img {
     border-radius: 25px;
 }
 
-.card:hover {
-    border: 3px solid;
-    border-color: #9b7e41;
-    padding: 12px;
-    box-shadow: 0 0 10px 0 #9b7e41;
-}
 
 @media screen and (max-width: 1023px) {
     .card {

@@ -24,6 +24,24 @@
         font-family: 'TLheader-Regular';
         color: white;
     }
+    .border-shine:hover {
+        border: 3px solid;
+        border-radius: 25px;
+        border-color: #9b7e41 !important;
+        box-shadow: 0 0 20px 0 #9b7e41;
+    }
+    .selector:focus{
+        border: 3px solid;
+        border-radius: 25px;
+        border-color: #9b7e41 !important;
+        box-shadow: 0 0 10px 0 #9b7f41;
+    }
+    .selector:active{
+        border: 3px solid;
+        border-radius: 25px;
+        border-color: #9b7e41 !important;
+        box-shadow: 0 0 10px 0 #9b7f41;
+    }
 }
 
 @layer components {
