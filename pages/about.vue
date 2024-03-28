@@ -15,8 +15,4 @@
 </script>
 
 <style>
-.font {
-    font-family: 'TLheader-Regular';
-    color: white;
-}
 </style>

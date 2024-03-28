@@ -20,4 +20,14 @@
     .fonted:hover{
         color: #C68200;
     }
+    .font {
+        font-family: 'TLheader-Regular';
+        color: white;
+    }
+}
+
+@layer components {
+    .selector{
+        @apply rounded-2xl bg-black bg-opacity-80 text-white p-2 font text-xl;
+    }
 }
