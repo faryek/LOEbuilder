@@ -57,13 +57,6 @@
 </template>
 
 <style>
-@font-face {
-    font-family: 'TLheader-Regular';
-    src: url(/fonts/TLheader-Regular.ttf);
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
 
 .background{
     position: fixed;
@@ -85,10 +78,6 @@
     background-repeat: no-repeat;
 }
 
-.fonted {
-    font-family: 'TLheader-Regular';
-    color: white;
-}
 
 .router-link-exact-active {
     color: #C68200;
@@ -98,7 +87,4 @@
     color: white;
 }
 
-.fonted:hover{
-    color: #C68200;
-}
 </style>
