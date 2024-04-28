@@ -1,14 +1,19 @@
-Для установки модулей
+# FastAPI_template
+
+Это шаблон использования FastAPI для создания restAPI
+
+Для установки необходимо выполнить следующие команды
+
 `pip install -r requirements.txt`
 
-для запуска сервера
-`py -m uvicorn main:app --reload`
+`uvicorn main:app --reload`
 
-для создания таблиц и посева
-`py seed.py`
+Для загрузки тестовых данных написать 
 
-файлы
-database.py - подключение к БД
-models.py - таблицы со связями
-seed.py - посев
-pyd - pydantic модели для валидации
+`python seed.py`
+
+для защиты маршрута нужно добавить `username=Depends(auth_handler.auth_wrapper)` в входные аргументы маршрута
+
+после можно открывать автоматическую документацию
+
+`127.0.0.1:8000/docs`

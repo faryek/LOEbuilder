@@ -1,6 +1,6 @@
 <template>
     <NuxtLink :to="`/build/${id}`" class="card border-shine flex flex-row gap-2">
-        <img src="../assets/img/classes/Антихрист/Medium.png" alt="">
+        <img src="../assets/img/classes/Antihrist/Medium.png" alt="">
         <div class="right flex flex-col">
             <h2 class="right__league font">{{league}}</h2>
             <h1 class="right__name font">{{build_name}}</h1>

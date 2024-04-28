@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="checkers">
         <div>
             <header class="bg-black bg-opacity-80">
                 <nav class="container mx-auto p-4 flex justify-between">
@@ -55,10 +55,27 @@
         </div>
     </div>
 </template>
-
 <style>
+body {
+    min-height: 100vh;
+    margin: 0;
 
-.background{
+    display: flex;
+    flex-direction: column;
+}
+
+.checkers {
+    flex-grow: 1;
+
+}
+
+footer {
+    bottom: 0;
+    position: sticky;
+    height: auto;
+}
+
+.background {
     position: fixed;
     z-index: -2;
     top: 0;
@@ -68,7 +85,7 @@
     background-size: auto;
 }
 
-.backgroundimage{
+.backgroundimage {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -83,17 +100,17 @@
     color: #C68200;
 }
 
-.login{
+.login {
     color: white;
 }
 
 html {
-  overflow-y: scroll;
+    overflow-y: scroll;
 }
 
 ::-webkit-scrollbar {
-	width: 10px;
-	background-color: black;
+    width: 10px;
+    background-color: black;
 }
 
 ::-webkit-scrollbar-thumb {
