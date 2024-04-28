@@ -20,7 +20,7 @@ with Session(bind=engine) as session:
 
     user1 = models.User(username='xd',password='xdpass',role=role1)
 
-    url1 = models.URL(name = 'xdddddddd',user = [user1])
+    url1 = models.URL(name = 'xdddddddd',user = user1)
 
     session.add_all([role1,user1,url1])
     session.commit()

@@ -23,7 +23,7 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     username = Column(String(255),nullable=False)
     password = Column(String(255),nullable=False)
-    role_id=Column(Integer,ForeignKey("roles.id"), default=1,nullable=False)
+    role_id=Column(Integer,ForeignKey("roles.id"), default=1)
 
     role=relationship('Role',backref="users")
 
@@ -32,7 +32,7 @@ class URL(Base):
 
     id = Column(Integer,primary_key=True)
     name = Column(String(255),nullable=False)
-    user_id = Column(Integer,ForeignKey('users.id'),default=1,nullable=False)
+    user_id = Column(Integer,ForeignKey('users.id'),default=1)
 
     user = relationship('User',backref='urls')
 
