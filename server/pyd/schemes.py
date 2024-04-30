@@ -7,6 +7,34 @@ class UserSchema(UserBase):
 class URLSSchema(URLBase):
     user: UserSchema
 
+class PassiveEffectsSchema(PassiveEffectsBase):
+    passives: List[PassiveBase]
+    effects: List[EffectBase]
+
+class AffixesSchema(AffixBase):
+    affix_types: Affix_typeBase
+    item_types: Item_typeBase
+
+class Item_typeSchema(Item_typeBase):
+    item_subtypes:List[Item_subtypeBase]
+
+class Item_subtypeSchema(Item_subtypeBase):
+    item_types: List[Item_typeBase]
+    item_implicits: List[Item_implicitBase]
+
+# class ItemImplicitsSchema(Item_implicitBase):
+#     subtypes: List[Item_subtypeBase]
+
+class WeaponsSchema(WeaponBase):
+    sub_ids: Item_subtypeSchema
+
+class ArmourSchema(ArmourBase):
+    sub_ids: Item_subtypeSchema
+
+class AccessorySchema(AccessoryBase):
+    sub_ids: Item_subtypeSchema
+
+
 
 # # Схемы включают в себя ссылки на другие сущности для вложеного вывода
 # # их нужно выносить отдельно, чтобы избежать рекурсии в импорте

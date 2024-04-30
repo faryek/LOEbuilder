@@ -18,9 +18,41 @@ with Session(bind=engine) as session:
 
     role1 = models.Role(name='parjur')
 
-    user1 = models.User(username='xd',password='xdpass',role=role1)
+    user1 = models.User(username='xd', password='xdpass', role=role1)
 
-    url1 = models.URL(name = 'xdddddddd',user = user1)
+    url1 = models.URL(name='xdddddddd', user=user1)
 
-    session.add_all([role1,user1,url1])
+    eff = models.Effect(name='Uber')
+
+    pas1 = models.Passive(name='Dexterity', desc='+15 dex')
+    pas2 = models.Passive(name='Strength', desc='+15 str')
+
+    PasEff = models.Passive_effects(
+        value=10, passives=[pas1, pas2], effects=[eff])
+
+    cls1 = models.Class(name='Богатырь', main_atr='str', base_atrs=[
+                        60, 20, 20], base_hp=1000, base_mp=50,
+                        base_armor=50, base_evade=10, base_ele_res=30, base_phys_res=50)
+
+    afxtype = models.Affix_type(name='strong')
+
+    itemtype = models.Item_type(name='weapon')
+
+    afx = models.Affix(effect='Giga', value_start=10,
+                       value_end=50, affix_types=afxtype, item_types=itemtype)
+
+    itemImplicit = models.Item_implicit(
+        effect='strhiga', value_start=1, value_end=2)
+
+    itemsubtype = models.Item_subtype(name='lmaostr', item_types=[
+                                      itemtype], item_implicits=[itemImplicit])
+
+    wpn1 = models.Weapon(name='hatchet', sub_ids=itemsubtype)
+
+    armr1 = models.Armour(name='chestplate', sub_ids=itemsubtype)
+
+    accry1 = models.Armour(name='necklace', sub_ids=itemsubtype)
+
+    session.add_all([role1, user1, url1, eff, pas1, pas2, PasEff, cls1, afxtype,
+                    itemtype, afx, itemImplicit, itemsubtype, wpn1, armr1, accry1])
     session.commit()

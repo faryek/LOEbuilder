@@ -55,8 +55,8 @@ class Passive_effects(Base):
     effect_id = Column(Integer,ForeignKey('effects.id'),default=1,nullable=False)
     passive_id= Column(Integer,ForeignKey('passives.id'),default=1,nullable=False)
 
-    passives = relationship('Passive',backref='passive_effects')
-    effects = relationship('Effect',backref='passive_effects')
+    passives = relationship('Passive')
+    effects = relationship('Effect')
 
 class Class(Base):
     __tablename__="classes"
@@ -93,13 +93,6 @@ class Affix(Base):
     affix_types = relationship('Affix_type',backref='affixes')
     item_types = relationship('Item_type',backref='affixes')
 
-class Item_subtype(Base):
-    __tablename__="item_subtypes"
-    id = Column(Integer,primary_key=True)
-    name = Column(String(255))
-
-    item_types = relationship("Item_type", secondary="item_type_subtypes", backref="item_subtypes")
-
 class Item_implicit(Base):
     __tablename__="item_implicits"
     id = Column(Integer,primary_key=True)
@@ -107,7 +100,14 @@ class Item_implicit(Base):
     value_start = Column(Integer,default=1)
     value_end = Column(Integer,default=1)
 
-    subtypes = relationship("Item_subtype", secondary="subtype_implicits", backref="item_implicits")
+class Item_subtype(Base):
+    __tablename__="item_subtypes"
+    id = Column(Integer,primary_key=True)
+    name = Column(String(255))
+
+    item_types = relationship("Item_type", secondary="item_type_subtypes", backref="item_subtypes")
+    item_implicits = relationship("Item_implicit", secondary="subtype_implicits", backref="item_subtypes")
+
 
 class Weapon(Base):
     __tablename__="weapons"
