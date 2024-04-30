@@ -7,9 +7,15 @@ class UserSchema(UserBase):
 class URLSSchema(URLBase):
     user: UserSchema
 
-class PassiveEffectsSchema(PassiveEffectsBase):
-    passives: List[PassiveBase]
+# class PassiveEffectsSchema(PassiveEffectsBase):
+#     passives: List[PassiveBase]
+#     effects: List[EffectBase]
+
+class PassiveSchema(PassiveBase):
     effects: List[EffectBase]
+
+class EffectSchema(EffectBase):
+    passives: List[PassiveBase]
 
 class AffixesSchema(AffixBase):
     affix_types: Affix_typeBase
@@ -22,17 +28,17 @@ class Item_subtypeSchema(Item_subtypeBase):
     item_types: List[Item_typeBase]
     item_implicits: List[Item_implicitBase]
 
-# class ItemImplicitsSchema(Item_implicitBase):
-#     subtypes: List[Item_subtypeBase]
+class ItemImplicitsSchema(Item_implicitBase):
+    subtypes: List[Item_subtypeBase]
 
 class WeaponsSchema(WeaponBase):
-    sub_ids: Item_subtypeSchema
+    sub_ids: Item_subtypeBase
 
 class ArmourSchema(ArmourBase):
-    sub_ids: Item_subtypeSchema
+    sub_ids: Item_subtypeBase
 
 class AccessorySchema(AccessoryBase):
-    sub_ids: Item_subtypeSchema
+    sub_ids: Item_subtypeBase
 
 
 

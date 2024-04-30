@@ -27,11 +27,11 @@ with Session(bind=engine) as session:
     pas1 = models.Passive(name='Dexterity', desc='+15 dex')
     pas2 = models.Passive(name='Strength', desc='+15 str')
 
-    PasEff = models.Passive_effects(
-        value=10, passives=[pas1, pas2], effects=[eff])
+    # pasEff = models.Passive_effects(
+    #     value=10, passives=[pas1, pas2], effects=[eff])
 
-    cls1 = models.Class(name='Богатырь', main_atr='str', base_atrs=[
-                        60, 20, 20], base_hp=1000, base_mp=50,
+    cls1 = models.Class(name='Богатырь', main_atr='str', base_atrs=
+                        '60, 20, 20', base_hp=1000, base_mp=50,
                         base_armor=50, base_evade=10, base_ele_res=30, base_phys_res=50)
 
     afxtype = models.Affix_type(name='strong')
@@ -44,15 +44,23 @@ with Session(bind=engine) as session:
     itemImplicit = models.Item_implicit(
         effect='strhiga', value_start=1, value_end=2)
 
-    itemsubtype = models.Item_subtype(name='lmaostr', item_types=[
+    itemsubtype1 = models.Item_subtype(name='lmaostr', item_types=[
+                                      itemtype], item_implicits=[itemImplicit])
+    
+    itemsubtype2 = models.Item_subtype(name='lmaostr1', item_types=[
+                                      itemtype], item_implicits=[itemImplicit])
+    
+    itemsubtype3 = models.Item_subtype(name='lmaostr3', item_types=[
                                       itemtype], item_implicits=[itemImplicit])
 
-    wpn1 = models.Weapon(name='hatchet', sub_ids=itemsubtype)
+    # wpn1 = models.Weapon(name='hatchet', sub_ids=itemsubtype1)
 
-    armr1 = models.Armour(name='chestplate', sub_ids=itemsubtype)
+    # armr1 = models.Armour(name='chestplate', sub_ids=itemsubtype2)
 
-    accry1 = models.Armour(name='necklace', sub_ids=itemsubtype)
+    # accry1 = models.Armour(name='necklace', sub_ids=itemsubtype3)
 
-    session.add_all([role1, user1, url1, eff, pas1, pas2, PasEff, cls1, afxtype,
-                    itemtype, afx, itemImplicit, itemsubtype, wpn1, armr1, accry1])
+    session.add_all([role1, user1, url1, eff, pas1, pas2, cls1, afxtype,
+                    itemtype, afx, itemImplicit, itemsubtype1,itemsubtype2,itemsubtype3,
+                    # wpn1, armr1, accry1
+                    ])
     session.commit()

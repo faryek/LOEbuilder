@@ -12,6 +12,11 @@ subtype_implicits = Table('subtype_implicits', Base.metadata,
                          Column('implicit_id', ForeignKey('item_implicits.id'), primary_key=True),
                          )
 
+passive_effects = Table('passive_effects', Base.metadata,
+                         Column('passive_id', ForeignKey('passives.id'), primary_key=True),
+                         Column('effect_id', ForeignKey('effects.id'), primary_key=True),
+                         )
+
 class Role(Base):
     __tablename__="roles"
     id = Column(Integer,primary_key=True)
@@ -47,16 +52,18 @@ class Passive(Base):
     name = Column(String(255))
     desc = Column(String(255))
 
-class Passive_effects(Base):
-    __tablename__="passive_effects"
-    id = Column(Integer,primary_key=True)
-    value = Column(Integer)
+    effects = relationship('Effect', secondary='passive_effects', backref='passives')
 
-    effect_id = Column(Integer,ForeignKey('effects.id'),default=1,nullable=False)
-    passive_id= Column(Integer,ForeignKey('passives.id'),default=1,nullable=False)
+# class Passive_effects(Base):
+#     __tablename__="passive_effects"
+#     id = Column(Integer,primary_key=True)
+#     value = Column(Integer)
 
-    passives = relationship('Passive')
-    effects = relationship('Effect')
+#     effect_id = Column(Integer,ForeignKey('effects.id'),nullable=False)
+#     passive_id= Column(Integer,ForeignKey('passives.id'),nullable=False)
+
+#     passives = relationship('Passive',backref='passive_effects')
+#     effects = relationship('Effect',backref='passive_effects')
 
 class Class(Base):
     __tablename__="classes"
