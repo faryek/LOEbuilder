@@ -45,6 +45,7 @@ class Effect(Base):
     __tablename__="effects"
     id = Column(Integer,primary_key=True)
     name = Column(String(255))
+    value = Column(Integer)
 
 class Passive(Base):
     __tablename__="passives"
@@ -123,6 +124,8 @@ class Weapon(Base):
 
     sub_ids = Column(Integer,ForeignKey('item_subtypes.id'),default=1)
 
+    sub_id = relationship('Item_subtype',backref='weapons')
+
 class Armour(Base):
     __tablename__="armour"
     id = Column(Integer,primary_key=True)
@@ -130,9 +133,13 @@ class Armour(Base):
 
     sub_ids = Column(Integer,ForeignKey('item_subtypes.id'),default=1)
 
+    sub_id = relationship('Item_subtype',backref='armour')
+
 class Accessory(Base):
     __tablename__="accessories"
     id = Column(Integer,primary_key=True)
     name = Column(String(255))
 
     sub_ids = Column(Integer,ForeignKey('item_subtypes.id'),default=1)
+
+    sub_id = relationship('Item_subtype',backref='accessories')

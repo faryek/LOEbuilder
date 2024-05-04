@@ -32,13 +32,13 @@ class ItemImplicitsSchema(Item_implicitBase):
     subtypes: List[Item_subtypeBase]
 
 class WeaponsSchema(WeaponBase):
-    sub_ids: Item_subtypeBase
+    sub_id: Item_subtypeSchema
 
 class ArmourSchema(ArmourBase):
-    sub_ids: Item_subtypeBase
+    sub_id: Item_subtypeSchema
 
 class AccessorySchema(AccessoryBase):
-    sub_ids: Item_subtypeBase
+    sub_id: Item_subtypeSchema
 
 
 
