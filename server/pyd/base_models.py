@@ -25,6 +25,7 @@ class URLBase(BaseModel):
 class EffectBase(BaseModel):
     id: int = Field(None, gt=0, example=1)
     name: str = Field(..., max_length=255, example='Culling')
+    value: int = Field(..., gt=0,example=1)
 
     class Config:
         orm_mode = True
@@ -37,12 +38,12 @@ class PassiveBase(BaseModel):
     class Config:
         orm_mode = True
 
-class PassiveEffectsBase(BaseModel):
-    id: int = Field(None, gt=0, example=1)
-    value : int = Field(..., gt=0,example=1)
+# class PassiveEffectsBase(BaseModel):
+#     id: int = Field(None, gt=0, example=1)
+#     value : int = Field(..., gt=0,example=1)
 
-    class Config:
-        orm_mode = True
+#     class Config:
+#         orm_mode = True
 
 class ClassBase(BaseModel):
     id : int = Field(None, gt=0,example=1)
