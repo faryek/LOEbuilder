@@ -49,21 +49,21 @@ with Session(bind=engine) as session:
         effect='Шанс крита', value_start=1, value_end=2)
 
     itemsubtype1 = models.Item_subtype(name='Кинжал', item_types=[
-        itemtype], item_implicits=[itemImplicit], image='/img/knife')
+        itemtype], item_implicits=[itemImplicit])
 
     itemsubtype2 = models.Item_subtype(name='Шлем', item_types=[
-        itemtype2], item_implicits=[itemImplicit2], image='/img/helmet')
+        itemtype2], item_implicits=[itemImplicit2])
 
     itemsubtype3 = models.Item_subtype(name='Ожерелье', item_types=[
-        itemtype3], item_implicits=[itemImplicit3], image='/img/necklace')
+        itemtype3], item_implicits=[itemImplicit3])
 
-    wpn1 = models.Weapon(name='Костяной', sub_id=itemsubtype1)
+    wpn1 = models.Weapon(name='Костяной', sub_id=itemsubtype1, image='/img/knife')
 
-    armr1 = models.Armour(name='Рогатый', sub_id=itemsubtype2)
+    armr1 = models.Armour(name='Рогатый', sub_id=itemsubtype2, image='/img/helmet')
 
-    accry1 = models.Accessory(name='Изумрудное', sub_id=itemsubtype3)
+    accry1 = models.Accessory(name='Изумрудное', sub_id=itemsubtype3, image='/img/necklace')
 
-    session.add_all([eff, eff2, pas1, pas2, cls1, afxtype,
+    session.add_all([role1, eff, eff2, pas1, pas2, cls1, afxtype,
                     itemtype, itemtype2, itemtype3, afx, itemImplicit,itemImplicit2,itemImplicit3, itemsubtype1, itemsubtype2, itemsubtype3,
                     wpn1, armr1, accry1
                      ])

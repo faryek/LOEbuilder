@@ -1,4 +1,6 @@
 <template>
+    <div class="login-background" style="position: fixed; top: 0; left: 0; z-index: 500;" @click="() => { click = false}" v-if="click"></div>
+    <LoginCard style="position: fixed; top: 25%; left: 35%; z-index: 501;" v-if="click"></LoginCard>
     <div class="main">
         <div>
             <header class="bg-black bg-opacity-80">
@@ -14,7 +16,8 @@
                             <NuxtLink to="/guide" class="text-2xl fonted">Руководство</NuxtLink>
                         </li>
                     </ul>
-                    <NuxtLink class="text-2xl fonted login">Вход</NuxtLink>
+                    <button class="text-2xl fonted login"
+                        @click="() => { click = true}">Вход</button>
                 </nav>
             </header>
         </div>
@@ -57,7 +60,22 @@
         </div>
     </div>
 </template>
+<script>
+export default {
+    data() {
+        return {
+            click: false
+        }
+    }
+}
+</script>
 <style>
+.login-background {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.623);
+}
+
 body {
     min-height: 100vh;
     margin: 0;
@@ -66,11 +84,12 @@ body {
     flex-direction: column;
 }
 
-.main{
+.main {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
+
 
 footer {
     bottom: 0;

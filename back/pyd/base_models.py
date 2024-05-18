@@ -4,9 +4,9 @@ from datetime import date,datetime
 class UserBase(BaseModel):
     id: int = Field(None,  example=1)
     email: EmailStr = Field(..., example='help@gmail.com')
-    username:str=Field(...,example='nagibator69')
+    name:str=Field(...,example='nagibator69')
     birthday:date=Field(...,example='2001-01-01')
-    role: int = Field(...,example=1)
+    role_id: int = Field(...,example=1)
 
     class Config:
         orm_mode = True
