@@ -1,9 +1,12 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, EmailStr
+from datetime import date,datetime
 
 class UserBase(BaseModel):
-    id: int = Field(None, gt=0, example=1)
-    username: str = Field(..., max_length=255, example='Login')
-    password: str = Field(..., max_length=255, example='PassExample')
+    id: int = Field(None,  example=1)
+    email: EmailStr = Field(..., example='help@gmail.com')
+    username:str=Field(...,example='nagibator69')
+    birthday:date=Field(...,example='2001-01-01')
+    role: int = Field(...,example=1)
 
     class Config:
         orm_mode = True
@@ -101,6 +104,7 @@ class Item_implicitBase(BaseModel):
 class WeaponBase(BaseModel):
     id : int = Field(None, gt=0,example=1)
     name : str = Field(..., max_length=255, example='Strike')
+    image: str = Field(None,example='/img/dagger/1')
 
     class Config:
         orm_mode = True
@@ -108,6 +112,7 @@ class WeaponBase(BaseModel):
 class ArmourBase(BaseModel):
     id : int = Field(None, gt=0,example=1)
     name : str = Field(..., max_length=255, example='Strike')
+    image: str = Field(None,example='/img/armour/1')
 
     class Config:
         orm_mode = True
@@ -115,34 +120,7 @@ class ArmourBase(BaseModel):
 class AccessoryBase(BaseModel):
     id : int = Field(None, gt=0,example=1)
     name : str = Field(..., max_length=255, example='Strike')
+    image: str = Field(None,example='/img/necklace/1')
 
     class Config:
         orm_mode = True
-# файл с базовыми моделями
-# class CategoryBase(BaseModel):
-#     # Field используется для описания столбца, None - не обязательно, ... - обязательно
-#     # gt - больше чем, example - пример для доки
-#     id: int = Field(None, gt=0, example=1)
-#     name: str = Field(..., max_length=255, example='Еда')
-#     description: str = Field(None, max_length=255, example='То что можно скушать')
-
-#     class Config:
-#         orm_mode = True
-
-
-# class ProductBase(BaseModel):
-#     id: int = Field(None, gt=0, example=1)
-#     name: str = Field(..., max_length=255, example='Колбаса')
-#     description: str = Field(None, max_length=255, example='Варенная колбаса, самая вкусная')
-#     price: int = Field(..., gt=0, example=99.95)
-
-#     class Config:
-#         orm_mode = True
-
-
-# class BaseUser(BaseModel):
-#     id: int = Field(None, gt=0, example=1)
-#     username: str = Field(..., max_length=255, example='Колбаса')
-
-#     class Config:
-#         orm_mode = True

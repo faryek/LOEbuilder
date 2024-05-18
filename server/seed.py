@@ -15,12 +15,7 @@ with Session(bind=engine) as session:
     # prod2 = models.Product(name='Святой источник', description='Обычная вода, для людей', price=33.4,categories=[cat2])
     # prod3 = models.Product(name='Кепка ОДМО', description='Специально для ОДМОшников', price=350.0,categories=[cat3])
     # session.add_all([cat1, cat2, cat3, prod1, prod2, prod3])
-
-    role1 = models.Role(name='parjur')
-
-    user1 = models.User(username='xd', password='xdpass', role=role1)
-
-    url1 = models.URL(name='xdddddddd', user=user1)
+    role1 = models.Role(name = 'user')
 
     eff = models.Effect(name='dexterity', value=15)
     eff2 = models.Effect(name='strength', value=15)
@@ -54,13 +49,13 @@ with Session(bind=engine) as session:
         effect='Шанс крита', value_start=1, value_end=2)
 
     itemsubtype1 = models.Item_subtype(name='Кинжал', item_types=[
-        itemtype], item_implicits=[itemImplicit])
+        itemtype], item_implicits=[itemImplicit], image='/img/knife')
 
     itemsubtype2 = models.Item_subtype(name='Шлем', item_types=[
-        itemtype2], item_implicits=[itemImplicit2])
+        itemtype2], item_implicits=[itemImplicit2], image='/img/helmet')
 
     itemsubtype3 = models.Item_subtype(name='Ожерелье', item_types=[
-        itemtype3], item_implicits=[itemImplicit3])
+        itemtype3], item_implicits=[itemImplicit3], image='/img/necklace')
 
     wpn1 = models.Weapon(name='Костяной', sub_id=itemsubtype1)
 
@@ -68,7 +63,7 @@ with Session(bind=engine) as session:
 
     accry1 = models.Accessory(name='Изумрудное', sub_id=itemsubtype3)
 
-    session.add_all([role1, user1, url1, eff, eff2, pas1, pas2, cls1, afxtype,
+    session.add_all([eff, eff2, pas1, pas2, cls1, afxtype,
                     itemtype, itemtype2, itemtype3, afx, itemImplicit,itemImplicit2,itemImplicit3, itemsubtype1, itemsubtype2, itemsubtype3,
                     wpn1, armr1, accry1
                      ])
