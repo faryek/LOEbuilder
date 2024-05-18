@@ -4,13 +4,18 @@ from datetime import date,datetime
 
 class UserCreate(BaseModel):
     email: EmailStr = Field(..., example='help@gmail.com')
-    username:str=Field(...,max_length=255,min_length=3,example='nagibator69')
+    name:str=Field(...,max_length=255,min_length=3,example='nagibator69')
     pwd:str=Field(...,max_length=255,min_length=6,example='123456')
     birthday:date=Field(...,example='2001-01-01')
+    role_id: int = Field(...,gt=0,example=1)
+
+class UserLogin(BaseModel):
+    name:str=Field(...,max_length=255,min_length=3,example='nagibator69')
+    pwd:str=Field(...,max_length=255,min_length=6,example='123456')
 
 class URLCreate(BaseModel):
     id: int = Field(None, gt=0, example=1)
-    name: str = Field(..., example='https://poeplanner.com/atlas-tree/BAAQAIQAJuaH1PP3Xz4PgWXyArZjD0sy67sklwBIHtey-uUxt-Vs8whDhrSxnyySEYQIesHuZIBtiMAq6ng8WSFgky14ZvI4jEEqbrVmpdrOAF6dzlrJ_Uy6jeqT8n7IqLz8-iq72Vt9Hsy3hqGvOr3a5PcfAKoKnzumNAf0TdfXK2iJZ2AqEntg1I-HnS370MbsDwLFtdiCp6FoKY2OOQF6fitZhnTSglGI6EU6ZjA342ayz0fhEBkKpXPiDqQFotDLFyFMxSEX3TUwx10XUDak9nUZlMGvOnbBdOXsOMZxC4_lAzCIB7cP1WnCdvrl2VypQ7VjoHHEGLli5DOar2-1mbkc3c776We51NAoFAAfiwgAAAAAAAADAwAAAAAAAAAAAA==')
+    name: str = Field(..., example='weapons=[1],armour=[1,5,12],accessory=[3,3,15],passives=[1,5,6,7,8,12,15,19,22]')
 
     class Config:
         orm_mode = True
