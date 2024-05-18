@@ -15,17 +15,11 @@
             <option value="Мать" class="selector">Маппинг</option>
         </select>
     </div>
-    <div class="container character_selector">
+    <div class="container character_selector mt-4">
         <div class="wrapper flex flex-row relative justify-between">
-            <div class="icon char_icon1 flex flex-col-reverse" v-for="i in 8">
-                <img :src="`_nuxt/assets/img/classes/${classes[i - 1]}/Small.png`" alt="" @mouseenter="() => {
-                    hovering=1
-                    console.log(hovering)
-                }" @mouseleave="() => {
-                        hovering=0
-                        console.log(hovering)
-                    }">
-                <p v-if="hovering == 1">{{ classes_ru[i - 1] }}</p>
+            <div class="icon char_icon1 flex flex-col-reverse border-shine" v-for="i in 8">
+                <img :src="`_nuxt/assets/img/classes/${classes[i - 1]}/Small.png`" alt="" class="icon-image">
+                <p class="icon-text font">{{ classes_ru[i - 1] }}</p>
             </div>
 
         </div>
@@ -44,26 +38,40 @@ const classes_ru = ['Антихрист', 'Богатырь', 'Боголюб', 
     border-radius: 25px;
 }
 
+.border-shine{
+    border-radius: 15px !important;
+}
+
+.border-shine:hover{
+    .icon-image{
+        border-bottom-left-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+    }
+}
+
 .icon {
-    height: 110px;
-    width: 110px;
-    border-radius: 15px;
-    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    border: 3px solid;
+    border-color: rgba(0, 0, 0, 0);
 }
 
-.icon img {
-    height: 110px;
-    width: 110px;
+.icon-image {
+    height: 114px;
+    width: 114px;
     object-fit: cover;
-    border-radius: 15px;
-    z-index: -1;
+    border-radius: 13px;
+    z-index: 1;
 }
 
-.icon p {
-    /* position: absolute; */
-    width: 110px;
-    background-color: white;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+.icon-text {
+    display: none;
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    border-bottom-left-radius: 13px;
+    border-bottom-right-radius: 13px;
+    z-index: 10;
+    text-align: center;
+    color: #ffffff !important;
 }
 </style>

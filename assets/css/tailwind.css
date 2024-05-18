@@ -42,6 +42,11 @@
         border-color: #9b7e41 !important;
         box-shadow: 0 0 10px 0 #9b7f41;
     }
+    .icon:hover{
+        .icon-text{
+            display: block;
+        }
+    }
 }
 
 @layer components {

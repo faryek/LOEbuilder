@@ -1,5 +1,5 @@
 <template>
-    <div class="checkers">
+    <div class="main">
         <div>
             <header class="bg-black bg-opacity-80">
                 <nav class="container mx-auto p-4 flex justify-between">
@@ -18,10 +18,12 @@
                 </nav>
             </header>
         </div>
-        <div class="backgroundimage"></div>
-        <div class="background"></div>
-        <div class="container mx-auto p-4">
-            <slot></slot>
+        <div style="flex: 1;">
+            <div class="backgroundimage"></div>
+            <div class="background"></div>
+            <div class="container mx-auto p-4">
+                <slot></slot>
+            </div>
         </div>
         <div>
             <footer class="mt-10">
@@ -64,9 +66,10 @@ body {
     flex-direction: column;
 }
 
-.checkers {
-    flex-grow: 1;
-
+.main{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 footer {
