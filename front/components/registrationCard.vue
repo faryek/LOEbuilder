@@ -1,11 +1,19 @@
 <template>
-    <div class="login-form container">
-        <div class="login-row">
+    <div class="reg-form container">
+        <div class="reg-row">
             <p class="font text-2xl">Логин</p>
             <input type="text" class="font pl-1 text-2xl">
         </div>
-        <div class="login-row">
+        <div class="reg-row">
+            <p class="font text-2xl">Эл. почта</p>
+            <input type="text" class="font pl-1 text-2xl">
+        </div>
+        <div class="reg-row">
             <p class="font text-2xl">Пароль</p>
+            <input type="text" class="font pl-1 text-2xl">
+        </div>
+        <div class="reg-row">
+            <p class="font text-2xl">Подтвердите пароль</p>
             <input type="text" class="font pl-1 text-2xl">
         </div>
     </div>
@@ -16,7 +24,7 @@
 </script>
 
 <style>
-.login-form {
+.reg-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -26,20 +34,20 @@
     height: 40%;
 }
 
-.login-row {
+.reg-row {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
 }
 
-.login-row input {
+.reg-row input {
     color: black !important;
     width: 50%;
     height: fit-content;
 }
 
-.login-row p {
+.reg-row p {
     white-space: nowrap;
 }
 </style>

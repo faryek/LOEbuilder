@@ -1,6 +1,8 @@
 <template>
-    <div class="login-background" style="position: fixed; top: 0; left: 0; z-index: 500;" @click="() => { click = false}" v-if="click"></div>
-    <LoginCard style="position: fixed; top: 25%; left: 35%; z-index: 501;" v-if="click"></LoginCard>
+    <div class="login-background" style="position: fixed; top: 0; left: 0; z-index: 500;"
+        @click="() => { log = false; reg = false; back = false }" v-if="back"></div>
+    <LoginCard style="position: fixed; top: 25%; left: 35%; z-index: 501;" v-if="log"></LoginCard>
+    <RegistrationCard style="position: fixed; top: 25%; left: 35%; z-index: 501;" v-if="reg"></RegistrationCard>
     <div class="main">
         <div>
             <header class="bg-black bg-opacity-80">
@@ -16,8 +18,14 @@
                             <NuxtLink to="/guide" class="text-2xl fonted">Руководство</NuxtLink>
                         </li>
                     </ul>
-                    <button class="text-2xl fonted login"
-                        @click="() => { click = true}">Вход</button>
+                    <div class="flex gap-4">
+                        <button class="text-2xl fonted login" @click="() => { reg = true; back = true }">
+                            Регистрация
+                        </button>
+                        <button class="text-2xl fonted login" @click="() => { log = true; back = true }">
+                            Вход
+                        </button>
+                    </div>
                 </nav>
             </header>
         </div>
@@ -64,7 +72,9 @@
 export default {
     data() {
         return {
-            click: false
+            log: false,
+            reg: false,
+            back: false
         }
     }
 }
