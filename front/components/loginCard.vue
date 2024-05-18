@@ -8,6 +8,7 @@
             <p class="font text-2xl">Пароль</p>
             <input type="text" class="font pl-1 text-2xl">
         </div>
+        <button style="border: 2px solid white; color: white;">Войти</button>
     </div>
 </template>
 
