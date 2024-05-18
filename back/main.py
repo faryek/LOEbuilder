@@ -10,6 +10,7 @@ from datetime import datetime, timedelta
 from database import engine, get_db
 from auth import AuthHandler
 import base64
+from fastapi.middleware.cors import CORSMiddleware
 # from routers import category_router, product_router, user_router
 
 # создание таблиц в БД из моделей
@@ -102,10 +103,11 @@ async def get_passives(username=Depends(auth_handler.auth_wrapper),db: Session =
 async def get_affixes(username=Depends(auth_handler.auth_wrapper),db: Session = Depends(get_db)):
     return db.query(models.Affix).all()
 
-# # подключение АпиРоутера (маршруты сущности)
-# app.include_router(user_router)
-# app.include_router(category_router)
-# app.include_router(product_router)
-
-
-# тестовый комент 228
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)

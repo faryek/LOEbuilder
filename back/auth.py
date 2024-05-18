@@ -3,6 +3,7 @@ from fastapi import HTTPException, Security
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
+from config import settings
 
 
 class AuthHandler:
@@ -13,7 +14,7 @@ class AuthHandler:
         deprecated='auto'
     )
     # Секретный ключ, на его основе генерируется JWT токен
-    secret = 'secret_test'
+    secret = settings.SECRET_KEY
 
     # функция получения хеша из пароля
     def get_password_hash(self, password):
