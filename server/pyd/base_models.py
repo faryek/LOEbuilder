@@ -1,9 +1,13 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, EmailStr
+from datetime import date,datetime
 
 class UserBase(BaseModel):
-    id: int = Field(None, gt=0, example=1)
-    username: str = Field(..., max_length=255, example='Login')
-    password: str = Field(..., max_length=255, example='PassExample')
+    id: int = Field(None,  example=1)
+    email: EmailStr = Field(..., example='help@gmail.com')
+    username:str=Field(...,example='nagibator69')
+    birthday:date=Field(...,example='2001-01-01')
+    email_verify:bool=Field(...)
+    created_at:datetime=Field(...,example='2001-01-01 00:00:00')
 
     class Config:
         orm_mode = True

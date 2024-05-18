@@ -1,11 +1,12 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, EmailStr
 from typing import List
+from datetime import date,datetime
 
 class UserCreate(BaseModel):
-    username: str = Field(..., max_length=255, example='Login')
-    password: str = Field(..., max_length=255, example='passExample')
-    class Config:
-        orm_mode = True
+    email: EmailStr = Field(..., example='help@gmail.com')
+    username:str=Field(...,max_length=255,min_length=3,example='nagibator69')
+    pwd:str=Field(...,max_length=255,min_length=6,example='123456')
+    birthday:date=Field(...,example='2001-01-01')
 
 class URLCreate(BaseModel):
     id: int = Field(None, gt=0, example=1)
