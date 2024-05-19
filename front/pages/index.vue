@@ -15,21 +15,47 @@
             <option value="Мать" class="selector">Маппинг</option>
         </select>
     </div>
-    <div class="container character_selector mt-4">
+    <div class="container character_selector mt-8" style="min-height: 8vw;">
         <div class="wrapper flex flex-row relative justify-between">
-            <div class="icon char_icon1 flex flex-col-reverse border-shine" v-for="i in 8">
+            <button class="icon char_icon1 flex flex-col-reverse border-shine" v-for="i in 8" @click="icon_click = i"
+                @mouseenter="icon_hover = i" @mouseleave="icon_hover = 0">
                 <img :src="`_nuxt/assets/img/classes/${classes[i - 1]}/Small.png`" alt="" class="icon-image">
-                <p class="icon-text font">{{ classes_ru[i - 1] }}</p>
-            </div>
-
+                <p v-if="icon_hover == i || icon_click == i" class="icon-text font">{{ classes_ru[i - 1] }}</p>
+            </button>
+        </div>
+    </div>
+    <div class="container mt-4">
+        <div class="card-column px-4" style="display: flex; flex-direction: column;">
+            <div class="card-block w-100 px-5"
+                style="display: flex; flex-direction: row; justify-content: space-between;">
+                <p class="text-xl font text-center">Лига</p>
+                <p class="text-xl font text-center">Название</p>
+                <p class="text-xl font text-center">Уровень</p>
+                <p class="text-xl font text-center">Класс</p>
+                <p class="text-xl font text-center">Эфф. здоровье</p>
+                <p class="text-xl font text-center">Урон в секунду</p>
+                <p class="text-xl font text-center">Дата создания</p>
+        </div>
+            <BuildCardBig v-for="i in 8" :league="'Первое бытие'" :build_class_name="classes_ru[i - 1]" :build_lvl="100"
+                :build_name="'Яйца Егора ' + `${i}`" :build_ehp="'10000'" :build_dps="'10кк'" :id="i"
+                :build_date="'09.11.2001'" :more="more" class="border-shine" @click="more=true"></BuildCardBig>
         </div>
     </div>
 </template>
 
-<script setup>
-let hovering
-const classes = ['Antihrist', 'Bogatir', 'Bogolub', 'Zastrel', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich']
-const classes_ru = ['Антихрист', 'Богатырь', 'Боголюб', 'Застрельщица', 'Налетчик', 'Богохульник', 'Скоморох', 'Язычница']
+
+<script>
+export default {
+    data() {
+        return {
+            more: false,
+            icon_hover: 0,
+            icon_click: 0,
+            classes: ['Antihrist', 'Bogatir', 'Bogolub', 'Zastrel', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich'],
+            classes_ru: ['Антихрист', 'Богатырь', 'Боголюб', 'Застрельщица', 'Налетчик', 'Богохульник', 'Скоморох', 'Язычница']
+        }
+    }
+}
 </script>
 
 <style>
@@ -38,15 +64,8 @@ const classes_ru = ['Антихрист', 'Богатырь', 'Боголюб', 
     border-radius: 25px;
 }
 
-.border-shine{
+.border-shine {
     border-radius: 15px !important;
-}
-
-.border-shine:hover{
-    .icon-image{
-        border-bottom-left-radius: 0 !important;
-        border-bottom-right-radius: 0 !important;
-    }
 }
 
 .icon {
@@ -65,7 +84,6 @@ const classes_ru = ['Антихрист', 'Богатырь', 'Боголюб', 
 }
 
 .icon-text {
-    display: none;
     width: 100%;
     background-color: rgb(0, 0, 0);
     border-bottom-left-radius: 13px;

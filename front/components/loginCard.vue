@@ -1,16 +1,14 @@
 <template>
-    <div class="login-form">
+    <div class="login-form container">
         <div class="login-row">
-            <p class="font">Логин</p>
-            <input type="text" class="font pl-1" v-model="login">
+            <p class="font text-2xl">Логин</p>
+            <input type="text" class="font pl-1 text-2xl">
         </div>
         <div class="login-row">
-            <p class="font">Пароль</p>
-            <input type="text" class="font pl-1" v-model="pwd">
+            <p class="font text-2xl">Пароль</p>
+            <input type="text" class="font pl-1 text-2xl">
         </div>
-        <button style="border: 2px solid white; color: white;" @click="() => {
-            get_token()
-        }">Войти</button>
+        <button style="border: 2px solid white; color: white;">Войти</button>
     </div>
 </template>
 
@@ -50,7 +48,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5vh;
+    gap: 4vh;
     width: 30%;
     height: 40%;
 }
@@ -58,10 +56,17 @@ export default {
 .login-row {
     display: flex;
     flex-direction: row;
-    gap: 1vw;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .login-row input {
     color: black !important;
+    width: 50%;
+    height: fit-content;
+}
+
+.login-row p {
+    white-space: nowrap;
 }
 </style>
