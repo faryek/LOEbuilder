@@ -37,7 +37,6 @@ class User(Base):
     name = Column(String(255),nullable=False,unique=True)
     email = Column(String(255), nullable=False, unique=True)
     pwd = Column(String(255), nullable=False)
-    birthday = Column(Date(), nullable=False)
     role_id = Column(Integer, ForeignKey("roles.id"), default=1)
 
     role = relationship('Role', backref="users")
@@ -48,9 +47,12 @@ class URL(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(255), nullable=False)
+    
     user_id = Column(Integer, ForeignKey('users.id'), default=1)
+    class_id = Column(Integer, ForeignKey('classes.id'), default=1)
 
     user = relationship('User', backref='urls')
+    clas = relationship('Class', backref='urls')
 
 
 class Effect(Base):
@@ -68,18 +70,6 @@ class Passive(Base):
 
     effects = relationship(
         'Effect', secondary='passive_effects', backref='passives')
-
-# class Passive_effects(Base):
-#     __tablename__="passive_effects"
-#     id = Column(Integer,primary_key=True)
-#     value = Column(Integer)
-
-#     effect_id = Column(Integer,ForeignKey('effects.id'),nullable=False)
-#     passive_id= Column(Integer,ForeignKey('passives.id'),nullable=False)
-
-#     passives = relationship('Passive',backref='passive_effects')
-#     effects = relationship('Effect',backref='passive_effects')
-
 
 class Class(Base):
     __tablename__ = "classes"

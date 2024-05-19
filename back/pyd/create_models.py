@@ -6,8 +6,12 @@ class UserCreate(BaseModel):
     email: EmailStr = Field(..., example='help@gmail.com')
     name:str=Field(...,max_length=255,min_length=3,example='nagibator69')
     pwd:str=Field(...,max_length=255,min_length=6,example='123456')
-    birthday:date=Field(...,example='2001-01-01')
-    role_id: int = Field(...,gt=0,example=1)
+
+class UserCreateReg(BaseModel):
+    email: EmailStr = Field(..., example='help@gmail.com')
+    name:str=Field(...,max_length=255,min_length=3,example='nagibator69')
+    pwd:str=Field(...,max_length=255,min_length=6,example='123456')
+    pwd_2: str= Field(...,max_length=255,min_length=6,example='123456')
 
 class UserLogin(BaseModel):
     name:str=Field(...,max_length=255,min_length=3,example='nagibator69')
@@ -16,9 +20,8 @@ class UserLogin(BaseModel):
 class URLCreate(BaseModel):
     id: int = Field(None, gt=0, example=1)
     name: str = Field(..., example='weapons=[1],armour=[1,5,12],accessory=[3,3,15],passives=[1,5,6,7,8,12,15,19,22]')
+    class_id: int = Field(...,example=1)
 
-    class Config:
-        orm_mode = True
 # # тут модели которые используются при создании/редактировании сущностей
 # class CategoryCreate(BaseModel):
 #     name: str = Field(..., max_length=255, example='Еда')

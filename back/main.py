@@ -26,18 +26,24 @@ auth_handler = AuthHandler()
 
 
 @app.post('/register', response_model=pyd.UserCreate)
-async def user_reg(user_input: pyd.UserCreate, db: Session = Depends(get_db)):
+async def user_reg(user_input: pyd.UserCreateReg, db: Session = Depends(get_db)):
     user_db = db.query(models.User).filter(
         models.User.name == user_input.name
     ).first()
     if user_db:
         raise HTTPException(400, 'User exists')
+    user_db = db.query(models.User).filter(
+        models.User.email == user_input.email
+    ).first()
+    if user_db:
+        raise HTTPException(400,'email exists')
+    if user_input.pwd_2 != user_input.pwd:
+        raise HTTPException(403, detail='wrong second password')
     hashed_pass = auth_handler.get_password_hash(user_input.pwd)
     user_db = models.User(name=user_input.name,
                           pwd=hashed_pass,
                           email = user_input.email,
-                          birthday=user_input.birthday,
-                          role_id = user_input.role_id
+                          role_id = 1
                           )
     db.add(user_db)
     db.commit()
@@ -63,7 +69,8 @@ async def url_create(url_input:pyd.URLCreate,username=Depends(auth_handler.auth_
     ).first()
     url_db = models.URL(
         name = base64.b64encode(url_input.name.encode()),
-        user_id = user_db.id
+        user_id = user_db.id,
+        class_id = url_input.class_id
     )
     db.add(url_db)
     db.commit()
@@ -73,6 +80,9 @@ async def url_create(url_input:pyd.URLCreate,username=Depends(auth_handler.auth_
 async def get_users(username=Depends(auth_handler.auth_wrapper),db: Session = Depends(get_db)):
     return db.query(models.User).all()
 
+@app.get('/urls', response_model=List[pyd.URLSSchema])
+async def get_urls(username=Depends(auth_handler.auth_wrapper),db:Session=Depends(get_db)):
+    return db.query(models.URL)
 
 @app.get("/weapons", response_model=List[pyd.WeaponsSchema])
 async def get_weapons(username=Depends(auth_handler.auth_wrapper),db: Session = Depends(get_db)):
