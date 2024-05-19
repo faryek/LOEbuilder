@@ -19,7 +19,7 @@
         <div class="wrapper flex flex-row relative justify-between">
             <button class="icon char_icon1 flex flex-col-reverse border-shine" v-for="i in 8" @click="icon_click = i"
                 @mouseenter="icon_hover = i" @mouseleave="icon_hover = 0">
-                <img :src="`_nuxt/assets/img/classes/${classes[i - 1]}/Small.png`" alt="" class="icon-image">
+                <img :src="`../img/classes/${classes[i - 1]}/Small.png`" alt="" class="icon-image">
                 <p v-if="icon_hover == i || icon_click == i" class="icon-text font">{{ classes_ru[i - 1] }}</p>
             </button>
         </div>
@@ -38,7 +38,7 @@
         </div>
             <BuildCardBig v-for="i in 8" :league="'Первое бытие'" :build_class="classes[i-1]" :build_class_name="classes_ru[i - 1]" :build_lvl="100"
                 :build_name="'Яйца Егора ' + `${i}`" :build_ehp="'10000'" :build_dps="'10кк'" :id="i"
-                :build_date="'09.11.2001'" :more="more" class="border-shine" @click="more=true"></BuildCardBig>
+                :build_date="'09.11.2001'" :more="more" :selected = "selected" class="border-shine" @click="() => {more=true; selected = i}"></BuildCardBig>
         </div>
     </div>
 </template>
@@ -49,6 +49,7 @@ export default {
     data() {
         return {
             more: false,
+            selected: 0,
             icon_hover: 0,
             icon_click: 0,
             classes: ['Antihrist', 'Bogatir', 'Bogolub', 'Zastrel', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich'],
