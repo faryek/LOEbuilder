@@ -36,7 +36,7 @@
                 <p class="text-xl font text-center">Урон в секунду</p>
                 <p class="text-xl font text-center">Дата создания</p>
         </div>
-            <BuildCardBig v-for="i in 8" :league="'Первое бытие'" :build_class_name="classes_ru[i - 1]" :build_lvl="100"
+            <BuildCardBig v-for="i in 8" :league="'Первое бытие'" :build_class="classes[i-1]" :build_class_name="classes_ru[i - 1]" :build_lvl="100"
                 :build_name="'Яйца Егора ' + `${i}`" :build_ehp="'10000'" :build_dps="'10кк'" :id="i"
                 :build_date="'09.11.2001'" :more="more" class="border-shine" @click="more=true"></BuildCardBig>
         </div>
