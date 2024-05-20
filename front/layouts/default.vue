@@ -2,7 +2,7 @@
     <div class="login-background" style="position: fixed; top: 0; left: 0; z-index: 500;"
         @click="() => { log = false; reg = false; back = false }" v-if="back"></div>
     <LoginCard style="position: fixed; top: 25%; left: 35%; z-index: 501;" v-if="log"></LoginCard>
-    <RegistrationCard style="position: fixed; top: 25%; left: 35%; z-index: 501;" v-if="reg"></RegistrationCard>
+    <RegistrationCard style="position: fixed; top: 20%; left: 30%; z-index: 501;" v-if="reg"></RegistrationCard>
     <div class="main">
         <div>
             <header class="bg-black bg-opacity-80">

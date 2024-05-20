@@ -1,7 +1,7 @@
 <template>
-    <div class="container flex flex-col items-center"><NuxtLink :to="`${0}`" class="create-build-btn border-shine flex justify-center items-center"><p class="text-2xl w-max">Создать новый билд!</p></NuxtLink></div>
+    <div class="container flex flex-col items-center"><NuxtLink to="/build/create" class="create-build-btn border-shine flex justify-center items-center"><p class="text-2xl w-max">Создать новый билд!</p></NuxtLink></div>
     <div class="container flex flex-row flex-wrap justify-between gap-y-10">
-        <buildCard v-for="i in 7" :league="'Первое бытие'" :build_class="'Антихрист'" :build_lvl="100" :build_name="'test_name'" :id="i"></buildCard>
+        <BuildCard v-for="i in 7" :league="'Первое бытие'" :build_class="'Bogolub'" :build_lvl="100" :build_name="'test_name'" :build_class_name="'Боголюб'" :id="i"></BuildCard>
     </div>
 </template>
 
