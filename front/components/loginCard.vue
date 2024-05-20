@@ -10,7 +10,7 @@
             <input type="text" class="font pl-1" v-model="pwd">
         </div>
         <div class="flex flex-col align-middle justify-center gap-2">
-            <button class="login-btn mt-5 text-2xl font py-1 px-5">Войти</button>
+            <button @click="get_token()" class="login-btn mt-5 text-2xl font py-1 px-5">Войти</button>
             <button class="login-btn text-xl font py-1 px-5">Регистрация</button>
             <NuxtLink to="/support" class="font text-lg text-center">Забыли пароль?</NuxtLink>
         </div>

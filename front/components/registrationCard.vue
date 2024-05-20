@@ -18,7 +18,9 @@
             <input type="text" class="font pl-1 text-2xl"v-model="pwd_2">
         </div>
         <button class="reg-btn text-2xl font py-1 px-6 mt-5"
-            style="border: 2px solid white; color: white;">Регистрация</button>
+            style="border: 2px solid white; color: white;" @click="()=>{
+                registrate_user()
+            }">Регистрация</button>
     </div>
 </template>
 
@@ -49,32 +51,15 @@ export default {
                 },
                 body:JSON.stringify(credentials)
             }).then(response => response.json())
-            // .then(json =>{
-            //     if(json.detail == "User exists"){
-            //         this.user_exists = true
-            //     }
-            //     else if(json.detail){
-            //         this.error_reg = true
-            //     }
-            // })
+            .then(json =>{
+                if(json.detail == "User exists"){
+                    this.user_exists = true
+                }
+                else if(json.detail){
+                    this.error_reg = true
+                }
+            })
         },
-        // async get_token() {
-        //     let credetentials = {
-        //         name: this.login,
-        //         pwd: this.pwd
-        //     }
-        //     fetch('http://127.0.0.1:8000/login', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify(credetentials)
-        //     })
-        //         .then(response => response.json())
-        //         .then(json=>{
-        //             localStorage.setItem('token',json.token)
-        //         });
-        // }
     },
 }
 </script>
