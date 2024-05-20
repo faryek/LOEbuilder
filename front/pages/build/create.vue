@@ -2,7 +2,7 @@
     <div class="container flex flex-col">
         <div class="border-shine-create flex flex-row px-10 py-10 gap-10 top justify-evenly">
             <img src="public/img/classes/Antihrist/Medium.png" class="class-img" alt="">
-            <div class="flex flex-col gap-32 col">
+            <div class="flex flex-col justify-evenly col">
                 <select class="selector selector-create border-shine" name="" id="">
                     <option value="1" class="selector selector-create">Первое бытие</option>
                     <option value="2" class="selector selector-create">Второе житие</option>
@@ -22,7 +22,7 @@
                     <input type="text" class="font font-create input-field px-4" placeholder="100">
                 </div>
             </div>
-            <div class="flex flex-col gap-32 col">
+            <div class="flex flex-col justify-evenly col">
                 <input type="text" class="font font-create input-field px-4" placeholder="Фулл понос">
                 <select name="" id="" class="selector selector-create border-shine">
                     <option value="" class="selector selector-create">Стартер</option>
@@ -37,66 +37,66 @@
         <div class="mid flex flex-row justify-between mt-5">
             <div class="border-shine-create p-10">
                 <div class="item-col flex flex-col">
-                    <div class="item-row flex flex-row">
+                    <div class="item-row flex flex-row justify-end align-bottom">
                         <a href="">
-                            <div class="slot" style="background-image: url('../img/items/head_placeholder.png');">
-                                <img src="" alt="">
+                            <div class="slot">
+                                <img src="public/img/items/head_placeholder.png" alt="">
                             </div>
                         </a>
                         <a href="">
-                            <div class="slot" style="background-image: url('../img/items/neck_placeholder.png');">
-                                <img src="" alt="">
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item-row flex flex-row">
-                        <a href="">
-                            <div class="slot" style="background-image: url('../img/items/weapon_placeholder.png');">
-                                <img src="" alt="">
-                            </div>
-                        </a>
-                        <a href="">
-                            <div class="slot" style="background-image: url('../img/items/body_placeholder.png');">
-                                <img src="" alt="">
-                            </div>
-                        </a>
-                        <a href="">
-                            <div class="slot" style="background-image: url('../img/items/shield_placeholder.png');">
-                                <img src="" alt="">
+                            <div class="slot">
+                                <img src="public/img/items/neck_placeholder.png" alt="">
                             </div>
                         </a>
                     </div>
                     <div class="item-row flex flex-row">
                         <a href="">
-                            <div class="slot" style="background-image: url('../img/items/ring_placeholder.png');">
-                                <img src="" alt="">
+                            <div class="slot">
+                                <img src="public/img/items/weapon_placeholder.png" alt="">
                             </div>
                         </a>
                         <a href="">
-                            <div class="slot" style="background-image: url('../img/items/belt_placeholder.png');">
-                                <img src="" alt="">
+                            <div class="slot">
+                                <img src="public/img/items/body_placeholder.png" alt="">
                             </div>
                         </a>
                         <a href="">
-                            <div class="slot" style="background-image: url('../img/items/ring_placeholder.png');">
-                                <img src="" alt="">
+                            <div class="slot">
+                                <img src="public/img/items/shield_placeholder.png" alt="">
                             </div>
                         </a>
                     </div>
                     <div class="item-row flex flex-row">
                         <a href="">
-                            <div class="slot" style="background-image: url('../img/items/gloves_placeholder.png');">
-                                <img src="" alt="">
+                            <div class="slot">
+                                <img src="public/img/items/ring_placeholder.png" alt="">
                             </div>
                         </a>
                         <a href="">
-                            <div class="slot" style="background-image: url('../img/items/boots_placeholder.png');">
-                                <img src="" alt="">
+                            <div class="slot">
+                                <img src="public/img/items/belt_placeholder.png" alt="">
                             </div>
                         </a>
                         <a href="">
-                            <div class="slot" style="background-image: url('../img/items/relic_placeholder.png');">
-                                <img src="" alt="">
+                            <div class="slot">
+                                <img src="public/img/items/ring_placeholder.png" alt="">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="item-row flex flex-row">
+                        <a href="">
+                            <div class="slot">
+                                <img src="public/img/items/gloves_placeholder.png" alt="">
+                            </div>
+                        </a>
+                        <a href="">
+                            <div class="slot">
+                                <img src="public/img/items/boots_placeholder.png" alt="">
+                            </div>
+                        </a>
+                        <a href="">
+                            <div class="slot">
+                                <img src="public/img/items/relic_placeholder.png" alt="">
                             </div>
                         </a>
                     </div>
