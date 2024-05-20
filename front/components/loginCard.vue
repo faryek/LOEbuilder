@@ -2,15 +2,15 @@
     <div class="login-form container py-10 px-10">
         <p class="font text-4xl">Авторизация</p>
         <div class="login-row">
-            <p class="font text-2xl">Логин</p>
-            <input type="text" class="font pl-1 text-2xl">
+            <p class="font">Логин</p>
+            <input type="text" class="font pl-1" v-model="login">
         </div>
         <div class="login-row">
-            <p class="font text-2xl">Пароль</p>
-            <input type="text" class="font pl-1 text-2xl">
+            <p class="font">Пароль</p>
+            <input type="text" class="font pl-1" v-model="pwd">
         </div>
         <div class="flex flex-col align-middle justify-center gap-2">
-            <button class="login-btn mt-5 text-2xl font py-1 px-5">Войти</button>
+            <button @click="get_token()" class="login-btn mt-5 text-2xl font py-1 px-5">Войти</button>
             <button class="login-btn text-xl font py-1 px-5">Регистрация</button>
             <NuxtLink to="/support" class="font text-lg text-center">Забыли пароль?</NuxtLink>
         </div>
@@ -18,7 +18,33 @@
 </template>
 
 <script>
-
+export default {
+    data() {
+        return {
+            login: '',
+            pwd: '',
+        }
+    },
+    methods: {
+        async get_token() {
+            let credetentials = {
+                name: this.login,
+                pwd: this.pwd
+            }
+            fetch('http://127.0.0.1:8000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(credetentials)
+            })
+                .then(response => response.json())
+                .then(json=>{
+                    localStorage.setItem('token',json.token)
+                });
+        }
+    },
+}
 </script>
 
 <style>
@@ -27,7 +53,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 4vh;
+    gap: 5vh;
     width: 30%;
     background-color: black;
     border: 3px solid;
@@ -39,8 +65,7 @@
 .login-row {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
+    gap: 1vw;
 }
 
 .login-row input {

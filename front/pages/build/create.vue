@@ -110,8 +110,131 @@
 
 </template>
 
-<script setup>
-const props = defineProps([])
+<script>
+export default {
+    data() {
+        return {
+            weapons: [],
+            armour: [],
+            accessories: [],
+            affixes: [],
+            passives: [],
+            classes: [],
+            error: false,
+            authorized: false
+        }
+    },
+    methods: {
+        get_weapons(token) {
+            fetch('http://127.0.0.1:8000/weapons', {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+                }).then(response => response.json())
+                .then(json =>{
+                    if(json.detail){
+                        this.error = true
+                    }
+                    for(let i =0;i < json.length;i++){
+                        this.weapons.push(json[i])
+                    }
+                })
+        },
+        get_armour(token) {
+            fetch('http://127.0.0.1:8000/armour', {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+                }).then(response => response.json())
+                .then(json =>{
+                    if(json.detail){
+                        this.error = true
+                    }
+                    for(let i =0;i < json.length;i++){
+                        this.armour.push(json[i])
+                    }
+                })
+        },
+        get_accessories(token) {
+            fetch('http://127.0.0.1:8000/accessory', {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+                }).then(response => response.json())
+                .then(json =>{
+                    if(json.detail){
+                        this.error = true
+                    }
+                    for(let i =0;i < json.length;i++){
+                        this.accessories.push(json[i])
+                    }
+                })
+        },
+        get_affixes(token) {
+            fetch('http://127.0.0.1:8000/affixes', {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+                }).then(response => response.json())
+                .then(json =>{
+                    if(json.detail){
+                        this.error = true
+                    }
+                    for(let i =0;i < json.length;i++){
+                        this.affixes.push(json[i])
+                    }
+                })
+        },
+        get_passives(token) {
+            fetch('http://127.0.0.1:8000/passives', {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+                }).then(response => response.json())
+                .then(json =>{
+                    if(json.detail){
+                        this.error = true
+                    }
+                    for(let i =0;i < json.length;i++){
+                        this.passives.push(json[i])
+                    }
+                })
+        },
+        get_classes(token) {
+            fetch('http://127.0.0.1:8000/classes', {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+                }).then(response => response.json())
+                .then(json =>{
+                    if(json.detail){
+                        this.error = true
+                    }
+                    for(let i =0;i < json.length;i++){
+                        this.classes.push(json[i])
+                    }
+                })
+        }
+    },
+    mounted(){
+        let token = localStorage.getItem('token')
+        if(token){
+            this.authorized = true
+        }
+        this.get_weapons(token)
+        this.get_armour(token)
+        this.get_accessories(token)
+        this.get_affixes(token)
+        this.get_passives(token)
+        this.get_classes(token)
+    }
+}
 </script>
 
 <style>

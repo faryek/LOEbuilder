@@ -6,6 +6,7 @@ class UserSchema(UserBase):
 
 class URLSSchema(URLBase):
     user: UserSchema
+    clas: ClassBase
 
 # class PassiveEffectsSchema(PassiveEffectsBase):
 #     passives: List[PassiveBase]
