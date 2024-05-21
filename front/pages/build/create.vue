@@ -1,6 +1,6 @@
 <template>
     <div class="container flex flex-col">
-        <div class="border-shine-create flex flex-row px-10 py-10 gap-10 top justify-evenly">
+        <div class="top border-shine-create flex flex-row px-10 py-10 gap-10 justify-evenly">
             <img src="public/img/classes/Antihrist/Medium.png" class="class-img" alt="">
             <div class="flex flex-col justify-evenly col">
                 <select class="selector selector-create border-shine" name="" id="">
@@ -19,11 +19,13 @@
                 </select>
                 <div class="flex flex-row gap-5">
                     <p class="font font-create">Уровень:</p>
-                    <input type="text" class="font font-create input-field px-4" placeholder="100">
+                    <input type="text" class="font font-create input-field px-4 selector selector-create border-shine"
+                        placeholder="100">
                 </div>
             </div>
             <div class="flex flex-col justify-evenly col">
-                <input type="text" class="font font-create input-field px-4" placeholder="Фулл понос">
+                <input type="text" class="font font-create input-field px-4 selector selector-create border-shine"
+                    placeholder="Фулл понос">
                 <select name="" id="" class="selector selector-create border-shine">
                     <option value="" class="selector selector-create">Стартер</option>
                     <option value="" class="selector selector-create">Эндгейм</option>
@@ -34,78 +36,138 @@
                 </select>
             </div>
         </div>
-        <div class="mid flex flex-row justify-between mt-5">
-            <div class="border-shine-create p-10">
-                <div class="item-col flex flex-col">
-                    <div class="item-row flex flex-row justify-end align-bottom">
-                        <a href="">
-                            <div class="slot">
-                                <img src="public/img/items/head_placeholder.png" alt="">
-                            </div>
-                        </a>
-                        <a href="">
-                            <div class="slot">
-                                <img src="public/img/items/neck_placeholder.png" alt="">
-                            </div>
-                        </a>
+        <div class="mid flex flex-row justify-between mt-5 gap-10">
+            <div class="border-shine-create p-10" style="width: 30%;">
+                <div class="item-col flex flex-col gap-2">
+                    <div class="item-row flex flex-row justify-center gap-2">
+                        <div class="slot">
+                            <img class="item-img border-shine w-14" src="public/img/items/neck_0.png" alt=""
+                                style="opacity: 0;">
+                        </div>
+                        <div class="slot" @click="choose_item = 1">
+                            <img class="item-img border-shine w-24" :src="`../img/items/head_${equiped.head}.png`"
+                                alt="" >
+                        </div>
+                        <div class="slot" @click="choose_item = 2">
+                            <img class="item-img border-shine w-14" :src="`../img/items/neck_${equiped.neck}.png`"
+                                alt="">
+                        </div>
+
                     </div>
-                    <div class="item-row flex flex-row">
-                        <a href="">
-                            <div class="slot">
-                                <img src="public/img/items/weapon_placeholder.png" alt="">
-                            </div>
-                        </a>
-                        <a href="">
-                            <div class="slot">
-                                <img src="public/img/items/body_placeholder.png" alt="">
-                            </div>
-                        </a>
-                        <a href="">
-                            <div class="slot">
-                                <img src="public/img/items/shield_placeholder.png" alt="">
-                            </div>
-                        </a>
+                    <div class="item-row flex flex-row justify-center gap-2">
+
+                        <div class="slot" @click="choose_item = 3">
+                            <img class="item-img border-shine w-24" :src="`../img/items/left_${equiped.left_hand}.png`"
+                                alt="">
+                        </div>
+
+                        <div class="slot" @click="choose_item = 4">
+                            <img class="item-img border-shine w-36" :src="`../img/items/body_${equiped.body}.png`"
+                                alt="">
+                        </div>
+
+                        <div class="slot" @click="choose_item = 5">
+                            <img class="item-img border-shine w-24"
+                                :src="`../img/items/right_${equiped.right_hand}.png`" alt="" >
+                        </div>
+
                     </div>
-                    <div class="item-row flex flex-row">
-                        <a href="">
-                            <div class="slot">
-                                <img src="public/img/items/ring_placeholder.png" alt="">
-                            </div>
-                        </a>
-                        <a href="">
-                            <div class="slot">
-                                <img src="public/img/items/belt_placeholder.png" alt="">
-                            </div>
-                        </a>
-                        <a href="">
-                            <div class="slot">
-                                <img src="public/img/items/ring_placeholder.png" alt="">
-                            </div>
-                        </a>
+                    <div class="item-row flex flex-row justify-center gap-2">
+
+                        <div class="slot" @click="choose_item = 6">
+                            <img class="item-img border-shine w-14" :src="`../img/items/ring_${equiped.left_ring}.png`"
+                                alt="" >
+                        </div>
+
+                        <div class="slot" @click="choose_item = 7">
+                            <img class="item-img border-shine w-36" :src="`../img/items/belt_${equiped.belt}.png`"
+                                alt="" >
+                        </div>
+
+                        <div class="slot" @click="choose_item = 8">
+                            <img class="item-img border-shine w-14" :src="`../img/items/ring_${equiped.right_ring}.png`"
+                                alt="">
+                        </div>
+
                     </div>
-                    <div class="item-row flex flex-row">
-                        <a href="">
-                            <div class="slot">
-                                <img src="public/img/items/gloves_placeholder.png" alt="">
-                            </div>
-                        </a>
-                        <a href="">
-                            <div class="slot">
-                                <img src="public/img/items/boots_placeholder.png" alt="">
-                            </div>
-                        </a>
-                        <a href="">
-                            <div class="slot">
-                                <img src="public/img/items/relic_placeholder.png" alt="">
-                            </div>
-                        </a>
+                    <div class="item-row flex flex-row justify-center gap-2">
+
+                        <div class="slot" @click="choose_item = 9">
+                            <img class="item-img border-shine w-24" :src="`../img/items/gloves_${equiped.gloves}.png`"
+                                alt="">
+                        </div>
+
+                        <div class="slot" @click="choose_item = 10">
+                            <img class="item-img border-shine w-24" :src="`../img/items/boots_${equiped.boots}.png`"
+                                alt="">
+                        </div>
+
+                        <div class="slot" @click="choose_item = 11">
+                            <img class="item-img border-shine w-24" :src="`../img/items/relic_${equiped.relic}.png`"
+                                alt="">
+                        </div>
+
                     </div>
                 </div>
             </div>
-            <div class="border-shine-create p-10">
-
+            <div class="border-shine-create p-10" style="width: 40%;">
+                <div v-for="i in 11" v-show="choose_item == i && show_item == 0" class="container flex flex-wrap p-10">
+                    <p class="text-2xl font">Слот {{ i }}</p>
+                </div>
+                <div v-for="i in 11" v-show="show_item == i && choose_item == 0" class="container flex flex-wrap p-10">
+                    <p class="text-2xl font">Шмотка {{ i }}</p>
+                </div>
+            </div>
+            <div class="border-shine-create p-10" style="width: 30%;">
+                <div class="flex flex-col justify-evenly" style="height: 100%;">
+                    <div class="stat-row flex flex-row justyfy-between">
+                        <p class="text-xl font">Аттрибуты</p>
+                        <div class="flex flex-row">
+                            <p class="text-xl font" style="color: red;">10/</p>
+                            <p class="text-xl font" style="color: green;">20/</p>
+                            <p class="text-xl font" style="color: blue;">30</p>
+                        </div>
+                    </div>
+                    <div class="stat-row flex flex-row justyfy-between">
+                        <p class="stat-name text-xl font">Здоровье</p>
+                        <p class="stat-value text-xl font">2000000</p>
+                    </div>
+                    <div class="stat-row flex flex-row justyfy-between">
+                        <p class="stat-name text-xl font">Мана</p>
+                        <p class="stat-value text-xl font">1</p>
+                    </div>
+                    <div class="stat-row flex flex-row justyfy-between">
+                        <p class="stat-name text-xl font">Броня</p>
+                        <p class="stat-value text-xl font">100</p>
+                    </div>
+                    <div class="stat-row flex flex-row justyfy-between">
+                        <p class="stat-name text-xl font">Сопр. физ.урону</p>
+                        <p class="stat-value text-xl font">75%</p>
+                    </div>
+                    <div class="stat-row flex flex-row justyfy-between">
+                        <p class="stat-name text-xl font">Сопр. элем.урону</p>
+                        <p class="stat-value text-xl font">75%</p>
+                    </div>
+                    <div class="stat-row flex flex-row justyfy-between">
+                        <p class="stat-name text-xl font">Шанс крит.удара</p>
+                        <p class="stat-value text-xl font">78%</p>
+                    </div>
+                    <div class="stat-row flex flex-row justyfy-between">
+                        <p class="stat-name text-xl font">Крит. урон</p>
+                        <p class="stat-value text-xl font">270%</p>
+                    </div>
+                    <div class="stat-row flex flex-row justyfy-between">
+                        <p class="stat-name text-xl font">Вампиризм</p>
+                        <p class="stat-value text-xl font">3%</p>
+                    </div>
+                    <div class="stat-row flex flex-row justyfy-between">
+                        <p class="stat-name text-xl font">Шанс уклонения</p>
+                        <p class="stat-value text-xl font">6%</p>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="bot border-shine-create flex flex-row justify-between mt-5 gap-10" style="height: 50rem;"></div>
     </div>
 
 </template>
@@ -121,9 +183,25 @@ export default {
             passives: [],
             classes: [],
             error: false,
-            authorized: false
+            authorized: false,
+            equiped: {
+                head: 0,
+                neck: 0,
+                body: 0,
+                left_hand: 0,
+                right_hand: 0,
+                left_ring: 0,
+                belt: 0,
+                right_ring: 0,
+                gloves: 0,
+                boots: 0,
+                relic: 0
+            },
+            choose_item: 0,
+            show_item: 0
         }
     },
+    props: [],
     methods: {
         get_weapons(token) {
             fetch('http://127.0.0.1:8000/weapons', {
@@ -131,12 +209,12 @@ export default {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
-                }).then(response => response.json())
-                .then(json =>{
-                    if(json.detail){
+            }).then(response => response.json())
+                .then(json => {
+                    if (json.detail) {
                         this.error = true
                     }
-                    for(let i =0;i < json.length;i++){
+                    for (let i = 0; i < json.length; i++) {
                         this.weapons.push(json[i])
                     }
                 })
@@ -147,12 +225,12 @@ export default {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
-                }).then(response => response.json())
-                .then(json =>{
-                    if(json.detail){
+            }).then(response => response.json())
+                .then(json => {
+                    if (json.detail) {
                         this.error = true
                     }
-                    for(let i =0;i < json.length;i++){
+                    for (let i = 0; i < json.length; i++) {
                         this.armour.push(json[i])
                     }
                 })
@@ -163,12 +241,12 @@ export default {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
-                }).then(response => response.json())
-                .then(json =>{
-                    if(json.detail){
+            }).then(response => response.json())
+                .then(json => {
+                    if (json.detail) {
                         this.error = true
                     }
-                    for(let i =0;i < json.length;i++){
+                    for (let i = 0; i < json.length; i++) {
                         this.accessories.push(json[i])
                     }
                 })
@@ -179,12 +257,12 @@ export default {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
-                }).then(response => response.json())
-                .then(json =>{
-                    if(json.detail){
+            }).then(response => response.json())
+                .then(json => {
+                    if (json.detail) {
                         this.error = true
                     }
-                    for(let i =0;i < json.length;i++){
+                    for (let i = 0; i < json.length; i++) {
                         this.affixes.push(json[i])
                     }
                 })
@@ -195,12 +273,12 @@ export default {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
-                }).then(response => response.json())
-                .then(json =>{
-                    if(json.detail){
+            }).then(response => response.json())
+                .then(json => {
+                    if (json.detail) {
                         this.error = true
                     }
-                    for(let i =0;i < json.length;i++){
+                    for (let i = 0; i < json.length; i++) {
                         this.passives.push(json[i])
                     }
                 })
@@ -211,20 +289,20 @@ export default {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
-                }).then(response => response.json())
-                .then(json =>{
-                    if(json.detail){
+            }).then(response => response.json())
+                .then(json => {
+                    if (json.detail) {
                         this.error = true
                     }
-                    for(let i =0;i < json.length;i++){
+                    for (let i = 0; i < json.length; i++) {
                         this.classes.push(json[i])
                     }
                 })
         }
     },
-    mounted(){
+    mounted() {
         let token = localStorage.getItem('token')
-        if(token){
+        if (token) {
             this.authorized = true
         }
         this.get_weapons(token)
@@ -238,6 +316,14 @@ export default {
 </script>
 
 <style>
+.stat-row p {
+    width: 100%;
+}
+
+.stat-value {
+    text-align: end;
+}
+
 .selector-create {
     border: 3px solid rgba(0, 0, 0, 0);
     border-radius: 25px;
@@ -247,6 +333,17 @@ export default {
     line-height: 2.5rem
         /* 40px */
     ;
+}
+
+.slot:hover {
+    cursor: pointer;
+}
+
+.item-img {
+    border-radius: 15px !important;
+    border: 3px solid;
+    border-color: #9b7f4100 !important;
+    object-fit: cover;
 }
 
 .top {
@@ -279,7 +376,6 @@ export default {
 }
 
 .input-field {
-    background-color: rgb(0, 0, 0);
     width: 100%;
     text-align: start;
 }

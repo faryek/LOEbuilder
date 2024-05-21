@@ -15,7 +15,7 @@
                 Скрыть</div>
         </NuxtLink>
         <div class="dropdown-content" v-if="show" style="color: white;">
-            <NuxtLink class="card flex flex-row px-10 pb-10 justify-between">
+            <NuxtLink class="card flex flex-row px-10 pb-10 pt-5 justify-between">
                 <div class="right flex flex-col">
                     <div class="flex flex-col gap-2">
                         <p class="text-4xl font">{{ build_name }}</p>
