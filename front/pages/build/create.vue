@@ -182,6 +182,16 @@ export default {
             affixes: [],
             passives: [],
             classes: [],
+            heads:[],
+            necks: [],
+            bodies: [],
+            gloves: [],
+            boots: [],
+            relics:[],
+            left_hands: [],
+            right_hands: [],
+            belts:[],
+            rings: [],
             error: false,
             authorized: false,
             equiped: {
@@ -195,7 +205,7 @@ export default {
                 right_ring: 0,
                 gloves: 0,
                 boots: 0,
-                relic: 0
+                relic: 0,
             },
             choose_item: 0,
             show_item: 0
@@ -213,11 +223,19 @@ export default {
                 .then(json => {
                     if (json.detail) {
                         this.error = true
+                        return null
                     }
                     for (let i = 0; i < json.length; i++) {
                         this.weapons.push(json[i])
+                        if(json[i].sub_id.item_types[0].name == 'Второстепенное'){
+                            this.right_hands.push(json[i])
+                        }
+                        else{
+                            this.left_hands.push(json[i])
+                        }
                     }
                 })
+                return null
         },
         get_armour(token) {
             fetch('http://127.0.0.1:8000/armour', {
@@ -229,11 +247,25 @@ export default {
                 .then(json => {
                     if (json.detail) {
                         this.error = true
+                        return null
                     }
                     for (let i = 0; i < json.length; i++) {
                         this.armour.push(json[i])
+                        if(json[i].sub_id.item_types[0].name == 'Шлем'){
+                            this.heads.push(json[i])
+                        }
+                        else if(json[i].sub_id.item_types[0].name == 'Наручи'){
+                            this.gloves.push(json[i])
+                        }
+                        else if(json[i].sub_id.item_types[0].name == 'Ремень'){
+                            this.belts.push(json[i])
+                        }
+                        else if(json[i].sub_id.item_types[0].name == 'Нагрудник'){
+                            this.bodies.push(json[i])
+                        }
                     }
                 })
+                return null
         },
         get_accessories(token) {
             fetch('http://127.0.0.1:8000/accessory', {
@@ -245,11 +277,22 @@ export default {
                 .then(json => {
                     if (json.detail) {
                         this.error = true
+                        return null
                     }
                     for (let i = 0; i < json.length; i++) {
                         this.accessories.push(json[i])
+                        if(json[i].sub_id.item_types[0].name == 'Ожерелье'){
+                            this.necks.push(json[i])
+                        }
+                        else if(json[i].sub_id.item_types[0].name == 'Кольцо'){
+                            this.rings.push(json[i])
+                        }
+                        else if(json[i].sub_id.item_types[0].name == 'Реликвия'){
+                            this.relics.push(json[i])
+                        }
                     }
                 })
+                return null
         },
         get_affixes(token) {
             fetch('http://127.0.0.1:8000/affixes', {
@@ -261,11 +304,13 @@ export default {
                 .then(json => {
                     if (json.detail) {
                         this.error = true
+                        return null
                     }
                     for (let i = 0; i < json.length; i++) {
                         this.affixes.push(json[i])
                     }
                 })
+                return null
         },
         get_passives(token) {
             fetch('http://127.0.0.1:8000/passives', {
@@ -277,11 +322,13 @@ export default {
                 .then(json => {
                     if (json.detail) {
                         this.error = true
+                        return null
                     }
                     for (let i = 0; i < json.length; i++) {
                         this.passives.push(json[i])
                     }
                 })
+                return null
         },
         get_classes(token) {
             fetch('http://127.0.0.1:8000/classes', {
@@ -293,14 +340,16 @@ export default {
                 .then(json => {
                     if (json.detail) {
                         this.error = true
+                        return null
                     }
                     for (let i = 0; i < json.length; i++) {
                         this.classes.push(json[i])
                     }
                 })
+                return null
         }
     },
-    mounted() {
+    created() {
         let token = localStorage.getItem('token')
         if (token) {
             this.authorized = true
