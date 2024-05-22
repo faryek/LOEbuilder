@@ -1,7 +1,7 @@
 <template>
     <div class="container flex flex-col">
         <div class="top border-shine-create flex flex-row px-10 py-10 gap-10 justify-evenly">
-            <img :src="`../img/classes/Antihrist/Medium.png`" class="class-img" alt="">
+            <img src="public/img/classes/Antihrist/Medium.png" class="class-img" alt="">
             <div class="flex flex-col justify-evenly col">
                 <select class="selector selector-create border-shine" name="" id="">
                     <option value="1" class="selector selector-create">Первое бытие</option>
