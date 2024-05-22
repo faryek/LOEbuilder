@@ -1,21 +1,14 @@
 <template>
     <div class="container flex flex-col">
         <div class="top border-shine-create flex flex-row px-10 py-10 gap-10 justify-evenly">
-            <img src="public/img/classes/Antihrist/Medium.png" class="class-img" alt="">
+            <img :src="`../img/classes/Antihrist/Medium.png`" class="class-img" alt="">
             <div class="flex flex-col justify-evenly col">
                 <select class="selector selector-create border-shine" name="" id="">
                     <option value="1" class="selector selector-create">Первое бытие</option>
                     <option value="2" class="selector selector-create">Второе житие</option>
                 </select>
-                <select name="" id="" class="selector selector-create border-shine">
-                    <option value="" class="selector selector-create">Антихрист</option>
-                    <option value="" class="selector selector-create">Богатырь</option>
-                    <option value="" class="selector selector-create">Боголюб</option>
-                    <option value="" class="selector selector-create">Застрельщица</option>
-                    <option value="" class="selector selector-create">Налетчик</option>
-                    <option value="" class="selector selector-create">Богохульник</option>
-                    <option value="" class="selector selector-create">Скоморох</option>
-                    <option value="" class="selector selector-create">Язычница</option>
+                <select name="" id="class" class="selector selector-create border-shine" @change="get_class()">
+                    <option v-for="i in classes.length" :value="i-1" class="selector selector-create">{{ classes[i-1].name }}</option>
                 </select>
                 <div class="flex flex-row gap-5">
                     <p class="font font-create">Уровень:</p>
@@ -57,7 +50,7 @@
                     <div class="item-row flex flex-row justify-center gap-2">
 
                         <div class="slot" @click="choose_item = 3">
-                            <img class="item-img border-shine w-24" :src="`../img/items/left_${equiped.left_hand}.png`"
+                            <img class="item-img border-shine w-24" :src="`../img/items/main_hand_${equiped.main_hand}.png`"
                                 alt="">
                         </div>
 
@@ -68,7 +61,7 @@
 
                         <div class="slot" @click="choose_item = 5">
                             <img class="item-img border-shine w-24"
-                                :src="`../img/items/right_${equiped.right_hand}.png`" alt="" >
+                                :src="`../img/items/off_hand_${equiped.off_hand}.png`" alt="" >
                         </div>
 
                     </div>
@@ -123,46 +116,46 @@
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="text-xl font">Аттрибуты</p>
                         <div class="flex flex-row">
-                            <p class="text-xl font" style="color: red;">10/</p>
-                            <p class="text-xl font" style="color: green;">20/</p>
-                            <p class="text-xl font" style="color: blue;">30</p>
+                            <p class="text-xl font" style="color: red;">{{classes[choose_class].base_atrs.split(', ')[0]}}</p><p style="color: white;">/</p>
+                            <p class="text-xl font" style="color: green;">{{classes[choose_class].base_atrs.split(', ')[1]}}</p><p style="color: white;">/</p>
+                            <p class="text-xl font" style="color: blue;">{{classes[choose_class].base_atrs.split(', ')[2]}}</p>
                         </div>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Здоровье</p>
-                        <p class="stat-value text-xl font">2000000</p>
+                        <p class="stat-value text-xl font">{{classes[choose_class].base_hp}}</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Мана</p>
-                        <p class="stat-value text-xl font">1</p>
+                        <p class="stat-value text-xl font">{{classes[choose_class].base_mp}}</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Броня</p>
-                        <p class="stat-value text-xl font">100</p>
+                        <p class="stat-value text-xl font">{{classes[choose_class].base_armor}}</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Сопр. физ.урону</p>
-                        <p class="stat-value text-xl font">75%</p>
+                        <p class="stat-value text-xl font">{{classes[choose_class].base_phys_res}}</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Сопр. элем.урону</p>
-                        <p class="stat-value text-xl font">75%</p>
+                        <p class="stat-value text-xl font">{{classes[choose_class].base_ele_res}}</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Шанс крит.удара</p>
-                        <p class="stat-value text-xl font">78%</p>
+                        <p class="stat-value text-xl font">10%</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Крит. урон</p>
-                        <p class="stat-value text-xl font">270%</p>
+                        <p class="stat-value text-xl font">200%</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Вампиризм</p>
-                        <p class="stat-value text-xl font">3%</p>
+                        <p class="stat-value text-xl font">0%</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Шанс уклонения</p>
-                        <p class="stat-value text-xl font">6%</p>
+                        <p class="stat-value text-xl font">{{classes[choose_class].base_evade}}</p>
                     </div>
                 </div>
             </div>
@@ -182,24 +175,15 @@ export default {
             affixes: [],
             passives: [],
             classes: [],
-            heads:[],
-            necks: [],
-            bodies: [],
-            gloves: [],
-            boots: [],
-            relics:[],
-            left_hands: [],
-            right_hands: [],
-            belts:[],
-            rings: [],
+            classes_en: ['Bogatir', 'Antihrist', 'Bogolub', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich', 'Zastrel'],
             error: false,
             authorized: false,
             equiped: {
                 head: 0,
                 neck: 0,
+                main_hand: 0,
                 body: 0,
-                left_hand: 0,
-                right_hand: 0,
+                off_hand: 0,
                 left_ring: 0,
                 belt: 0,
                 right_ring: 0,
@@ -208,11 +192,15 @@ export default {
                 relic: 0,
             },
             choose_item: 0,
-            show_item: 0
+            show_item: 0,
+            choose_class: 0
         }
     },
     props: [],
     methods: {
+        get_class(){
+            this.choose_class = document.getElementById('class').value
+        },
         get_weapons(token) {
             fetch('http://127.0.0.1:8000/weapons', {
                 method: 'GET',
@@ -235,7 +223,7 @@ export default {
                         }
                     }
                 })
-                return null
+            return null
         },
         get_armour(token) {
             fetch('http://127.0.0.1:8000/armour', {
@@ -360,6 +348,8 @@ export default {
         this.get_affixes(token)
         this.get_passives(token)
         this.get_classes(token)
+        console.log(this.classes)
+        console.log(this.choose_class)
     }
 }
 </script>
