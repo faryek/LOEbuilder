@@ -176,6 +176,16 @@ export default {
             passives: [],
             classes: [],
             classes_en: ['Bogatir', 'Antihrist', 'Bogolub', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich', 'Zastrel'],
+            heads:[],
+            necks: [],
+            bodies: [],
+            gloves: [],
+            boots: [],
+            relics:[],
+            left_hands: [],
+            right_hands: [],
+            belts:[],
+            rings: [],
             error: false,
             authorized: false,
             equiped: {
@@ -189,7 +199,7 @@ export default {
                 right_ring: 0,
                 gloves: 0,
                 boots: 0,
-                relic: 0
+                relic: 0,
             },
             choose_item: 0,
             show_item: 0,
@@ -211,9 +221,16 @@ export default {
                 .then(json => {
                     if (json.detail) {
                         this.error = true
+                        return null
                     }
                     for (let i = 0; i < json.length; i++) {
                         this.weapons.push(json[i])
+                        if(json[i].sub_id.item_types[0].name == 'Второстепенное'){
+                            this.right_hands.push(json[i])
+                        }
+                        else{
+                            this.left_hands.push(json[i])
+                        }
                     }
                 })
             return null
@@ -228,9 +245,22 @@ export default {
                 .then(json => {
                     if (json.detail) {
                         this.error = true
+                        return null
                     }
                     for (let i = 0; i < json.length; i++) {
                         this.armour.push(json[i])
+                        if(json[i].sub_id.item_types[0].name == 'Шлем'){
+                            this.heads.push(json[i])
+                        }
+                        else if(json[i].sub_id.item_types[0].name == 'Наручи'){
+                            this.gloves.push(json[i])
+                        }
+                        else if(json[i].sub_id.item_types[0].name == 'Ремень'){
+                            this.belts.push(json[i])
+                        }
+                        else if(json[i].sub_id.item_types[0].name == 'Нагрудник'){
+                            this.bodies.push(json[i])
+                        }
                     }
                 })
                 return null
@@ -245,9 +275,19 @@ export default {
                 .then(json => {
                     if (json.detail) {
                         this.error = true
+                        return null
                     }
                     for (let i = 0; i < json.length; i++) {
                         this.accessories.push(json[i])
+                        if(json[i].sub_id.item_types[0].name == 'Ожерелье'){
+                            this.necks.push(json[i])
+                        }
+                        else if(json[i].sub_id.item_types[0].name == 'Кольцо'){
+                            this.rings.push(json[i])
+                        }
+                        else if(json[i].sub_id.item_types[0].name == 'Реликвия'){
+                            this.relics.push(json[i])
+                        }
                     }
                 })
                 return null
@@ -262,6 +302,7 @@ export default {
                 .then(json => {
                     if (json.detail) {
                         this.error = true
+                        return null
                     }
                     for (let i = 0; i < json.length; i++) {
                         this.affixes.push(json[i])
@@ -279,6 +320,7 @@ export default {
                 .then(json => {
                     if (json.detail) {
                         this.error = true
+                        return null
                     }
                     for (let i = 0; i < json.length; i++) {
                         this.passives.push(json[i])
@@ -296,6 +338,7 @@ export default {
                 .then(json => {
                     if (json.detail) {
                         this.error = true
+                        return null
                     }
                     for (let i = 0; i < json.length; i++) {
                         this.classes.push(json[i])
