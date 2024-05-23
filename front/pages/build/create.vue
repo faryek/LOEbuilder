@@ -1,5 +1,5 @@
 <template>
-    <div class="container flex flex-col">
+    <div v-if="authorized && !error" class="container flex flex-col">
         <div class="top border-shine-create flex flex-row px-10 py-10 gap-10 justify-evenly">
             <img :src="`../img/classes/Antihrist/Medium.png`" class="class-img" alt="">
             <div class="flex flex-col justify-evenly col">
@@ -354,8 +354,22 @@ export default {
                     }
                 })
             return null
-        }
-
+        },
+        auth_check(token){
+            fetch('http://127.0.0.1:8000/weapons', {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            }).then(response => response.json())
+                .then(json => {
+                    if (json.detail) {
+                        this.error = true
+                        return null
+                    }
+                })
+            return null
+        },
     },
     beforeMount() {
         let token = localStorage.getItem('token')
@@ -370,6 +384,14 @@ export default {
         this.get_classes(token)
         console.log(this.classes)
         console.log(this.choose_class)
+
+    },
+    updated() {
+        let token = localStorage.getItem('token')
+        if (token) {
+            this.authorized = true
+        }
+        this.get_weapons(token)
     },
 }
 </script>
