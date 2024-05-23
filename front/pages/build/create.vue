@@ -1,4 +1,6 @@
 <template>
+    <AuthError v-if="!authorized && error"></AuthError>
+    <CommonError v-if="error && authorized"></CommonError>
     <div v-if="authorized && !error" class="container flex flex-col">
         <div class="top border-shine-create flex flex-row px-10 py-10 gap-10 justify-evenly">
             <img src="public/img/classes/Antihrist/Medium.png" class="class-img" alt="">
