@@ -163,6 +163,8 @@ with Session(bind=engine) as session:
         itemtype2], item_implicits=[itemImplicit7])
     itemsubtype18 = models.Item_subtype(name='Реликвия', item_types=[
         itemtype3], item_implicits=[itemImplicit7])
+    itemsubtype19 = models.Item_subtype(name='Ботинки', item_types=[
+        itemtype2], item_implicits=[itemImplicit7])
     
 
     wpn1 = models.Weapon(
@@ -183,10 +185,11 @@ with Session(bind=engine) as session:
     armr2 = models.Armour(
         name='Рогатый', sub_id=itemsubtype12, image='public/img/items/body_1.png')
     armr3 = models.Armour(
-        name='Рогатый', sub_id=itemsubtype13, image='public/img/items/gloves_1.png')
-
+        name='Рогатые', sub_id=itemsubtype13, image='public/img/items/gloves_1.png')
+    armr4 = models.Armour(
+        name='Рогатые', sub_id=itemsubtype13, image='public/img/items/boots_1.png')
     armr5 = models.Armour(
-        name='Рогатый', sub_id=itemsubtype17, image='public/img/items/belt_0_1.png')
+        name='Рогатый', sub_id=itemsubtype17, image='public/img/items/belt_1.png')
 
     accry1 = models.Accessory(
         name='Изумрудное', sub_id=itemsubtype3, image='public/img/neck_1.png')
@@ -206,9 +209,11 @@ with Session(bind=engine) as session:
                     itemtype, itemtype2, itemtype3, itemtype4,itemtype5,
                     afx1, afx2, afx3, afx4, afx5, afx6, afx7, afx8, afx9, afx10, afx11, afx12,
                     itemImplicit, itemImplicit2, itemImplicit3,itemImplicit4,itemImplicit5,itemImplicit6,itemImplicit7,itemImplicit8,
-                    itemsubtype1, itemsubtype2, itemsubtype3,itemsubtype5,itemsubtype6,itemsubtype7,itemsubtype8,itemsubtype9,itemsubtype10,itemsubtype12,itemsubtype13,itemsubtype17,itemsubtype16,itemsubtype18,
+                    itemsubtype1, itemsubtype2, itemsubtype3,itemsubtype5,itemsubtype6,itemsubtype7,itemsubtype8,
+                    itemsubtype9,itemsubtype10,itemsubtype12,itemsubtype13,itemsubtype17,
+                    itemsubtype16,itemsubtype18,itemsubtype19,itemsubtype15,
                     wpn1,wpn2,wpn3,wpn4,wpn5,wpn6,
-                    armr1,armr2,armr3,
+                    armr1,armr2,armr3,armr4,armr5,
                     accry1,accry2,accry3,accry4,accry5
                     ])
     session.commit()

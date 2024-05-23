@@ -17,7 +17,7 @@ logs
 .DS_Store
 .fleet
 .idea
-.sqlite
+back/sql_app.sqlite
 
 # Local env files
 .env
