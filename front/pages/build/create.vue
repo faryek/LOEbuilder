@@ -3,7 +3,7 @@
     <CommonError v-if="error && authorized"></CommonError>
     <div v-if="authorized && !error" class="container flex flex-col">
         <div class="top border-shine-create flex flex-row px-10 py-10 gap-10 justify-evenly">
-            <img src="public/img/classes/Antihrist/Medium.png" class="class-img" alt="">
+            <img :src="`../img/classes/${classes_en[choose_class]}/Medium.png`" class="class-img" alt="">
             <div class="flex flex-col justify-evenly col">
                 <select class="selector selector-create border-shine" name="" id="">
                     <option value="1" class="selector selector-create">Первое бытие</option>
@@ -56,7 +56,7 @@
 
                         <div class="slot" @click="choose_item = 3">
                             <img class="item-img border-shine w-24"
-                                :src="`../img/items/main_hand_${equiped.main_hand}.png`" alt="">
+                                :src="`../img/items/main_hand_${equiped.left_hand}.png`" alt="">
                         </div>
 
                         <div class="slot" @click="choose_item = 4">
@@ -66,7 +66,7 @@
 
                         <div class="slot" @click="choose_item = 5">
                             <img class="item-img border-shine w-24"
-                                :src="`../img/items/off_hand_${equiped.off_hand}.png`" alt="">
+                                :src="`../img/items/off_hand_${equiped.right_hand}.png`" alt="">
                         </div>
 
                     </div>
@@ -110,7 +110,7 @@
             </div>
             <div class="border-shine-create p-10" style="width: 40%;">
                 <div v-for="i in 11" v-show="choose_item == i && show_item == 0" class="container flex flex-wrap p-10">
-                    <p class="text-2xl font">Слот {{ i }}</p>
+                    <!-- <img v-for="j in slots.length" :src="slots[i][j].image" alt=""> -->
                 </div>
                 <div v-for="i in 11" v-show="show_item == i && choose_item == 0" class="container flex flex-wrap p-10">
                     <p class="text-2xl font">Шмотка {{ i }}</p>
@@ -193,14 +193,15 @@ export default {
             rings: [],
             classes: [{ "id": 1, "name": "Богатырь", "main_atr": "Сила", "base_atrs": "60, 20, 20", "base_hp": 1000, "base_mp": 50, "base_armor": 50, "base_evade": 10, "base_ele_res": 30, "base_phys_res": 50 }],
             classes_en: ['Bogatir', 'Antihrist', 'Bogolub', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich', 'Zastrel'],
+            slots: [],
             error: false,
             authorized: false,
             equiped: {
                 head: 0,
                 neck: 0,
-                main_hand: 0,
+                left_hand: 0,
                 body: 0,
-                off_hand: 0,
+                right_hand: 0,
                 left_ring: 0,
                 belt: 0,
                 right_ring: 0,
@@ -213,18 +214,7 @@ export default {
             choose_class: 0,
             crit_chance:0,
             crit_damage:0,
-            vampirism: 0,
-            right_hands: [],
-            left_hands: [],
-            heads: [],
-            gloves_arr: [],
-            bodies: [],
-            belts: [],
-            necks: [],
-            rings: [],
-            relics: [],
-            atrs: [],
-            xddd:[[]],
+            vampirism: 0
         }
     },
     props: [],
@@ -270,16 +260,19 @@ export default {
                     }
                     for (let i = 0; i < json.length; i++) {
                         this.armour.push(json[i])
-                        if (json[i].sub_id.item_types[0].name == 'Шлем') {
+                        if (json[i].sub_id.name == 'Шлем') {
                             this.heads.push(json[i])
                         }
-                        else if (json[i].sub_id.item_types[0].name == 'Наручи') {
+                        else if (json[i].sub_id.name == 'Наручи') {
                             this.gloves.push(json[i])
                         }
-                        else if (json[i].sub_id.item_types[0].name == 'Ремень') {
+                        else if (json[i].sub_id.name == 'Ремень') {
                             this.belts.push(json[i])
                         }
-                        else if (json[i].sub_id.item_types[0].name == 'Нагрудник') {
+                        else if (json[i].sub_id.name == 'Нагрудник') {
+                            this.bodies.push(json[i])
+                        }
+                        else if (json[i].sub_id.name == 'Ботинки') {
                             this.bodies.push(json[i])
                         }
                     }
@@ -300,13 +293,13 @@ export default {
                     }
                     for (let i = 0; i < json.length; i++) {
                         this.accessories.push(json[i])
-                        if (json[i].sub_id.item_types[0].name == 'Ожерелье') {
+                        if (json[i].sub_id.name == 'Ожерелье') {
                             this.necks.push(json[i])
                         }
-                        else if (json[i].sub_id.item_types[0].name == 'Кольцо') {
+                        else if (json[i].sub_id.name == 'Кольцо') {
                             this.rings.push(json[i])
                         }
-                        else if (json[i].sub_id.item_types[0].name == 'Реликвия') {
+                        else if (json[i].sub_id.name == 'Реликвия') {
                             this.relics.push(json[i])
                         }
                     }
@@ -394,9 +387,10 @@ export default {
         this.get_affixes(token)
         this.get_passives(token)
         this.get_classes(token)
-        console.log(this.classes)
-        console.log(this.choose_class)
-
+    },
+    mounted() {
+        this.slots.push(this.heads, this.necks, this.left_hands, this.bodies, this.right_hands, this.rings, this.belts, this.rings, this.gloves, this.boots, this.relics)
+        console.log(this.slots)
     },
     updated() {
         let token = localStorage.getItem('token')
