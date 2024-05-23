@@ -24,4 +24,8 @@ logs
 .env.*
 !.env.example
 
+.sqlite
+
 __pycache__
+*.sqlite
+back/sql_app.sqlite
