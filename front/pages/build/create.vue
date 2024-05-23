@@ -7,8 +7,11 @@
                     <option value="1" class="selector selector-create">Первое бытие</option>
                     <option value="2" class="selector selector-create">Второе житие</option>
                 </select>
-                <select name="" id="class" class="selector selector-create border-shine" @change="get_class()">
-                    <option v-for="i in classes.length" :value="i-1" class="selector selector-create">{{ classes[i-1].name }}</option>
+                <select name="" id="class" class="selector selector-create border-shine" @change="()=>{
+                    get_class()
+                    }">
+                    <option v-for="i in classes.length" :value="i - 1" class="selector selector-create">{{
+                        classes[i-1].name }}</option>
                 </select>
                 <div class="flex flex-row gap-5">
                     <p class="font font-create">Уровень:</p>
@@ -39,7 +42,7 @@
                         </div>
                         <div class="slot" @click="choose_item = 1">
                             <img class="item-img border-shine w-24" :src="`../img/items/head_${equiped.head}.png`"
-                                alt="" >
+                                alt="">
                         </div>
                         <div class="slot" @click="choose_item = 2">
                             <img class="item-img border-shine w-14" :src="`../img/items/neck_${equiped.neck}.png`"
@@ -50,8 +53,8 @@
                     <div class="item-row flex flex-row justify-center gap-2">
 
                         <div class="slot" @click="choose_item = 3">
-                            <img class="item-img border-shine w-24" :src="`../img/items/main_hand_${equiped.main_hand}.png`"
-                                alt="">
+                            <img class="item-img border-shine w-24"
+                                :src="`../img/items/main_hand_${equiped.main_hand}.png`" alt="">
                         </div>
 
                         <div class="slot" @click="choose_item = 4">
@@ -61,7 +64,7 @@
 
                         <div class="slot" @click="choose_item = 5">
                             <img class="item-img border-shine w-24"
-                                :src="`../img/items/off_hand_${equiped.off_hand}.png`" alt="" >
+                                :src="`../img/items/off_hand_${equiped.off_hand}.png`" alt="">
                         </div>
 
                     </div>
@@ -69,12 +72,12 @@
 
                         <div class="slot" @click="choose_item = 6">
                             <img class="item-img border-shine w-14" :src="`../img/items/ring_${equiped.left_ring}.png`"
-                                alt="" >
+                                alt="">
                         </div>
 
                         <div class="slot" @click="choose_item = 7">
                             <img class="item-img border-shine w-36" :src="`../img/items/belt_${equiped.belt}.png`"
-                                alt="" >
+                                alt="">
                         </div>
 
                         <div class="slot" @click="choose_item = 8">
@@ -116,46 +119,48 @@
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="text-xl font">Аттрибуты</p>
                         <div class="flex flex-row">
-                            <p class="text-xl font" style="color: red;">{{classes[choose_class].base_atrs.split(', ')[0]}}</p><p style="color: white;">/</p>
-                            <p class="text-xl font" style="color: green;">{{classes[choose_class].base_atrs.split(', ')[1]}}</p><p style="color: white;">/</p>
-                            <p class="text-xl font" style="color: blue;">{{classes[choose_class].base_atrs.split(', ')[2]}}</p>
+                            <p class="text-xl font" style="color: red;">{{ classes[choose_class].base_atrs.split(', ')[0] }}</p>
+                            <p style="color: white;">/</p>
+                            <p class="text-xl font" style="color: green;">{{ classes[choose_class].base_atrs.split(', ')[1] }}</p>
+                            <p style="color: white;">/</p>
+                            <p class="text-xl font" style="color: blue;">{{ classes[choose_class].base_atrs.split(', ')[2 ] }}</p>
                         </div>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Здоровье</p>
-                        <p class="stat-value text-xl font">{{classes[choose_class].base_hp}}</p>
+                        <p class="stat-value text-xl font">{{ classes[choose_class].base_hp }}</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Мана</p>
-                        <p class="stat-value text-xl font">{{classes[choose_class].base_mp}}</p>
+                        <p class="stat-value text-xl font">{{ classes[choose_class].base_mp }}</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Броня</p>
-                        <p class="stat-value text-xl font">{{classes[choose_class].base_armor}}</p>
+                        <p class="stat-value text-xl font">{{ classes[choose_class].base_armor }}</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Сопр. физ.урону</p>
-                        <p class="stat-value text-xl font">{{classes[choose_class].base_phys_res}}</p>
+                        <p class="stat-value text-xl font">{{ classes[choose_class].base_phys_res }}</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Сопр. элем.урону</p>
-                        <p class="stat-value text-xl font">{{classes[choose_class].base_ele_res}}</p>
+                        <p class="stat-value text-xl font">{{ classes[choose_class].base_ele_res }}</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Шанс крит.удара</p>
-                        <p class="stat-value text-xl font">10%</p>
+                        <p class="stat-value text-xl font">{{crit_chance}}%</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Крит. урон</p>
-                        <p class="stat-value text-xl font">200%</p>
+                        <p class="stat-value text-xl font">{{crit_damage}}%</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Вампиризм</p>
-                        <p class="stat-value text-xl font">0%</p>
+                        <p class="stat-value text-xl font">{{vampirism}}%</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Шанс уклонения</p>
-                        <p class="stat-value text-xl font">{{classes[choose_class].base_evade}}</p>
+                        <p class="stat-value text-xl font">{{ classes[choose_class].base_evade }}</p>
                     </div>
                 </div>
             </div>
@@ -174,7 +179,7 @@ export default {
             accessories: [],
             affixes: [],
             passives: [],
-            classes: [],
+            classes: [{ "id": 1, "name": "Богатырь", "main_atr": "Сила", "base_atrs": "60, 20, 20", "base_hp": 1000, "base_mp": 50, "base_armor": 50, "base_evade": 10, "base_ele_res": 30, "base_phys_res": 50 }],
             classes_en: ['Bogatir', 'Antihrist', 'Bogolub', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich', 'Zastrel'],
             error: false,
             authorized: false,
@@ -193,12 +198,26 @@ export default {
             },
             choose_item: 0,
             show_item: 0,
-            choose_class: 0
+            choose_class: 0,
+            crit_chance:0,
+            crit_damage:0,
+            vampirism: 0,
+            right_hands: [],
+            left_hands: [],
+            heads: [],
+            gloves_arr: [],
+            bodies: [],
+            belts: [],
+            necks: [],
+            rings: [],
+            relics: [],
+            atrs: [],
+            xddd:[[]],
         }
     },
     props: [],
     methods: {
-        get_class(){
+        get_class() {
             this.choose_class = document.getElementById('class').value
         },
         get_weapons(token) {
@@ -215,10 +234,10 @@ export default {
                     }
                     for (let i = 0; i < json.length; i++) {
                         this.weapons.push(json[i])
-                        if(json[i].sub_id.item_types[0].name == 'Второстепенное'){
+                        if (json[i].sub_id.item_types[0].name == 'Второстепенное') {
                             this.right_hands.push(json[i])
                         }
-                        else{
+                        else {
                             this.left_hands.push(json[i])
                         }
                     }
@@ -239,21 +258,21 @@ export default {
                     }
                     for (let i = 0; i < json.length; i++) {
                         this.armour.push(json[i])
-                        if(json[i].sub_id.item_types[0].name == 'Шлем'){
+                        if (json[i].sub_id.item_types[0].name == 'Шлем') {
                             this.heads.push(json[i])
                         }
-                        else if(json[i].sub_id.item_types[0].name == 'Наручи'){
+                        else if (json[i].sub_id.item_types[0].name == 'Наручи') {
                             this.gloves.push(json[i])
                         }
-                        else if(json[i].sub_id.item_types[0].name == 'Ремень'){
+                        else if (json[i].sub_id.item_types[0].name == 'Ремень') {
                             this.belts.push(json[i])
                         }
-                        else if(json[i].sub_id.item_types[0].name == 'Нагрудник'){
+                        else if (json[i].sub_id.item_types[0].name == 'Нагрудник') {
                             this.bodies.push(json[i])
                         }
                     }
                 })
-                return null
+            return null
         },
         get_accessories(token) {
             fetch('http://127.0.0.1:8000/accessory', {
@@ -269,18 +288,18 @@ export default {
                     }
                     for (let i = 0; i < json.length; i++) {
                         this.accessories.push(json[i])
-                        if(json[i].sub_id.item_types[0].name == 'Ожерелье'){
+                        if (json[i].sub_id.item_types[0].name == 'Ожерелье') {
                             this.necks.push(json[i])
                         }
-                        else if(json[i].sub_id.item_types[0].name == 'Кольцо'){
+                        else if (json[i].sub_id.item_types[0].name == 'Кольцо') {
                             this.rings.push(json[i])
                         }
-                        else if(json[i].sub_id.item_types[0].name == 'Реликвия'){
+                        else if (json[i].sub_id.item_types[0].name == 'Реликвия') {
                             this.relics.push(json[i])
                         }
                     }
                 })
-                return null
+            return null
         },
         get_affixes(token) {
             fetch('http://127.0.0.1:8000/affixes', {
@@ -298,7 +317,7 @@ export default {
                         this.affixes.push(json[i])
                     }
                 })
-                return null
+            return null
         },
         get_passives(token) {
             fetch('http://127.0.0.1:8000/passives', {
@@ -316,7 +335,7 @@ export default {
                         this.passives.push(json[i])
                     }
                 })
-                return null
+            return null
         },
         get_classes(token) {
             fetch('http://127.0.0.1:8000/classes', {
@@ -330,14 +349,15 @@ export default {
                         this.error = true
                         return null
                     }
-                    for (let i = 0; i < json.length; i++) {
+                    for (let i = 1; i < json.length; i++) {
                         this.classes.push(json[i])
                     }
                 })
-                return null
+            return null
         }
+
     },
-    created() {
+    beforeMount() {
         let token = localStorage.getItem('token')
         if (token) {
             this.authorized = true
@@ -350,7 +370,7 @@ export default {
         this.get_classes(token)
         console.log(this.classes)
         console.log(this.choose_class)
-    }
+    },
 }
 </script>
 
