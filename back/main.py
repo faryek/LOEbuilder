@@ -76,6 +76,10 @@ async def url_create(url_input:pyd.URLCreate,username=Depends(auth_handler.auth_
     db.commit()
     return url_db
 
+@app.get('/user_name')
+async def get_username(username=Depends(auth_handler.auth_wrapper),db: Session = Depends(get_db)):
+    return {"username": username}
+
 @app.get("/users", response_model=List[pyd.UserSchema])
 async def get_users(username=Depends(auth_handler.auth_wrapper),db: Session = Depends(get_db)):
     return db.query(models.User).all()

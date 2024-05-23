@@ -1,8 +1,15 @@
 <template>
     <div class="login-background" style="position: fixed; top: 0; left: 0; z-index: 500;"
         @click="() => { log = false; reg = false; back = false }" v-if="back"></div>
-    <LoginCard style="position: fixed; top: 25%; left: 35%; z-index: 501;" v-if="log"></LoginCard>
-    <RegistrationCard style="position: fixed; top: 20%; left: 30%; z-index: 501;" v-if="reg"></RegistrationCard>
+    <LoginCard style="position: fixed; top: 25%; left: 35%; z-index: 501;" v-if="log" @loggining="()=>{
+        logined = true
+        log = false
+        back = false
+    }"></LoginCard>
+    <RegistrationCard style="position: fixed; top: 20%; left: 30%; z-index: 501;" v-if="reg" @regged="()=>{
+        log = false
+        back = false
+    }"></RegistrationCard>
     <div class="main">
         <div>
             <header class="bg-black bg-opacity-80">
@@ -19,11 +26,17 @@
                         </li>
                     </ul>
                     <div class="flex gap-4">
-                        <button class="text-2xl fonted login" @click="() => { reg = true; back = true }">
+                        <button v-if="!logined" class="text-2xl fonted login" @click="() => { reg = true; back = true }">
                             Регистрация
                         </button>
-                        <button class="text-2xl fonted login" @click="() => { log = true; back = true }">
+                        <button v-if="!logined" class="text-2xl fonted login" @click="() => { log = true; back = true }">
                             Вход
+                        </button>
+                        <button v-if="logined" class="text-2xl fonted login" @click="() => {
+                            logined = false
+                            remove_token()
+                            }">
+                            {{ username }}
                         </button>
                     </div>
                 </nav>
@@ -74,8 +87,40 @@ export default {
         return {
             log: false,
             reg: false,
-            back: false
+            back: false,
+            logined: false,
+            username: '',
         }
+    },
+    methods:{
+        get_username(token) {
+            fetch('http://127.0.0.1:8000/user_name', {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            }).then(response => response.json())
+                .then(json => {
+                    if (json.detail) {
+                        this.logined = false
+                        return null
+                    }
+                    else{
+                        this.logined= true
+                        this.username = json.username
+                    }
+                })
+            return null
+        },
+        remove_token(){
+            localStorage.setItem('token','')
+            location.reload()
+        },
+
+    },
+    beforeMount(){
+        let token = localStorage.getItem('token')
+        this.get_username(token)
     }
 }
 </script>

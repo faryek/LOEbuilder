@@ -57,6 +57,7 @@ export default {
                 }
                 else if(json.detail){
                     this.error_reg = true
+                    this.$emit('regged')
                 }
             })
         },
