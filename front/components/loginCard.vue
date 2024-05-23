@@ -2,7 +2,7 @@
     <div class="login-form container py-10 px-10">
         <p class="font text-4xl">Авторизация</p>
         <div class="flex flex-col gap-10 align-middle">
-            <p v-if="error" class="font text-2xl text-red-700">Неверный логин или пароль!</p>
+            <p v-if="error" class="font text-2xl text-center">Неверный логин или пароль!</p>
             <div class="login-row">
                 <p class="font text-2xl">Логин</p>
                 <input type="text" class="font text-2xl pl-1" v-model="login" style="width: 100%;">

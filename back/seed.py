@@ -168,39 +168,39 @@ with Session(bind=engine) as session:
     
 
     wpn1 = models.Weapon(
-        name='Костяной', sub_id=itemsubtype1, image='public/img/items/one_hand_sword_1.png')
+        name='Костяной', sub_id=itemsubtype1, image='/img/items/one_hand_sword_1.png')
     wpn2 = models.Weapon(
-        name='Стальной', sub_id=itemsubtype1, image='public/img/items/dagger_1.png')
+        name='Стальной', sub_id=itemsubtype1, image='/img/items/dagger_1.png')
     wpn3 = models.Weapon(
-        name='Стальной', sub_id=itemsubtype5, image='public/img/items/one_hand_axe_1.png')
+        name='Стальной', sub_id=itemsubtype5, image='/img/items/one_hand_axe_1.png')
     wpn4 = models.Weapon(
-        name='Стальной', sub_id=itemsubtype6, image='public/img/items/one_hand_axe_2.png')
+        name='Стальной', sub_id=itemsubtype6, image='/img/items/one_hand_axe_2.png')
     wpn5 = models.Weapon(
-        name='Стальной', sub_id=itemsubtype15, image='public/img/items/shield_1.png')
+        name='Стальной', sub_id=itemsubtype15, image='/img/items/shield_1.png')
     wpn6 = models.Weapon(
-        name='Стальной', sub_id=itemsubtype16, image='public/img/items/catalyst_1.png')
+        name='Стальной', sub_id=itemsubtype16, image='/img/items/catalyst_1.png')
 
     armr1 = models.Armour(
-        name='Рогатый', sub_id=itemsubtype2, image='public/img/items/head_1.png')
+        name='Рогатый', sub_id=itemsubtype2, image='/img/items/head_1.png')
     armr2 = models.Armour(
-        name='Рогатый', sub_id=itemsubtype12, image='public/img/items/body_1.png')
+        name='Рогатый', sub_id=itemsubtype12, image='/img/items/body_1.png')
     armr3 = models.Armour(
-        name='Рогатые', sub_id=itemsubtype13, image='public/img/items/gloves_1.png')
+        name='Рогатые', sub_id=itemsubtype13, image='/img/items/gloves_1.png')
     armr4 = models.Armour(
-        name='Рогатые', sub_id=itemsubtype13, image='public/img/items/boots_1.png')
+        name='Рогатые', sub_id=itemsubtype19, image='/img/items/boots_1.png')
     armr5 = models.Armour(
-        name='Рогатый', sub_id=itemsubtype17, image='public/img/items/belt_1.png')
+        name='Рогатый', sub_id=itemsubtype17, image='/img/items/belt_1.png')
 
     accry1 = models.Accessory(
-        name='Изумрудное', sub_id=itemsubtype3, image='public/img/neck_1.png')
+        name='Изумрудное', sub_id=itemsubtype3, image='/img/items/neck_1.png')
     accry2 = models.Accessory(
-        name='Изумрудное', sub_id=itemsubtype9, image='public/img/ring_2.png')
+        name='Изумрудное', sub_id=itemsubtype9, image='/img/items/ring_2.png')
     accry3 = models.Accessory(
-        name='Кровавое', sub_id=itemsubtype10, image='public/img/ring_3.png')
+        name='Кровавое', sub_id=itemsubtype10, image='/img/items/ring_3.png')
     accry4 = models.Accessory(
-        name='Ониксовое', sub_id=itemsubtype8, image='public/img/ring_4.png')
+        name='Ониксовое', sub_id=itemsubtype8, image='/img/items/ring_4.png')
     accry5 = models.Accessory(
-        name='Ониксовое', sub_id=itemsubtype18, image='public/img/relic_0.png')
+        name='Ониксовое', sub_id=itemsubtype18, image='/img/items/relic_1.png')
 
     session.add_all([role1, eff, eff2, eff3, eff4, eff5, eff6, eff7, eff8,
                     pas1, pas2, pas3, pas4, pas5, pas6, pas7, pas8,

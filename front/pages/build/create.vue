@@ -43,11 +43,11 @@
                                 style="opacity: 0;">
                         </div>
                         <div class="slot" @click="choose_item = 1">
-                            <img class="item-img border-shine w-24" :src="`../img/items/head_${equiped.head}.png`"
+                            <img class="item-img border-shine w-24" :src="equiped.head.image"
                                 alt="">
                         </div>
                         <div class="slot" @click="choose_item = 2">
-                            <img class="item-img border-shine w-14" :src="`../img/items/neck_${equiped.neck}.png`"
+                            <img class="item-img border-shine w-14" :src="equiped.neck.image"
                                 alt="">
                         </div>
 
@@ -56,34 +56,34 @@
 
                         <div class="slot" @click="choose_item = 3">
                             <img class="item-img border-shine w-24"
-                                :src="`../img/items/main_hand_${equiped.left_hand}.png`" alt="">
+                                :src="equiped.left_hand.image" alt="">
                         </div>
 
                         <div class="slot" @click="choose_item = 4">
-                            <img class="item-img border-shine w-36" :src="`../img/items/body_${equiped.body}.png`"
+                            <img class="item-img border-shine w-36" :src="equiped.body.image"
                                 alt="">
                         </div>
 
                         <div class="slot" @click="choose_item = 5">
                             <img class="item-img border-shine w-24"
-                                :src="`../img/items/off_hand_${equiped.right_hand}.png`" alt="">
+                                :src="equiped.right_hand.image" alt="">
                         </div>
 
                     </div>
                     <div class="item-row flex flex-row justify-center gap-2">
 
                         <div class="slot" @click="choose_item = 6">
-                            <img class="item-img border-shine w-14" :src="`../img/items/ring_${equiped.left_ring}.png`"
+                            <img class="item-img border-shine w-14" :src="equiped.left_ring.image"
                                 alt="">
                         </div>
 
                         <div class="slot" @click="choose_item = 7">
-                            <img class="item-img border-shine w-36" :src="`../img/items/belt_${equiped.belt}.png`"
+                            <img class="item-img border-shine w-36" :src="equiped.belt.image"
                                 alt="">
                         </div>
 
                         <div class="slot" @click="choose_item = 8">
-                            <img class="item-img border-shine w-14" :src="`../img/items/ring_${equiped.right_ring}.png`"
+                            <img class="item-img border-shine w-14" :src="equiped.right_ring.image"
                                 alt="">
                         </div>
 
@@ -91,17 +91,17 @@
                     <div class="item-row flex flex-row justify-center gap-2">
 
                         <div class="slot" @click="choose_item = 9">
-                            <img class="item-img border-shine w-24" :src="`../img/items/gloves_${equiped.gloves}.png`"
+                            <img class="item-img border-shine w-24" :src="equiped.gloves.image"
                                 alt="">
                         </div>
 
                         <div class="slot" @click="choose_item = 10">
-                            <img class="item-img border-shine w-24" :src="`../img/items/boots_${equiped.boots}.png`"
+                            <img class="item-img border-shine w-24" :src="equiped.boots.image"
                                 alt="">
                         </div>
 
                         <div class="slot" @click="choose_item = 11">
-                            <img class="item-img border-shine w-24" :src="`../img/items/relic_${equiped.relic}.png`"
+                            <img class="item-img border-shine w-24" :src="equiped.relic.image"
                                 alt="">
                         </div>
 
@@ -109,11 +109,17 @@
                 </div>
             </div>
             <div class="border-shine-create p-10" style="width: 40%;">
-                <div v-for="i in 11" v-show="choose_item == i && show_item == 0" class="container flex flex-wrap p-10">
-                    <!-- <img v-for="j in slots.length" :src="slots[i][j].image" alt=""> -->
+                <div v-for="i in 11" v-show="choose_item == i && i != 0" class="container flex flex-wrap p-10 gap-5">
+                    <img v-for="j in slots[choose_item].length" v-show="j != 1" class="border-shine item-img slot" :src="`..${slots[choose_item][j-1].image}`" alt="" @click="get_item(j-1)">
                 </div>
-                <div v-for="i in 11" v-show="show_item == i && choose_item == 0" class="container flex flex-wrap p-10">
-                    <p class="text-2xl font">Шмотка {{ i }}</p>
+                <div v-show="choose_item == 0" class="container p-5 flex flex-col justify-between align-middle">
+                    <div class="flex flex-row justify-between align-middle" style="width: 100%;">
+                        <img class="item-img" :src="`..${show_item.image}`" alt="">
+                        <div class="flex flex-col justify-evenly">
+                            <div class="flex flex-row gap-2"><p class="text-xl font">{{ show_item.name }}</p><p class="text-xl font">{{show_item.sub_id.name}}</p></div>
+                            <div class="flex flex-row gap-2"><p class="text-xl font">+{{show_item.sub_id.item_implicits[0].value_start}}</p><p class="text-xl font">-</p><p class="text-xl font">{{ show_item.sub_id.item_implicits[0].value_end }}</p><p class="text-xl font">{{ show_item.sub_id.item_implicits[0].effect }}</p></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="border-shine-create p-10" style="width: 30%;">
@@ -176,41 +182,42 @@
 export default {
     data() {
         return {
-            weapons: [],
-            armour: [],
-            accessories: [],
+            weapons: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
+            armour: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
+            accessories: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
             affixes: [],
             passives: [],
-            heads:[],
-            necks: [],
-            bodies: [],
-            gloves: [],
-            boots: [],
-            relics:[],
-            left_hands: [],
-            right_hands: [],
-            belts:[],
-            rings: [],
+            heads:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
+            necks: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
+            bodies: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
+            gloves: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
+            boots: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
+            relics:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
+            left_hands: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
+            right_hands: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
+            belts:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
+            rings: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
+            slots: [[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}]],
             classes: [{ "id": 1, "name": "Богатырь", "main_atr": "Сила", "base_atrs": "60, 20, 20", "base_hp": 1000, "base_mp": 50, "base_armor": 50, "base_evade": 10, "base_ele_res": 30, "base_phys_res": 50 }],
             classes_en: ['Bogatir', 'Antihrist', 'Bogolub', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich', 'Zastrel'],
-            slots: [],
             error: false,
             authorized: false,
             equiped: {
-                head: 0,
-                neck: 0,
-                left_hand: 0,
-                body: 0,
-                right_hand: 0,
-                left_ring: 0,
-                belt: 0,
-                right_ring: 0,
-                gloves: 0,
-                boots: 0,
-                relic: 0,
+                head: {'image': '../img/items/head_0.png'},
+                neck: {'image': '../img/items/neck_0.png'},
+                left_hand: {'image': '../img/items/left_hand_0.png'},
+                body: {'image': '../img/items/body_0.png'},
+                right_hand: {'image': '../img/items/right_hand_0.png'},
+                left_ring: {'image': '../img/items/ring_0.png'},
+                belt: {'image': '../img/items/belt_0.png'},
+                right_ring: {'image': '../img/items/ring_0.png'},
+                gloves: {'image': '../img/items/gloves_0.png'},
+                boots: {'image': '../img/items/boots_0.png'},
+                relic: {'image': '../img/items/relic_0.png'},
             },
+            equipment: {1: 'head', 2: 'neck', 3: 'left_hand', 4: 'body', 5: 'right_hand', 6: 'left_ring', 7: 'belt', 8: 'right_ring', 9: 'gloves', 10: 'boots', 11: 'relic'},
             choose_item: 0,
-            show_item: 0,
+            show_item: {'id' : 0, 'name' : 'Сиракузиан', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'name': 'Сайко', 'item_implicits': [{'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}]}},
             choose_class: 0,
             crit_chance:0,
             crit_damage:0,
@@ -219,8 +226,28 @@ export default {
     },
     props: [],
     methods: {
+        get_auth(token){
+            fetch('http://127.0.0.1:8000/weapons', {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            }).then(response => response.json())
+                .then(json => {
+                    if (json.detail) {
+                        this.error = true
+                        return null
+                    }
+                })
+            return null
+        },
         get_class() {
             this.choose_class = document.getElementById('class').value
+        },
+        get_item(j) {
+            this.equiped[`${this.equipment[`${this.choose_item}`]}`] = this.slots[this.choose_item][j]
+            this.show_item = this.slots[this.choose_item][j]
+            this.choose_item = 0
         },
         get_weapons(token) {
             fetch('http://127.0.0.1:8000/weapons', {
@@ -273,7 +300,7 @@ export default {
                             this.bodies.push(json[i])
                         }
                         else if (json[i].sub_id.name == 'Ботинки') {
-                            this.bodies.push(json[i])
+                            this.boots.push(json[i])
                         }
                     }
                 })
@@ -388,8 +415,6 @@ export default {
         this.get_affixes(token)
         this.get_passives(token)
         this.get_classes(token)
-    },
-    mounted() {
         this.slots.push(this.heads, this.necks, this.left_hands, this.bodies, this.right_hands, this.rings, this.belts, this.rings, this.gloves, this.boots, this.relics)
         console.log(this.slots)
     },
@@ -398,7 +423,7 @@ export default {
         if (token) {
             this.authorized = true
         }
-        this.get_weapons(token)
+        this.get_auth(token)
     },
 }
 </script>
