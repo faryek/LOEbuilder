@@ -1,13 +1,15 @@
 <template>
     <div class="login-form container py-10 px-10">
         <p class="font text-4xl">Авторизация</p>
-        <div class="login-row">
-            <p class="font">Логин</p>
-            <input type="text" class="font pl-1" v-model="login">
-        </div>
-        <div class="login-row">
-            <p class="font">Пароль</p>
-            <input type="text" class="font pl-1" v-model="pwd">
+        <div class="flex flex-col gap-10 align-middle">
+            <div class="login-row">
+                <p class="font text-2xl">Логин</p>
+                <input type="text" class="font text-2xl pl-1" v-model="login" style="width: 100%;">
+            </div>
+            <div class="login-row">
+                <p class="font text-2xl">Пароль</p>
+                <input type="text" class="font text-2xl pl-1" v-model="pwd" style="width: 100%;">
+            </div>
         </div>
         <div class="flex flex-col align-middle justify-center gap-2">
             <button @click="get_token()" class="login-btn mt-5 text-2xl font py-1 px-5">Войти</button>
@@ -39,8 +41,8 @@ export default {
                 body: JSON.stringify(credetentials)
             })
                 .then(response => response.json())
-                .then(json=>{
-                    localStorage.setItem('token',json.token)
+                .then(json => {
+                    localStorage.setItem('token', json.token)
                 });
         }
     },

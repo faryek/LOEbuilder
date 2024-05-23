@@ -1,7 +1,7 @@
 <template>
     <div v-if="authorized && !error" class="container flex flex-col">
         <div class="top border-shine-create flex flex-row px-10 py-10 gap-10 justify-evenly">
-            <img :src="`../img/classes/Antihrist/Medium.png`" class="class-img" alt="">
+            <img src="public/img/classes/Antihrist/Medium.png" class="class-img" alt="">
             <div class="flex flex-col justify-evenly col">
                 <select class="selector selector-create border-shine" name="" id="">
                     <option value="1" class="selector selector-create">Первое бытие</option>
@@ -181,6 +181,16 @@ export default {
             passives: [],
             classes: [{ "id": 1, "name": "Богатырь", "main_atr": "Сила", "base_atrs": "60, 20, 20", "base_hp": 1000, "base_mp": 50, "base_armor": 50, "base_evade": 10, "base_ele_res": 30, "base_phys_res": 50 }],
             classes_en: ['Bogatir', 'Antihrist', 'Bogolub', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich', 'Zastrel'],
+            heads:[],
+            necks: [],
+            bodies: [],
+            gloves: [],
+            boots: [],
+            relics:[],
+            left_hands: [],
+            right_hands: [],
+            belts:[],
+            rings: [],
             error: false,
             authorized: false,
             equiped: {
