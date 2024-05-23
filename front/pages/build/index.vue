@@ -1,4 +1,6 @@
 <template>
+    <AuthError v-if="!authorized && error"></AuthError>
+    <CommonError v-if="error && authorized"></CommonError>
     <div v-if="authorized && !error">
         <div class="container flex flex-col items-center">
             <NuxtLink to="/build/create" class="create-build-btn border-shine flex justify-center items-center">
