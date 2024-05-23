@@ -2,6 +2,7 @@
     <div class="login-form container py-10 px-10">
         <p class="font text-4xl">Авторизация</p>
         <div class="flex flex-col gap-10 align-middle">
+            <p v-if="error" class="font text-2xl text-red-700">Неверный логин или пароль!</p>
             <div class="login-row">
                 <p class="font text-2xl">Логин</p>
                 <input type="text" class="font text-2xl pl-1" v-model="login" style="width: 100%;">
@@ -12,7 +13,9 @@
             </div>
         </div>
         <div class="flex flex-col align-middle justify-center gap-2">
-            <button @click="get_token()" class="login-btn mt-5 text-2xl font py-1 px-5">Войти</button>
+            <button @click="()=>{
+                get_token()
+                }" class="login-btn mt-5 text-2xl font py-1 px-5">Войти</button>
             <button class="login-btn text-xl font py-1 px-5">Регистрация</button>
             <NuxtLink to="/support" class="font text-lg text-center">Забыли пароль?</NuxtLink>
         </div>
@@ -25,6 +28,7 @@ export default {
         return {
             login: '',
             pwd: '',
+            error: false,
         }
     },
     methods: {
@@ -42,7 +46,13 @@ export default {
             })
                 .then(response => response.json())
                 .then(json => {
-                    localStorage.setItem('token', json.token)
+                    if(!json.detail){
+                        localStorage.setItem('token', json.token)
+                        this.$emit('loggining')
+                        location.reload()
+                    } else {
+                        this.error = true
+                    }
                 });
         }
     },
