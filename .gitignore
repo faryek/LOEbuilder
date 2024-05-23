@@ -27,3 +27,4 @@ back/sql_app.sqlite
 .sqlite
 
 __pycache__
+*.sqlite
