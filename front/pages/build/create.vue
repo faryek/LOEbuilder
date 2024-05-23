@@ -361,9 +361,10 @@ export default {
                         this.error = true
                         return null
                     }
-                    for (let i = 1; i < json.length; i++) {
+                    for (let i = 0; i < json.length; i++) {
                         this.classes.push(json[i])
                     }
+                    this.classes.splice(0,1)
                 })
             return null
         },
