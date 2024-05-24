@@ -17,13 +17,13 @@
                 </select>
                 <div class="flex flex-row gap-5">
                     <p class="font font-create">Уровень:</p>
-                    <input type="text" class="font font-create input-field px-4 selector selector-create border-shine"
+                    <input v-model="level" type="text" class="font font-create input-field px-4 selector selector-create border-shine"
                         placeholder="100">
                 </div>
             </div>
             <div class="flex flex-col justify-evenly col">
                 <input type="text" class="font font-create input-field px-4 selector selector-create border-shine"
-                    placeholder="Фулл понос">
+                    placeholder="Название">
                 <select name="" id="" class="selector selector-create border-shine">
                     <option value="" class="selector selector-create">Стартер</option>
                     <option value="" class="selector selector-create">Эндгейм</option>
@@ -135,6 +135,14 @@
                         </div>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
+                        <p class="stat-name text-xl font">Физ. урон</p>
+                        <p class="stat-value text-xl font">+ 100-150</p>
+                    </div>
+                    <div class="stat-row flex flex-row justyfy-between">
+                        <p class="stat-name text-xl font">Маг. урон</p>
+                        <p class="stat-value text-xl font">+ 10-15</p>
+                    </div>
+                    <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Здоровье</p>
                         <p class="stat-value text-xl font">{{ classes[choose_class].base_hp }}</p>
                     </div>
@@ -156,15 +164,19 @@
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Шанс крит.удара</p>
-                        <p class="stat-value text-xl font">{{crit_chance}}%</p>
+                        <p class="stat-value text-xl font">{{50}}%</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Крит. урон</p>
-                        <p class="stat-value text-xl font">{{crit_damage}}%</p>
+                        <p class="stat-value text-xl font">{{100}}%</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Вампиризм</p>
-                        <p class="stat-value text-xl font">{{vampirism}}%</p>
+                        <p class="stat-value text-xl font">{{40}}%</p>
+                    </div>
+                    <div class="stat-row flex flex-row justyfy-between">
+                        <p class="stat-name text-xl font">Шанс вампиризма</p>
+                        <p class="stat-value text-xl font">{{ 20 }}%</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Шанс уклонения</p>
@@ -182,22 +194,23 @@
 export default {
     data() {
         return {
-            weapons: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
-            armour: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
-            accessories: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
+            level: 0,
+            weapons: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            armour: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            accessories: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
             affixes: [],
             passives: [],
-            heads:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
-            necks: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
-            bodies: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
-            gloves: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
-            boots: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
-            relics:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
-            left_hands: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
-            right_hands: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
-            belts:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
-            rings: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}],
-            slots: [[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}}]],
+            heads:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            necks: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            bodies: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            gloves: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            boots: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            relics:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            left_hands: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            right_hands: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            belts:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            rings: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            slots: [[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}]],
             classes: [{ "id": 1, "name": "Богатырь", "main_atr": "Сила", "base_atrs": "60, 20, 20", "base_hp": 1000, "base_mp": 50, "base_armor": 50, "base_evade": 10, "base_ele_res": 30, "base_phys_res": 50 }],
             classes_en: ['Bogatir', 'Antihrist', 'Bogolub', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich', 'Zastrel'],
             error: false,
@@ -215,9 +228,144 @@ export default {
                 boots: {'image': '../img/items/boots_0.png'},
                 relic: {'image': '../img/items/relic_0.png'},
             },
+            stats:{
+                strength:{
+                    base: 0,
+                    implicits: [],
+                    affixes: [],
+                    passives: [],
+                    level:0,
+                },
+                dexterity:{
+                    base: 0,
+                    implicits: [],
+                    affixes: [],
+                    passives: [],
+                    level:0,
+                },
+                intelligence:{
+                    base: 0,
+                    implicits: [],
+                    affixes: [],
+                    passives: [],
+                    level:0,
+                },
+                hp:{
+                    base: 0,
+                    implicits: [],
+                    affixes: [],
+                    passives: [],
+                    level:0,
+                },
+                mana:{
+                    base: 0,
+                    implicits: [],
+                    affixes: [],
+                    passives: [],
+                    level:0,
+                },
+                armour:{
+                    base: 0,
+                    implicits: [],
+                    affixes: [],
+                    passives: [],
+                    level:0,
+                },
+                phys_res:{
+                    base: 0,
+                    implicits: [],
+                    affixes: [],
+                    passives: [],
+                    level:0,
+                },
+                poison_res:{
+                    base: 0,
+                    implicits: [],
+                    affixes: [],
+                    passives: [],
+                    level:0,
+                },
+                void_res:{
+                    base: 0,
+                    implicits: [],
+                    affixes: [],
+                    passives: [],
+                    level:0,
+                },
+                cold_res:{
+                    base: 0,
+                    implicits: [],
+                    affixes: [],
+                    passives: [],
+                    level:0,
+                },
+                fire_res:{
+                    base: 0,
+                    implicits: [],
+                    affixes: [],
+                    passives: [],
+                    level:0,
+                },
+                lightning_res:{
+                    base: 0,
+                    implicits: [],
+                    affixes: [],
+                    passives: [],
+                    level:0,
+                },
+                necrotic_res:{
+                    base: 0,
+                    implicits: [],
+                    affixes: [],
+                    passives: [],
+                    level:0,
+                },
+                vamp_chance:{
+                    base: 0,
+                    implicits: [],
+                    affixes: [],
+                    passives: [],
+                    level:0,
+                },
+                vamp:{
+                    base: 0,
+                    implicits: [],
+                    affixes: [],
+                    passives: [],
+                    level:0,
+                },
+                critical_chance:{
+                    base: 0,
+                    implicits: [],
+                    affixes: [],
+                    passives: [],
+                    level:0,
+                },
+                critical_damage:{
+                    base: 0,
+                    implicits: [],
+                    affixes: [],
+                    passives: [],
+                    level:0,
+                },
+                phys_damage:{
+                    base: 0,
+                    implicits: [],
+                    affixes: [],
+                    passives: [],
+                    level:0,
+                },
+                mag_damage:{
+                    base: 0,
+                    implicits: [],
+                    affixes: [],
+                    passives: [],
+                    level:0,
+                }
+            },
             equipment: {1: 'head', 2: 'neck', 3: 'left_hand', 4: 'body', 5: 'right_hand', 6: 'left_ring', 7: 'belt', 8: 'right_ring', 9: 'gloves', 10: 'boots', 11: 'relic'},
             choose_item: 0,
-            show_item: {'id' : 0, 'name' : 'Сиракузиан', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'name': 'Сайко', 'item_implicits': [{'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти'}]}},
+            show_item: {'id' : 0, 'name' : 'Сиракузиан', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'name': 'Сайко', 'item_implicits': [{'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}]}},
             choose_class: 0,
             crit_chance:0,
             crit_damage:0,

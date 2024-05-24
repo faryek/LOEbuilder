@@ -107,6 +107,7 @@ class Affix(Base):
     effect = Column(String(255))
     value_start = Column(Integer, default=1)
     value_end = Column(Integer, default=1)
+    tag = Column(String)
 
     affix_types = relationship('Affix_type', backref='affixes')
     item_types = relationship('Item_type', backref='affixes')
@@ -118,6 +119,7 @@ class Item_implicit(Base):
     effect = Column(String(255))
     value_start = Column(Integer, default=1)
     value_end = Column(Integer, default=1)
+    tag = Column(String)
 
 
 class Item_subtype(Base):

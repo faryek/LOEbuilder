@@ -19,12 +19,15 @@ with Session(bind=engine) as session:
 
     eff = models.Effect(name='dexterity', value=15)
     eff2 = models.Effect(name='strength', value=15)
-    eff3 = models.Effect(name='Intelligence', value=15)
+    eff3 = models.Effect(name='intelligence', value=15)
     eff4 = models.Effect(name='dexterity', value=25)
     eff5 = models.Effect(name='strength', value=25)
-    eff6 = models.Effect(name='Intelligence', value=25)
-    eff7 = models.Effect(name='Vampirism', value=10)
-    eff8 = models.Effect(name='Vampirism', value=25)
+    eff6 = models.Effect(name='intelligence', value=25)
+    eff7 = models.Effect(name='vamp', value=10)
+    eff8 = models.Effect(name='vamp', value=25)
+    eff9 = models.Effect(name = 'critical_damage', value = 20)
+    eff10 = models.Effect(name = 'critical_chance', value = 5)
+    eff11 = models.Effect(name = 'vamp_chance', value = 5)
 
     pas1 = models.Passive(
         name='Ловкость', desc='+15 к ловкости', effects=[eff])
@@ -38,9 +41,15 @@ with Session(bind=engine) as session:
     pas6 = models.Passive(name='Поломничество',
                           desc='+25 к интеллекту и силе', effects=[eff5, eff6])
     pas7 = models.Passive(
-        name='Вампир', desc='+25 к ловкости и интеллекту', effects=[eff7])
+        name='Вампир', desc='+10% вампиризма', effects=[eff7])
     pas8 = models.Passive(name='Истинный вампир',
-                          desc='+25 к интеллекту и силе', effects=[eff8])
+                          desc='+25% вампиризма', effects=[eff8])
+    pas9 = models.Passive(name="Большая сила", effects = [eff5])
+    pas10 = models.Passive(name="Большая ловкость", effects = [eff4])
+    pas11 = models.Passive(name="Большой интеллект", effects = [eff6])
+    pas12 = models.Passive(name="Крит. шанс", effects = [eff9])
+    pas13 = models.Passive(name="Крит. урон", effects = [eff10])
+    pas14 = models.Passive(name="Шанс вампиризма", effects = [eff11])
 
     # pasEff = models.Passive_effects(
     #     value=10, passives=[pas1, pas2], effects=[eff])
@@ -72,91 +81,71 @@ with Session(bind=engine) as session:
     itemtype5 = models.Item_type(name='Второстепенное')
 
     afx1 = models.Affix(effect='Увеличенный физ. урон', value_start=10,
-                        value_end=50, affix_types=afxtype1, item_types=itemtype)
+                        value_end=50, tag = 'phys_damage', affix_types=afxtype1, item_types=itemtype)
     afx2 = models.Affix(effect='Увеличенный маг. урон', value_start=10,
-                        value_end=50, affix_types=afxtype1, item_types=itemtype)
+                        value_end=50,tag = 'mag_damage', affix_types=afxtype1, item_types=itemtype)
     afx3 = models.Affix(effect='Увеличенный вампиризм', value_start=10,
-                        value_end=50, affix_types=afxtype2, item_types=itemtype)
+                        value_end=50,tag = 'vamp', affix_types=afxtype2, item_types=itemtype)
     afx4 = models.Affix(effect='Увеличенная ловкость', value_start=10,
-                        value_end=50, affix_types=afxtype2, item_types=itemtype3)
+                        value_end=50,tag = 'dexterity', affix_types=afxtype2, item_types=itemtype3)
     afx5 = models.Affix(effect='Увеличенная сила', value_start=10,
-                        value_end=50, affix_types=afxtype2, item_types=itemtype3)
+                        value_end=50,tag = 'strength', affix_types=afxtype2, item_types=itemtype3)
     afx6 = models.Affix(effect='Увеличенный интеллект', value_start=10,
-                        value_end=50, affix_types=afxtype2, item_types=itemtype3)
+                        value_end=50,tag = 'intelligence', affix_types=afxtype2, item_types=itemtype3)
     afx7 = models.Affix(effect='Увеличенный физ. урон', value_start=40,
-                        value_end=80, affix_types=afxtype1, item_types=itemtype4)
+                        value_end=80,tag = 'phys_damage', affix_types=afxtype1, item_types=itemtype4)
     afx8 = models.Affix(effect='Увеличенный маг. урон', value_start=40,
-                        value_end=90, affix_types=afxtype1, item_types=itemtype4)
+                        value_end=90,tag = 'mag_damage', affix_types=afxtype1, item_types=itemtype4)
     afx9 = models.Affix(effect='Увеличенный вампиризм', value_start=40,
-                        value_end=90, affix_types=afxtype1, item_types=itemtype4)
+                        value_end=90,tag = 'vamp', affix_types=afxtype1, item_types=itemtype4)
     afx10 = models.Affix(effect='Увеличенная ловкость', value_start=40,
-                         value_end=60, affix_types=afxtype1, item_types=itemtype2)
+                         value_end=60,tag = 'dexterity', affix_types=afxtype1, item_types=itemtype2)
     afx11 = models.Affix(effect='Увеличенная сила', value_start=40,
-                         value_end=60, affix_types=afxtype1, item_types=itemtype2)
+                         value_end=60,tag = 'strength', affix_types=afxtype1, item_types=itemtype2)
     afx12 = models.Affix(effect='Увеличенный интеллект', value_start=40,
-                         value_end=60, affix_types=afxtype1, item_types=itemtype2)
+                         value_end=60,tag = 'intelligence', affix_types=afxtype1, item_types=itemtype2)
 
     itemImplicit = models.Item_implicit(
-        effect='Физ. урон', value_start=1, value_end=10)
-
+        effect='Физ. урон', value_start=1, value_end=10, tag='phys_damage')
     itemImplicit2 = models.Item_implicit(
-        effect='Сопротивление огню', value_start=1, value_end=10)
-
+        effect='Сопротивление огню', value_start=1, value_end=10, tag='fire_res')
     itemImplicit3 = models.Item_implicit(
-        effect='Шанс крита', value_start=1, value_end=21)
-
+        effect='Шанс крита', value_start=1, value_end=21, tag='critical_chance')
     itemImplicit4 = models.Item_implicit(
-        effect='Сопротивление холоду', value_start=1, value_end=21)
-
+        effect='Сопротивление холоду', value_start=1, value_end=21, tag='cold_res')
     itemImplicit5 = models.Item_implicit(
-        effect='Сопротивление яду', value_start=1, value_end=21)
-
+        effect='Сопротивление яду', value_start=1, value_end=21, tag='poison_res')
     itemImplicit6 = models.Item_implicit(
-        effect='Сопротивление бездне', value_start=1, value_end=21)
-
+        effect='Сопротивление бездне', value_start=1, value_end=21, tag='void_res')
     itemImplicit7 = models.Item_implicit(
-        effect='Сопротивление молнии', value_start=1, value_end=21)
-
+        effect='Сопротивление молнии', value_start=1, value_end=21, tag='leghtning_res')
     itemImplicit8 = models.Item_implicit(
-        effect='Сопротивление некротическому урону', value_start=1, value_end=21)
+        effect='Сопротивление некротическому урону', value_start=1, value_end=21, tag='necrotic_res')
 
     itemsubtype1 = models.Item_subtype(name='Кинжал', item_types=[
         itemtype], item_implicits=[itemImplicit3])
-
     itemsubtype2 = models.Item_subtype(name='Шлем', item_types=[
         itemtype2], item_implicits=[itemImplicit2])
-
     itemsubtype3 = models.Item_subtype(name='Ожерелье', item_types=[
         itemtype3], item_implicits=[itemImplicit3])
-
     itemsubtype5 = models.Item_subtype(name='Одноручный меч', item_types=[
         itemtype], item_implicits=[itemImplicit])
-
     itemsubtype6 = models.Item_subtype(name='Двуручный меч', item_types=[
         itemtype], item_implicits=[itemImplicit8])
-
     itemsubtype7 = models.Item_subtype(name='Скипетр', item_types=[
         itemtype], item_implicits=[itemImplicit6])
-
     itemsubtype8 = models.Item_subtype(name='Кольцо', item_types=[
         itemtype3], item_implicits=[itemImplicit5])
-
     itemsubtype9 = models.Item_subtype(name='Кольцо', item_types=[
         itemtype3], item_implicits=[itemImplicit7])
-
     itemsubtype10 = models.Item_subtype(name='Кольцо', item_types=[
         itemtype3], item_implicits=[itemImplicit4])
-
     itemsubtype12 = models.Item_subtype(name='Нагрудник', item_types=[
         itemtype2], item_implicits=[itemImplicit5])
-
     itemsubtype13 = models.Item_subtype(name='Наручи', item_types=[
         itemtype2], item_implicits=[itemImplicit6])
-
-    
     itemsubtype15 = models.Item_subtype(name='Щит', item_types=[
         itemtype5], item_implicits=[itemImplicit7])
-    
     itemsubtype16 = models.Item_subtype(name='Катализатор', item_types=[
         itemtype5], item_implicits=[itemImplicit7])
     itemsubtype17 = models.Item_subtype(name='Ремень', item_types=[
@@ -165,7 +154,6 @@ with Session(bind=engine) as session:
         itemtype3], item_implicits=[itemImplicit7])
     itemsubtype19 = models.Item_subtype(name='Ботинки', item_types=[
         itemtype2], item_implicits=[itemImplicit7])
-    
 
     wpn1 = models.Weapon(
         name='Костяной', sub_id=itemsubtype1, image='/img/items/one_hand_sword_1.png')
@@ -202,8 +190,8 @@ with Session(bind=engine) as session:
     accry5 = models.Accessory(
         name='Ониксовое', sub_id=itemsubtype18, image='/img/items/relic_1.png')
 
-    session.add_all([role1, eff, eff2, eff3, eff4, eff5, eff6, eff7, eff8,
-                    pas1, pas2, pas3, pas4, pas5, pas6, pas7, pas8,
+    session.add_all([role1, eff, eff2, eff3, eff4, eff5, eff6, eff7, eff8,eff9,eff10,eff11,
+                    pas1, pas2, pas3, pas4, pas5, pas6, pas7, pas8,pas9,pas10,pas11,pas12,pas13,pas14,
                     cls1, cls2, cls3, cls4, cls5, cls6, cls7, cls8,
                     afxtype1, afxtype2,
                     itemtype, itemtype2, itemtype3, itemtype4,itemtype5,
