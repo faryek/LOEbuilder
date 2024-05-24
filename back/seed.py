@@ -44,12 +44,12 @@ with Session(bind=engine) as session:
         name='Вампир', desc='+10% вампиризма', effects=[eff7])
     pas8 = models.Passive(name='Истинный вампир',
                           desc='+25% вампиризма', effects=[eff8])
-    pas9 = models.Passive(name="Большая сила", effects = [eff5])
-    pas10 = models.Passive(name="Большая ловкость", effects = [eff4])
-    pas11 = models.Passive(name="Большой интеллект", effects = [eff6])
-    pas12 = models.Passive(name="Крит. шанс", effects = [eff9])
-    pas13 = models.Passive(name="Крит. урон", effects = [eff10])
-    pas14 = models.Passive(name="Шанс вампиризма", effects = [eff11])
+    pas9 = models.Passive(name="Большая сила", effects = [eff5], desc = '')
+    pas10 = models.Passive(name="Большая ловкость", effects = [eff4], desc = '')
+    pas11 = models.Passive(name="Большой интеллект", effects = [eff6], desc = '')
+    pas12 = models.Passive(name="Крит. шанс", effects = [eff9], desc = '')
+    pas13 = models.Passive(name="Крит. урон", effects = [eff10], desc = '')
+    pas14 = models.Passive(name="Шанс вампиризма", effects = [eff11], desc = '')
 
     # pasEff = models.Passive_effects(
     #     value=10, passives=[pas1, pas2], effects=[eff])

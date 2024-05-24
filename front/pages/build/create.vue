@@ -367,9 +367,6 @@ export default {
             choose_item: 0,
             show_item: {'id' : 0, 'name' : 'Сиракузиан', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'name': 'Сайко', 'item_implicits': [{'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}]}},
             choose_class: 0,
-            crit_chance:0,
-            crit_damage:0,
-            vampirism: 0
         }
     },
     props: [],
