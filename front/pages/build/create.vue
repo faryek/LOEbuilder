@@ -241,7 +241,8 @@ export default {
             equipment: { 1: 'head', 2: 'neck', 3: 'left_hand', 4: 'body', 5: 'right_hand', 6: 'left_ring', 7: 'belt', 8: 'right_ring', 9: 'gloves', 10: 'boots', 11: 'relic' },
             choose_item: 0,
             show_item: { 'id': 0, 'name': 'Сиракузиан', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти' }] } },
-            stats:{
+            choose_class: 0,
+			stats:{
                 strength:{
                     base: 0,
                     implicits: [],
