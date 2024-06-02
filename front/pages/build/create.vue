@@ -195,7 +195,9 @@
                 </div>
             </div>
         </div>
-        <div class="bot border-shine-create flex flex-row justify-between mt-5 gap-10" style="height: 50rem;"></div>
+        <div class="bot border-shine-create flex flex-row justify-between mt-5 gap-10" style="height: 50rem;">
+            
+        </div>
     </div>
 
 </template>
