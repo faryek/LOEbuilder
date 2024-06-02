@@ -15,9 +15,12 @@
                     </select>
                     <div class="flex flex-row gap-5">
                         <p class="font font-create">Уровень:</p>
-                        <input type="text"
+                        <input 
+                            type="text"
                             class="font font-create input-field px-4 selector selector-create border-shine"
-                            placeholder="100">
+                            placeholder="100"
+                            v-model="level" 
+                            @change="set_level_stats()">
                     </div>
                     <p class="font font-create text-center">Ссылка на билд</p>
                 </div>
@@ -137,60 +140,56 @@
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="text-xl stat-name font">Аттрибуты</p>
                         <div class="flex flex-row stat-value justify-end">
-                            <p class="text-xl font" style="color: red;">{{ classes[choose_class].base_atrs.split(', ')[0] }}</p>
+                            <p class="text-xl font" style="color: red;">{{ get_stat('strength') }}</p>
                             <p style="color: white;">/</p>
-                            <p class="text-xl font" style="color: green;">{{ classes[choose_class].base_atrs.split(', ')[1] }}</p>
+                            <p class="text-xl font" style="color: green;">{{ get_stat('dexterity') }}</p>
                             <p style="color: white;">/</p>
-                            <p class="text-xl font" style="color: blue;">{{ classes[choose_class].base_atrs.split(', ')[2] }}</p>
+                            <p class="text-xl font" style="color: blue;">{{ get_stat('intelligence') }}</p>
                         </div>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Физ. урон</p>
-                        <p class="stat-value text-xl font">+ 100-150</p>
+                        <p class="stat-value text-xl font">{{get_stat('phys_damage')}}</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Элем. урон</p>
-                        <p class="stat-value text-xl font">+ 10-15</p>
+                        <p class="stat-value text-xl font">{{get_stat('elem_damage')}}</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Здоровье</p>
-                        <p class="stat-value text-xl font">{{ classes[choose_class].base_hp }}</p>
+                        <p class="stat-value text-xl font">{{ get_stat('hp') }}</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Мана</p>
-                        <p class="stat-value text-xl font">{{ classes[choose_class].base_mp }}</p>
+                        <p class="stat-value text-xl font">{{ get_stat('mp') }}</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Броня</p>
-                        <p class="stat-value text-xl font">{{ classes[choose_class].base_armour }}</p>
+                        <p class="stat-value text-xl font">{{ get_stat('armour') }}</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Сопр. физ.урону</p>
-                        <p class="stat-value text-xl font">{{ classes[choose_class].base_phys_res }}</p>
+                        <p class="stat-value text-xl font">{{ get_stat('phys_res') }}%</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Сопр. элем.урону</p>
-                        <p class="stat-value text-xl font">{{ classes[choose_class].base_elem_res }}</p>
+                        <p class="stat-value text-xl font">{{ get_stat('elem_res') }}%</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Шанс крит.удара</p>
-                        <p class="stat-value text-xl font">{{50}}%</p>
+                        <p class="stat-value text-xl font">{{get_stat('critical_chance')}}%</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Крит. урон</p>
-                        <p class="stat-value text-xl font">{{100}}%</p>
+                        <p class="stat-value text-xl font">{{get_stat('critical_damage')}}%</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Вампиризм</p>
-                        <p class="stat-value text-xl font">{{40}}%</p>
-                    </div>
-                    <div class="stat-row flex flex-row justyfy-between">
-                        <p class="stat-name text-xl font">Шанс вампиризма</p>
-                        <p class="stat-value text-xl font">{{ 20 }}%</p>
+                        <p class="stat-value text-xl font">{{get_stat('vamp')}}%</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Шанс уклонения</p>
-                        <p class="stat-value text-xl font">{{ classes[choose_class].base_evade }}</p>
+                        <p class="stat-value text-xl font">{{ get_stat('evade') }}</p>
                     </div>
                 </div>
             </div>
@@ -201,7 +200,6 @@
     </div>
 
 </template>
-
 
 <script>
 export default {
@@ -228,30 +226,43 @@ export default {
             error: false,
             authorized: false,
             equiped: {
-                head: { 'image': '../img/items/head_0.png' },
-                neck: { 'image': '../img/items/neck_0.png' },
-                left_hand: { 'image': '../img/items/left_hand_0.png' },
-                body: { 'image': '../img/items/body_0.png' },
-                right_hand: { 'image': '../img/items/right_hand_0.png' },
-                left_ring: { 'image': '../img/items/ring_0.png' },
-                belt: { 'image': '../img/items/belt_0.png' },
-                right_ring: { 'image': '../img/items/ring_0.png' },
-                gloves: { 'image': '../img/items/gloves_0.png' },
-                boots: { 'image': '../img/items/boots_0.png' },
-                relic: { 'image': '../img/items/relic_0.png' },
+                head: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/head_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
+                neck: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/neck_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
+                left_hand: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/left_hand_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
+                body: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/body_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
+                right_hand: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/right_hand_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
+                left_ring: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/ring_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 1, 'value_end': 0, 'tag': 'phys_damage' }] } },
+                belt: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/belt_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
+                right_ring: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/ring_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 1, 'value_end': 0, 'tag': 'phys_damage' }] } },
+                gloves: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/gloves_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
+                boots: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/boots_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
+                relic: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/relic_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
             },
             equipment: { 1: 'head', 2: 'neck', 3: 'left_hand', 4: 'body', 5: 'right_hand', 6: 'left_ring', 7: 'belt', 8: 'right_ring', 9: 'gloves', 10: 'boots', 11: 'relic' },
-            equiped_affixes: {1 : [{}, {}], 2 : [{}, {}], 3 : [{}, {}], 4 : [{}, {}], 5 : [{}, {}], 6 : [{}, {}], 7 : [{}, {}], 8 : [{}, {}], 9 : [{}, {}], 10 : [{}, {}], 11 : [{}, {}], },
+            equiped_affixes:{
+                                1 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
+                                2 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
+                                3 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
+                                4 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
+                                5 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
+                                6 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
+                                7 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
+                                8 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
+                                9 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
+                                10 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
+                                11 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
+                            },
             choose_item: 0,
-            show_item: { 'id': 0, 'name': 'Сиракузиан', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти' }] } },
+            show_item: { 'id': 0, 'name': 'Сиракузиан', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 1, 'value_end': 2, 'tag': 'phys_damage' }] } },
             choose_class: 0,
+            level: 1,
 			stats:{
                 strength:{
                     base: 0,
                     implicits: 0,
                     affixes: 0,
                     passives: 0,
-                    level:0,
+                    level: 0,
                 },
                 dexterity:{
                     base: 0,
@@ -317,7 +328,7 @@ export default {
                     level:0,
                 },
                 critical_damage:{
-                    base: 0,
+                    base: 200,
                     implicits: 0,
                     affixes: 0,
                     passives: 0,
@@ -344,6 +355,22 @@ export default {
                     passives: 0,
                     level:0,
                 }
+            },
+            stats_dict : {
+                1 : 'strength',
+                2 : 'dexterity',
+                3 : 'intelligence',
+                4 : 'hp',
+                5 : 'mp',
+                6 : 'armour',
+                7 : 'phys_res',
+                8 : 'elem_res',
+                9 : 'vamp',
+                10 : 'critical_chance',
+                11 : 'critical_damage',
+                12 : 'phys_damage',
+                13 : 'elem_damage',
+                14 : 'evade'
             },
             save: ['Сохранить'],
             saved: 1
@@ -377,27 +404,69 @@ export default {
             }
             this.saved++
         },
-        get_stat(name) {
-            for (let i = 1; i < 12; i++) {
-                this.equiped[`${this.equipment[`${i}`]}`]
-            }
-            return this.stats[`${name}`].base + this.stats[`${name}`].level
+        get_stat(name){
+            return +this.stats[`${name}`].base + +this.stats[`${name}`].level + +this.stats[`${name}`].affixes + +this.stats[`${name}`].implicits
         },
-        get_class() {
-            this.choose_class = document.getElementById('class').value
+        set_implicits_stat() {
+            for (let j = 1; j < 15; j++) {
+                this.stats[`${this.stats_dict[`${j}`]}`].implicits = 0
+                for (let i = 1; i < 12; i++) {
+                    if (this.stats_dict[`${j}`] == this.equiped[`${this.equipment[`${i}`]}`].sub_id.item_implicits[0].tag) {
+                        this.stats[`${this.stats_dict[`${j}`]}`].implicits = this.stats[`${this.stats_dict[`${j}`]}`].implicits + this.equiped[`${this.equipment[`${i}`]}`].sub_id.item_implicits[0].value_end
+                    }
+                }
+            }
+        },
+        set_prefix_stat(){
+            for (let j = 1; j < 15; j++) {
+                this.stats[`${this.stats_dict[`${j}`]}`].affixes = 0
+                for (let i = 1; i < 12; i++) {
+                    if (this.stats_dict[`${j}`] == this.equiped_affixes[`${i}`][0].tag) {
+                        this.stats[`${this.stats_dict[`${j}`]}`].affixes += this.equiped_affixes[`${i}`][0].value_end
+                    }
+                }
+            }
+        },
+        set_suffix_stat() {
+            for (let j = 1; j < 15; j++) {
+                this.stats[`${this.stats_dict[`${j}`]}`].affixes = 0
+                for (let i = 1; i < 12; i++) {
+                    if (this.stats_dict[`${j}`] == this.equiped_affixes[`${i}`][1].tag) {
+                        this.stats[`${this.stats_dict[`${j}`]}`].affixes += this.equiped_affixes[`${i}`][1].value_end
+                    }
+                }
+            }
+        },
+        set_level_stats() {
+            if (+this.level > 100) this.level = 100
+            else if (+this.level < 1) this.level = 1
+            this.stats.armour.level = this.level*this.classes[this.choose_class].base_armour/5 + 5
+            this.stats.hp.level = this.level*this.classes[this.choose_class].base_hp/10 + 12
+            this.stats.mp.level = this.level*this.classes[this.choose_class].base_mp/10 + 3
+            this.stats.strength.level = this.level*this.classes[this.choose_class].base_atrs.split(', ')[0]/10
+            this.stats.dexterity.level = this.level*this.classes[this.choose_class].base_atrs.split(', ')[1]/10
+            this.stats.intelligence.level = this.level*this.classes[this.choose_class].base_atrs.split(', ')[2]/10
+        },
+        set_base_stats(){
             this.stats.hp.base = this.classes[this.choose_class].base_hp
             this.stats.mp.base = this.classes[this.choose_class].base_mp
             this.stats.armour.base = this.classes[this.choose_class].base_armour
             this.stats.evade.base = this.classes[this.choose_class].base_evade
             this.stats.elem_res.base = this.classes[this.choose_class].base_elem_res
             this.stats.phys_res.base = this.classes[this.choose_class].base_phys_res
-            this.stats.strength.base = this.classes[choose_class].base_atrs.split(', ')[0]
-            this.stats.dexterity.base = this.classes[choose_class].base_atrs.split(', ')[1]
-            this.stats.intelligence.base = this.classes[choose_class].base_atrs.split(', ')[2]
+            this.stats.strength.base = this.classes[this.choose_class].base_atrs.split(', ')[0]
+            this.stats.dexterity.base = this.classes[this.choose_class].base_atrs.split(', ')[1]
+            this.stats.intelligence.base = this.classes[this.choose_class].base_atrs.split(', ')[2]
+        },
+        get_class() {
+            this.choose_class = document.getElementById('class').value
+            this.set_base_stats()
+            console.log(this.stats)
         },
         get_item(j) {
             this.equiped[`${this.equipment[`${this.choose_item}`]}`] = this.slots[this.choose_item][j]
             this.show_item = this.slots[this.choose_item][j]
+            this.set_implicits_stat()
             this.choose_item = 0
             this.addButton()
         },
@@ -568,7 +637,6 @@ export default {
         this.get_passives(token)
         this.get_classes(token)
         this.slots.push(this.heads, this.necks, this.left_hands, this.bodies, this.right_hands, this.rings, this.belts, this.rings, this.gloves, this.boots, this.relics)
-        console.log(this.slots)
     },
     updated() {
         let token = localStorage.getItem('token')

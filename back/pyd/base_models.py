@@ -83,6 +83,7 @@ class AffixBase(BaseModel):
     effect : str = Field(...,example='Физ. урон')
     value_start : int = Field(...,gt=0,example=1)
     value_end : int = Field(...,gt=0,example=1)
+    tag : str = Field(..., example='phys_damage')
 
     class Config:
         orm_mode = True
@@ -99,6 +100,7 @@ class Item_implicitBase(BaseModel):
     effect : str = Field(...,example='Физ. урон')
     value_start : int = Field(...,gt=0,example=1)
     value_end : int = Field(...,gt=0,example=1)
+    tag : str = Field(..., example='phys_damage')
     class Config:
         orm_mode = True
 
