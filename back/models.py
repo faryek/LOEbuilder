@@ -79,9 +79,9 @@ class Class(Base):
     base_atrs = Column(String(255))
     base_hp = Column(Integer, default=1)
     base_mp = Column(Integer, default=1)
-    base_armor = Column(Integer, default=1)
+    base_armour = Column(Integer, default=1)
     base_evade = Column(Integer, default=1)
-    base_ele_res = Column(Integer, default=1)
+    base_elem_res = Column(Integer, default=1)
     base_phys_res = Column(Integer, default=1)
 
 

@@ -221,7 +221,7 @@ export default {
             belts:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
             rings: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
             slots: [[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}]],
-            classes: [{ "id": 1, "name": "Богатырь", "main_atr": "Сила", "base_atrs": "60, 20, 20", "base_hp": 1000, "base_mp": 50, "base_armor": 50, "base_evade": 10, "base_ele_res": 30, "base_phys_res": 50 }],
+            classes: [{ "id": 1, "name": "Богатырь", "main_atr": "Сила", "base_atrs": "60, 20, 20", "base_hp": 1000, "base_mp": 50, "base_armour": 50, "base_evade": 10, "base_ele_res": 30, "base_phys_res": 50 }],
             classes_en: ['Bogatir', 'Antihrist', 'Bogolub', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich', 'Zastrel'],
             error: false,
             authorized: false,
@@ -292,49 +292,7 @@ export default {
                     passives: [0],
                     level:0,
                 },
-                poison_res:{
-                    base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
-                    level:0,
-                },
-                void_res:{
-                    base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
-                    level:0,
-                },
-                cold_res:{
-                    base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
-                    level:0,
-                },
-                fire_res:{
-                    base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
-                    level:0,
-                },
-                lightning_res:{
-                    base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
-                    level:0,
-                },
-                necrotic_res:{
-                    base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
-                    level:0,
-                },
-                vamp_chance:{
+                elem_res:{
                     base: 0,
                     implicits: [0],
                     affixes: [0],
@@ -369,7 +327,7 @@ export default {
                     passives: [0],
                     level:0,
                 },
-                mag_damage:{
+                elem_damage:{
                     base: 0,
                     implicits: [0],
                     affixes: [0],

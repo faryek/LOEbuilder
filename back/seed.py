@@ -54,22 +54,22 @@ with Session(bind=engine) as session:
     # pasEff = models.Passive_effects(
     #     value=10, passives=[pas1, pas2], effects=[eff])
 
-    cls1 = models.Class(name='Богатырь', main_atr='Сила', base_atrs='60, 20, 20', base_hp=1000, base_mp=50,
-                        base_armor=50, base_evade=10, base_ele_res=30, base_phys_res=50)
+    cls1 = models.Class(name='Богатырь', main_atr='Сила', basem_atrs='60, 20, 20', base_hp=1000, base_mp=50,
+                        base_armour=50, base_evade=10, base_elem_res=30, base_phys_res=50)
     cls2 = models.Class(name='Антихрист', main_atr='Ловкость', base_atrs='20, 60, 20', base_hp=600, base_mp=70,
-                        base_armor=30, base_evade=50, base_ele_res=40, base_phys_res=30)
+                        base_armour=30, base_evade=50, base_elem_res=40, base_phys_res=30)
     cls3 = models.Class(name='Боголюб', main_atr='Интеллект', base_atrs='20, 20, 60', base_hp=500, base_mp=100,
-                        base_armor=40, base_evade=10, base_ele_res=20, base_phys_res=30)
+                        base_armour=40, base_evade=10, base_elem_res=20, base_phys_res=30)
     cls4 = models.Class(name='Налётчик', main_atr='Сила', base_atrs='30, 50, 10', base_hp=900, base_mp=40,
-                        base_armor=50, base_evade=40, base_ele_res=40, base_phys_res=50)
+                        base_armour=50, base_evade=40, base_elem_res=40, base_phys_res=50)
     cls5 = models.Class(name='Богохульник', main_atr='Интеллект', base_atrs='10, 40, 50', base_hp=450, base_mp=90,
-                        base_armor=30, base_evade=30, base_ele_res=20, base_phys_res=30)
+                        base_armour=30, base_evade=30, base_elem_res=20, base_phys_res=30)
     cls6 = models.Class(name='Скоморох', main_atr='Ловкость', base_atrs='10, 60, 30', base_hp=400, base_mp=60,
-                        base_armor=50, base_evade=30, base_ele_res=30, base_phys_res=30)
+                        base_armour=50, base_evade=30, base_elem_res=30, base_phys_res=30)
     cls7 = models.Class(name='Язычница', main_atr='Интеллект', base_atrs='10, 10, 70', base_hp=350, base_mp=120,
-                        base_armor=20, base_evade=20, base_ele_res=50, base_phys_res=30)
+                        base_armour=20, base_evade=20, base_elem_res=50, base_phys_res=30)
     cls8 = models.Class(name='Застрельщица', main_atr='Ловкость', base_atrs='10, 70, 10', base_hp=350, base_mp=40,
-                        base_armor=30, base_evade=70, base_ele_res=30, base_phys_res=30)
+                        base_armour=30, base_evade=70, base_elem_res=30, base_phys_res=30)
 
     afxtype1 = models.Affix_type(name='prefix')
     afxtype2 = models.Affix_type(name='suffix')
