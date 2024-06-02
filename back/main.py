@@ -68,7 +68,7 @@ async def url_create(url_input:pyd.URLCreate,username=Depends(auth_handler.auth_
         models.User.name == username
     ).first()
     url_db = models.URL(
-        name = base64.b64encode(url_input.name.encode()),
+        name = url_input.name,
         user_id = user_db.id,
         class_id = url_input.class_id
     )

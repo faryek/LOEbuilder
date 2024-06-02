@@ -196,20 +196,8 @@
             </div>
         </div>
         <div class="bot border-shine-create flex flex-row justify-between mt-5 gap-10 p-10" style="height: 15rem;">
-            <div v-for="j in 5" class="1st-col flex flex-col">
+            <!-- <div v-for="j in 5" class="1st-col flex flex-col">
                 <img v-for="i in 3" :src="passives[i-1 + (j-1)*3].image" class="item-img border-shine-passive" style="width: 50px;">
-            </div>
-            <!-- <div class="2st-col flex flex-col"> 
-                <img v-for="i in range(4,7)" :src="passives[i].image" class="item-img border-shine-passive" style="width: 50px;">
-            </div> 
-            <div class="3st-col flex flex-col"> 
-                <img v-for="i in range(7,10)" :src="passives[i].image" class="item-img border-shine-passive" style="width: 50px;">
-            </div> 
-            <div class="4st-col flex flex-col">
-                <img v-for="i in range(10,13)" :src="passives[i].image" class="item-img border-shine-passive" style="width: 50px;">
-            </div> 
-            <div class="5st-col flex flex-col"> 
-                <img v-for="i in range(13,16)" :src="passives[i].image" class="item-img border-shine-passive" style="width: 50px;">
             </div> -->
         </div>
     </div>
@@ -360,7 +348,8 @@ export default {
                 }
             },
             save: ['Сохранить'],
-            saved: 1
+            saved: 1,
+            encoded: ''
         }
     },
     props: [],
@@ -383,6 +372,7 @@ export default {
         removeButton(btn){
             this.save.pop()
             this.saved = 0
+            this.encode()
         },
         addButton() {
             if (this.saved < 1)
@@ -390,6 +380,10 @@ export default {
                 this.save.push('Сохранить')
             }
             this.saved++
+        },
+        encode(){
+            var obj = {a: this.equiped, b: this.stats};
+            this.encoded = btoa(JSON.stringify(obj))
         },
         get_stat(name) {
             for (let i = 1; i < 12; i++) {
@@ -529,6 +523,7 @@ export default {
                         this.error = true
                         return null
                     }
+                    this.passives = []
                     for (let i = 0; i < json.length; i++) {
                         this.passives.push(json[i])
                     }
@@ -678,3 +673,4 @@ export default {
     box-shadow: 0 0 20px 0 #9b7e41;
 }
 </style>
+
