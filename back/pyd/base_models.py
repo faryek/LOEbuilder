@@ -56,9 +56,9 @@ class ClassBase(BaseModel):
     base_atrs : str = Field(..., max_length=255, example='Strike')
     base_hp : int = Field(..., gt=0,example=1)
     base_mp : int = Field(..., gt=0,example=1)
-    base_armor : int = Field(..., gt=0,example=1)
+    base_armour : int = Field(..., gt=0,example=1)
     base_evade : int = Field(..., gt=0,example=1)
-    base_ele_res : int = Field(..., gt=0,example=1)
+    base_elem_res : int = Field(..., gt=0,example=1)
     base_phys_res : int = Field(..., gt=0,example=1)
 
     class Config:

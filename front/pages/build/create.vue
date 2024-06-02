@@ -135,8 +135,8 @@
             <div class="border-shine-create p-10" style="width: 30%;">
                 <div class="flex flex-col justify-evenly" style="height: 100%;">
                     <div class="stat-row flex flex-row justyfy-between">
-                        <p class="text-xl font">Аттрибуты</p>
-                        <div class="flex flex-row">
+                        <p class="text-xl stat-name font">Аттрибуты</p>
+                        <div class="flex flex-row stat-value justify-end">
                             <p class="text-xl font" style="color: red;">{{ classes[choose_class].base_atrs.split(', ')[0] }}</p>
                             <p style="color: white;">/</p>
                             <p class="text-xl font" style="color: green;">{{ classes[choose_class].base_atrs.split(', ')[1] }}</p>
@@ -149,7 +149,7 @@
                         <p class="stat-value text-xl font">+ 100-150</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
-                        <p class="stat-name text-xl font">Маг. урон</p>
+                        <p class="stat-name text-xl font">Элем. урон</p>
                         <p class="stat-value text-xl font">+ 10-15</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
@@ -162,7 +162,7 @@
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Броня</p>
-                        <p class="stat-value text-xl font">{{ classes[choose_class].base_armor }}</p>
+                        <p class="stat-value text-xl font">{{ classes[choose_class].base_armour }}</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Сопр. физ.урону</p>
@@ -170,7 +170,7 @@
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Сопр. элем.урону</p>
-                        <p class="stat-value text-xl font">{{ classes[choose_class].base_ele_res }}</p>
+                        <p class="stat-value text-xl font">{{ classes[choose_class].base_elem_res }}</p>
                     </div>
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="stat-name text-xl font">Шанс крит.удара</p>
@@ -237,7 +237,7 @@ export default {
             belts:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
             rings: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
             slots: [[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}]],
-            classes: [{ "id": 1, "name": "Богатырь", "main_atr": "Сила", "base_atrs": "60, 20, 20", "base_hp": 1000, "base_mp": 50, "base_armor": 50, "base_evade": 10, "base_ele_res": 30, "base_phys_res": 50 }],
+            classes: [{ "id": 1, "name": "Богатырь", "main_atr": "Сила", "base_atrs": "60, 20, 20", "base_hp": 1000, "base_mp": 50, "base_armour": 50, "base_evade": 10, "base_elem_res": 30, "base_phys_res": 50 }],
             classes_en: ['Bogatir', 'Antihrist', 'Bogolub', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich', 'Zastrel'],
             error: false,
             authorized: false,
@@ -255,141 +255,107 @@ export default {
                 relic: { 'image': '../img/items/relic_0.png' },
             },
             equipment: { 1: 'head', 2: 'neck', 3: 'left_hand', 4: 'body', 5: 'right_hand', 6: 'left_ring', 7: 'belt', 8: 'right_ring', 9: 'gloves', 10: 'boots', 11: 'relic' },
+            equiped_affixes: {1 : [{}, {}], 2 : [{}, {}], 3 : [{}, {}], 4 : [{}, {}], 5 : [{}, {}], 6 : [{}, {}], 7 : [{}, {}], 8 : [{}, {}], 9 : [{}, {}], 10 : [{}, {}], 11 : [{}, {}], },
             choose_item: 0,
             show_item: { 'id': 0, 'name': 'Сиракузиан', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 'писюмба', 'value_end': 'нти' }] } },
             choose_class: 0,
 			stats:{
                 strength:{
                     base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
+                    implicits: 0,
+                    affixes: 0,
+                    passives: 0,
                     level:0,
                 },
                 dexterity:{
                     base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
+                    implicits: 0,
+                    affixes: 0,
+                    passives: 0,
                     level:0,
                 },
                 intelligence:{
                     base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [],
+                    implicits: 0,
+                    affixes: 0,
+                    passives: 0,
                     level:0,
                 },
                 hp:{
                     base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
+                    implicits: 0,
+                    affixes: 0,
+                    passives: 0,
                     level:0,
                 },
-                mana:{
+                mp:{
                     base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
+                    implicits: 0,
+                    affixes: 0,
+                    passives: 0,
                     level:0,
                 },
                 armour:{
                     base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
+                    implicits: 0,
+                    affixes: 0,
+                    passives: 0,
                     level:0,
                 },
                 phys_res:{
                     base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
+                    implicits: 0,
+                    affixes: 0,
+                    passives: 0,
                     level:0,
                 },
-                poison_res:{
+                elem_res:{
                     base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
-                    level:0,
-                },
-                void_res:{
-                    base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
-                    level:0,
-                },
-                cold_res:{
-                    base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
-                    level:0,
-                },
-                fire_res:{
-                    base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
-                    level:0,
-                },
-                lightning_res:{
-                    base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
-                    level:0,
-                },
-                necrotic_res:{
-                    base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
-                    level:0,
-                },
-                vamp_chance:{
-                    base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
+                    implicits: 0,
+                    affixes: 0,
+                    passives: 0,
                     level:0,
                 },
                 vamp:{
                     base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
+                    implicits: 0,
+                    affixes: 0,
+                    passives: 0,
                     level:0,
                 },
                 critical_chance:{
                     base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
+                    implicits: 0,
+                    affixes: 0,
+                    passives: 0,
                     level:0,
                 },
                 critical_damage:{
                     base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
+                    implicits: 0,
+                    affixes: 0,
+                    passives: 0,
                     level:0,
                 },
                 phys_damage:{
                     base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
+                    implicits: 0,
+                    affixes: 0,
+                    passives: 0,
                     level:0,
                 },
-                mag_damage:{
+                elem_damage:{
                     base: 0,
-                    implicits: [0],
-                    affixes: [0],
-                    passives: [0],
+                    implicits: 0,
+                    affixes: 0,
+                    passives: 0,
+                    level:0,
+                },
+                evade:{
+                    base: 0,
+                    implicits: 0,
+                    affixes: 0,
+                    passives: 0,
                     level:0,
                 }
             },
@@ -425,8 +391,23 @@ export default {
             }
             this.saved++
         },
+        get_stat(name) {
+            for (let i = 1; i < 12; i++) {
+                this.equiped[`${this.equipment[`${i}`]}`]
+            }
+            return this.stats[`${name}`].base + this.stats[`${name}`].level
+        },
         get_class() {
             this.choose_class = document.getElementById('class').value
+            this.stats.hp.base = this.classes[this.choose_class].base_hp
+            this.stats.mp.base = this.classes[this.choose_class].base_mp
+            this.stats.armour.base = this.classes[this.choose_class].base_armour
+            this.stats.evade.base = this.classes[this.choose_class].base_evade
+            this.stats.elem_res.base = this.classes[this.choose_class].base_elem_res
+            this.stats.phys_res.base = this.classes[this.choose_class].base_phys_res
+            this.stats.strength.base = this.classes[choose_class].base_atrs.split(', ')[0]
+            this.stats.dexterity.base = this.classes[choose_class].base_atrs.split(', ')[1]
+            this.stats.intelligence.base = this.classes[choose_class].base_atrs.split(', ')[2]
         },
         get_item(j) {
             this.equiped[`${this.equipment[`${this.choose_item}`]}`] = this.slots[this.choose_item][j]
@@ -614,11 +595,16 @@ export default {
 </script>
 
 <style>
-.stat-row p {
+.stat-row {
     width: 100%;
 }
 
+.stat-name{
+    width: 60%;
+}
+
 .stat-value {
+    width: 40%;
     text-align: end;
 }
 
