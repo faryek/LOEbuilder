@@ -39,74 +39,77 @@
                         placeholder="...">
                 </div>
             </div>
-            <ul v-auto-animate>
-                <li
-                    v-for="k in save"
-                    @click="removeButton(k)"
-                    style="width: 100%;"
-                >
-                    <button class="font font-create border-shine-create special-btn" style="width: 100%;">{{ k }}</button>
-                </li>
-            </ul>
+            <div class="flex flex-row justify-between">
+                <ul v-auto-animate style="width: 45%;">
+                    <li
+                        v-for="k in save"
+                        @click="removeButton(k)"
+                        style="width: 100%;"
+                    >
+                        <button class="font font-create border-shine-create special-btn" style="width: 100%;">{{ k }}</button>
+                    </li>
+                </ul>
+                <button class="font font-create border-shine-create special-btn" style="width: 45%;">Создать</button>
+            </div>
         </div>
         <div class="mid flex flex-row justify-between mt-5 gap-10">
             <div class="border-shine-create p-10" style="width: 30%;">
                 <div class="item-col flex flex-col gap-2">
                     <div class="item-row flex flex-row justify-center gap-2">
-                        <div class="slot">
-                            <img class="item-img border-shine w-14" src="public/img/items/neck_0.png" alt=""
+                        <div class="">
+                            <img class="item-img border-shine w-14 slot" src="public/img/items/neck_0.png" alt=""
                                 style="opacity: 0;">
                         </div>
-                        <div class="slot" @click="choose_item = 1">
-                            <img class="item-img border-shine w-24" :src="equiped.head.image" alt="">
+                        <div class="">
+                            <img class="item-img border-shine w-24 slot" :src="equiped.head.image" alt="" @click="choose_item = 1">
                         </div>
-                        <div class="slot" @click="choose_item = 2">
-                            <img class="item-img border-shine w-14" :src="equiped.neck.image" alt="">
-                        </div>
-
-                    </div>
-                    <div class="item-row flex flex-row justify-center gap-2">
-
-                        <div class="slot" @click="choose_item = 3">
-                            <img class="item-img border-shine w-24" :src="equiped.left_hand.image" alt="">
-                        </div>
-
-                        <div class="slot" @click="choose_item = 4">
-                            <img class="item-img border-shine w-36" :src="equiped.body.image" alt="">
-                        </div>
-
-                        <div class="slot" @click="choose_item = 5">
-                            <img class="item-img border-shine w-24" :src="equiped.right_hand.image" alt="">
+                        <div class="">
+                            <img class="item-img border-shine w-14 slot" :src="equiped.neck.image" alt="" @click="choose_item = 2">
                         </div>
 
                     </div>
                     <div class="item-row flex flex-row justify-center gap-2">
 
-                        <div class="slot" @click="choose_item = 6">
-                            <img class="item-img border-shine w-14" :src="equiped.left_ring.image" alt="">
+                        <div class="">
+                            <img class="item-img border-shine w-24 slot" :src="equiped.left_hand.image" alt="" @click="choose_item = 3">
                         </div>
 
-                        <div class="slot" @click="choose_item = 7">
-                            <img class="item-img border-shine w-36" :src="equiped.belt.image" alt="">
+                        <div class="">
+                            <img class="item-img border-shine w-36 slot" :src="equiped.body.image" alt="" @click="choose_item = 4">
                         </div>
 
-                        <div class="slot" @click="choose_item = 8">
-                            <img class="item-img border-shine w-14" :src="equiped.right_ring.image" alt="">
+                        <div class="">
+                            <img class="item-img border-shine w-24 slot" :src="equiped.right_hand.image" alt="" @click="choose_item = 5">
                         </div>
 
                     </div>
                     <div class="item-row flex flex-row justify-center gap-2">
 
-                        <div class="slot" @click="choose_item = 9">
-                            <img class="item-img border-shine w-24" :src="equiped.gloves.image" alt="">
+                        <div class="">
+                            <img class="item-img border-shine w-14 slot" :src="equiped.left_ring.image" alt="" @click="choose_item = 6">
                         </div>
 
-                        <div class="slot" @click="choose_item = 10">
-                            <img class="item-img border-shine w-24" :src="equiped.boots.image" alt="">
+                        <div class="">
+                            <img class="item-img border-shine w-36 slot" :src="equiped.belt.image" alt="" @click="choose_item = 7">
                         </div>
 
-                        <div class="slot" @click="choose_item = 11">
-                            <img class="item-img border-shine w-24" :src="equiped.relic.image" alt="">
+                        <div class="">
+                            <img class="item-img border-shine w-14 slot" :src="equiped.right_ring.image" alt="" @click="choose_item = 8">
+                        </div>
+
+                    </div>
+                    <div class="item-row flex flex-row justify-center gap-2">
+
+                        <div class="">
+                            <img class="item-img border-shine w-24 slot" :src="equiped.gloves.image" alt="" @click="choose_item = 9">
+                        </div>
+
+                        <div class="">
+                            <img class="item-img border-shine w-24 slot" :src="equiped.boots.image" alt="" @click="choose_item = 10">
+                        </div>
+
+                        <div class="">
+                            <img class="item-img border-shine w-24 slot" :src="equiped.relic.image" alt="" @click="choose_item = 11">
                         </div>
 
                     </div>
@@ -131,6 +134,7 @@
                                 <p class="text-xl font">{{ show_item.sub_id.item_implicits[0].value_end }}</p>
                                 <p class="text-xl font">{{ show_item.sub_id.item_implicits[0].effect }}</p>
                             </div>
+                            <button class="font text-2xl border-shine" style="width: 100%;">Снять</button>
                         </div>
                     </div>
                 </div>
