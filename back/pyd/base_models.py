@@ -37,6 +37,7 @@ class PassiveBase(BaseModel):
     id: int = Field(None, gt=0, example=1)
     name: str = Field(..., max_length=255, example='Strike')
     desc: str = Field(..., max_length=255, example='Powerful Strike')
+    image: str= Field(...,example='img/p1')
     
     class Config:
         orm_mode = True

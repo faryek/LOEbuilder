@@ -67,7 +67,7 @@ class Passive(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(255))
     desc = Column(String(255))
-
+    image = Column(String)
     effects = relationship(
         'Effect', secondary='passive_effects', backref='passives')
 
