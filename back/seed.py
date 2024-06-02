@@ -61,7 +61,7 @@ with Session(bind=engine) as session:
     # pasEff = models.Passive_effects(
     #     value=10, passives=[pas1, pas2], effects=[eff])
 
-    cls1 = models.Class(name='Богатырь', main_atr='Сила', basem_atrs='60, 20, 20', base_hp=1000, base_mp=50,
+    cls1 = models.Class(name='Богатырь', main_atr='Сила', base_atrs='60, 20, 20', base_hp=1000, base_mp=50,
                         base_armour=50, base_evade=10, base_elem_res=30, base_phys_res=50)
     cls2 = models.Class(name='Антихрист', main_atr='Ловкость', base_atrs='20, 60, 20', base_hp=600, base_mp=70,
                         base_armour=30, base_evade=50, base_elem_res=40, base_phys_res=30)
@@ -89,8 +89,8 @@ with Session(bind=engine) as session:
 
     afx1 = models.Affix(effect='Увеличенный физ. урон', value_start=10,
                         value_end=50, tag='phys_damage', affix_types=afxtype1, item_types=itemtype)
-    afx2 = models.Affix(effect='Увеличенный маг. урон', value_start=10,
-                        value_end=50, tag='mag_damage', affix_types=afxtype1, item_types=itemtype)
+    afx2 = models.Affix(effect='Увеличенный элем. урон', value_start=10,
+                        value_end=50, tag='elem_damage', affix_types=afxtype1, item_types=itemtype)
     afx3 = models.Affix(effect='Увеличенный вампиризм', value_start=10,
                         value_end=50, tag='vamp', affix_types=afxtype2, item_types=itemtype)
     afx4 = models.Affix(effect='Увеличенная ловкость', value_start=10,
@@ -101,8 +101,8 @@ with Session(bind=engine) as session:
                         value_end=50, tag='intelligence', affix_types=afxtype2, item_types=itemtype3)
     afx7 = models.Affix(effect='Увеличенный физ. урон', value_start=40,
                         value_end=80, tag='phys_damage', affix_types=afxtype1, item_types=itemtype4)
-    afx8 = models.Affix(effect='Увеличенный маг. урон', value_start=40,
-                        value_end=90, tag='mag_damage', affix_types=afxtype1, item_types=itemtype4)
+    afx8 = models.Affix(effect='Увеличенный элем. урон', value_start=40,
+                        value_end=90, tag='elem_damage', affix_types=afxtype1, item_types=itemtype4)
     afx9 = models.Affix(effect='Увеличенный вампиризм', value_start=40,
                         value_end=90, tag='vamp', affix_types=afxtype1, item_types=itemtype4)
     afx10 = models.Affix(effect='Увеличенная ловкость', value_start=40,
@@ -115,13 +115,13 @@ with Session(bind=engine) as session:
     itemImplicit = models.Item_implicit(
         effect='Физ. урон', value_start=1, value_end=10, tag='phys_damage')
     itemImplicit2 = models.Item_implicit(
-        effect='Сопротивление элем. урону', value_start=1, value_end=10, tag='ele_res')
+        effect='Сопротивление элем. урону', value_start=1, value_end=10, tag='elem_res')
     itemImplicit3 = models.Item_implicit(
         effect='Шанс крита', value_start=1, value_end=21, tag='critical_chance')
     itemImplicit7 = models.Item_implicit(
-        effect='Сопротивление физ урону', value_start=1, value_end=21, tag='phys_res')
+        effect='Сопротивление физ. урону', value_start=1, value_end=21, tag='phys_res')
     itemImplicit8 = models.Item_implicit(
-        effect='Маг. урон', value_start=1, value_end=21, tag='magic_damage')
+        effect='Маг. урон', value_start=1, value_end=21, tag='elem_damage')
 
     itemsubtype1 = models.Item_subtype(name='Кинжал', item_types=[
         itemtype], item_implicits=[itemImplicit3])
