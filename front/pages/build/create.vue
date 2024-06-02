@@ -195,8 +195,22 @@
                 </div>
             </div>
         </div>
-        <div class="bot border-shine-create flex flex-row justify-between mt-5 gap-10" style="height: 50rem;">
-            
+        <div class="bot border-shine-create flex flex-row justify-between mt-5 gap-10 p-10" style="height: 15rem;">
+            <div v-for="j in 5" class="1st-col flex flex-col">
+                <img v-for="i in 3" :src="passives[i-1 + (j-1)*3].image" class="item-img border-shine-passive" style="width: 50px;">
+            </div>
+            <!-- <div class="2st-col flex flex-col"> 
+                <img v-for="i in range(4,7)" :src="passives[i].image" class="item-img border-shine-passive" style="width: 50px;">
+            </div> 
+            <div class="3st-col flex flex-col"> 
+                <img v-for="i in range(7,10)" :src="passives[i].image" class="item-img border-shine-passive" style="width: 50px;">
+            </div> 
+            <div class="4st-col flex flex-col">
+                <img v-for="i in range(10,13)" :src="passives[i].image" class="item-img border-shine-passive" style="width: 50px;">
+            </div> 
+            <div class="5st-col flex flex-col"> 
+                <img v-for="i in range(13,16)" :src="passives[i].image" class="item-img border-shine-passive" style="width: 50px;">
+            </div> -->
         </div>
     </div>
 
@@ -211,7 +225,7 @@ export default {
             armour: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
             accessories: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
             affixes: [],
-            passives: [],
+            passives: [{"id": 1,"name": "Ловкость","desc": "+15 к ловкости","image": "/img/icons/dexterity.png","effects": [{"id": 1,"name": "dexterity","value": 15}]},],
             heads:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
             necks: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
             bodies: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
@@ -662,5 +676,19 @@ export default {
 .input-field {
     width: 100%;
     text-align: start;
+}
+
+.border-shine-passive{
+    border: 3px solid;
+    border-radius: 100% !important;
+    border-color: #9b7f4100 !important;
+    box-shadow: 0 0 20px 0 #9b7f4100;
+}
+
+.border-shine-passive:hover {
+    border: 3px solid;
+    border-radius: 100% !important;
+    border-color: #9b7e41 !important;
+    box-shadow: 0 0 20px 0 #9b7e41;
 }
 </style>
