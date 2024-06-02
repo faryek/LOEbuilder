@@ -121,7 +121,7 @@ with Session(bind=engine) as session:
     itemImplicit7 = models.Item_implicit(
         effect='Сопротивление физ. урону', value_start=1, value_end=21, tag='phys_res')
     itemImplicit8 = models.Item_implicit(
-        effect='Маг. урон', value_start=1, value_end=21, tag='elem_damage')
+        effect='Элем. урон', value_start=1, value_end=21, tag='elem_damage')
 
     itemsubtype1 = models.Item_subtype(name='Кинжал', item_types=[
         itemtype], item_implicits=[itemImplicit3])
