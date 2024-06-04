@@ -24,7 +24,19 @@
         font-family: 'TLheader-Regular';
         color: white;
     }
+    .border-shine{
+        border: 3px solid;
+        border-radius: 25px;
+        border-color: #9b7f4100 !important;
+        box-shadow: 0 0 20px 0 #9b7f4100;
+    }
     .border-shine:hover {
+        border: 3px solid;
+        border-radius: 25px;
+        border-color: #9b7e41 !important;
+        box-shadow: 0 0 20px 0 #9b7e41;
+    }
+    .border-shine:focus {
         border: 3px solid;
         border-radius: 25px;
         border-color: #9b7e41 !important;
@@ -41,6 +53,10 @@
         border-radius: 25px;
         border-color: #9b7e41 !important;
         box-shadow: 0 0 10px 0 #9b7f41;
+    }
+    .special-btn:hover{
+        background-color:#9b7e41;
+
     }
 }
 

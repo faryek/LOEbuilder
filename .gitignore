@@ -17,8 +17,15 @@ logs
 .DS_Store
 .fleet
 .idea
+*.sqlite
 
 # Local env files
 .env
 .env.*
 !.env.example
+
+.sqlite
+
+__pycache__
+*.sqlite
+back/sql_app.sqlite
