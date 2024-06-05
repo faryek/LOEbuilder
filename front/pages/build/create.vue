@@ -250,19 +250,45 @@ export default {
                 relic: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/relic_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
             },
             equipment: { 1: 'head', 2: 'neck', 3: 'left_hand', 4: 'body', 5: 'right_hand', 6: 'left_ring', 7: 'belt', 8: 'right_ring', 9: 'gloves', 10: 'boots', 11: 'relic' },
+            equiped_ids: {
+                head_id: 1,
+                neck_id: 1,
+                left_hand_id:  1,
+                body_id: 1,
+                right_hand_id: 1,
+                left_ring_id: 1, 
+                belt_id: 1,
+                right_ring_id: 1,
+                gloves_id: 1,
+                boots_id: 1,
+                relic_id: 1,
+            },
             equiped_affixes:{
-                                1 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
-                                2 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
-                                3 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
-                                4 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
-                                5 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
-                                6 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
-                                7 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
-                                8 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
-                                9 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
-                                10 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
-                                11 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
-                            },
+                1 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
+                2 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
+                3 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
+                4 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
+                5 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
+                6 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
+                7 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
+                8 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
+                9 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
+                10 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
+                11 : [{'value_end': 10, 'tag': 'phys_damage'}, {'value_end': 10, 'tag': 'phys_damage'}], 
+            },
+            equiped_affixes_ids:{
+                1 : [1, 2], 
+                2 : [1, 2],  
+                3 : [1, 2], 
+                4 : [1, 2], 
+                5 : [1, 2], 
+                6 : [1, 2], 
+                7 : [1, 2], 
+                8 : [1, 2], 
+                9 : [1, 2], 
+                10 : [1, 2],  
+                11 : [1, 2],  
+            },
             choose_item: 0,
             show_item: { 'id': 0, 'name': 'Сиракузиан', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 1, 'value_end': 2, 'tag': 'phys_damage' }] } },
             choose_class: 0,
@@ -406,7 +432,16 @@ export default {
                 })
             return null
         },
+        save_ids(){
+            for (let i = 1; i < 12; i++) {
+                this.equiped_ids[`${this.equipment[`${i}`]}_id`] = this.equiped[`${this.equipment[`${i}`]}`].id
+            }
+            for (let i = 1; i < 12; i++) {
+                this.equiped_affixes_ids[`${i}`] = this.equiped_affixes[`${i}`]
+            }
+        },
         removeButton(btn){
+            this.save_ids()
             this.save.pop()
             this.saved = 0
             this.encode()
