@@ -423,7 +423,16 @@ export default {
                 })
             return null
         },
+        save_ids(){
+            for (let i = 1; i < 12; i++) {
+                this.equiped_ids[`${this.equipment[`${i}`]}_id`] = this.equiped[`${this.equipment[`${i}`]}`].id
+            }
+            for (let i = 1; i < 12; i++) {
+                this.equiped_affixes_ids[`${i}`] = this.equiped_affixes[`${i}`]
+            }
+        },
         removeButton(btn){
+            this.save_ids()
             this.save.pop()
             this.saved = 0
         },
