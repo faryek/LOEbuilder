@@ -386,6 +386,22 @@ export default {
                     level:0,
                 }
             },
+            stats_export: {
+                strength: 1,
+                dexterity: 1,
+                intelligence: 1,
+                hp: 1,
+                mp: 1,
+                armour: 1,
+                phys_res: 1,
+                elem_res: 1,
+                vamp: 1,
+                critical_chance: 1,
+                critical_damage: 1,
+                phys_damage: 1,
+                elem_damage: 1,
+                evade: 1,
+            },
             stats_dict : {
                 1 : 'strength',
                 2 : 'dexterity',
@@ -423,16 +439,17 @@ export default {
                 })
             return null
         },
-        save_ids(){
+        save_all(){
             for (let i = 1; i < 12; i++) {
                 this.equiped_ids[`${this.equipment[`${i}`]}_id`] = this.equiped[`${this.equipment[`${i}`]}`].id
-            }
-            for (let i = 1; i < 12; i++) {
                 this.equiped_affixes_ids[`${i}`] = this.equiped_affixes[`${i}`]
+            }
+            for (let i = 1; i < 15; i++) {
+                this.stats_export[`${this.stats_dict[`${i}`]}`] = this.get_stat(this.stats_dict[`${i}`])
             }
         },
         removeButton(btn){
-            this.save_ids()
+            this.save_all()
             this.save.pop()
             this.saved = 0
         },
