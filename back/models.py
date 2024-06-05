@@ -47,6 +47,7 @@ class URL(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(255), nullable=False)
+    build_name = Column(String)
     
     user_id = Column(Integer, ForeignKey('users.id'), default=1)
     class_id = Column(Integer, ForeignKey('classes.id'), default=1)

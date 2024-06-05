@@ -25,6 +25,16 @@ app = FastAPI()
 auth_handler = AuthHandler()
 
 
+@app.post('/check_url/')
+async def check_url(user_input: pyd.URLCheckBase,db:Session=Depends(get_db)):
+    url_db = db.query(models.URL).filter(
+        models.URL.name == user_input.name
+    ).first()
+    if not url_db:
+        raise HTTPException(404, 'Build not found')
+    else:
+        return {'status':'success'}
+
 @app.post('/register', response_model=pyd.UserCreate)
 async def user_reg(user_input: pyd.UserCreateReg, db: Session = Depends(get_db)):
     user_db = db.query(models.User).filter(
@@ -67,6 +77,9 @@ async def url_create(url_input:pyd.URLCreate,username=Depends(auth_handler.auth_
     user_db = db.query(models.User).filter(
         models.User.name == username
     ).first()
+    if not user_db:
+        raise HTTPException(404,'User not found')
+    
     url_db = models.URL(
         name = url_input.name,
         user_id = user_db.id,

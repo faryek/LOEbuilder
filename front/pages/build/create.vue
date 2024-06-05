@@ -25,8 +25,8 @@
                     <p class="font font-create text-center">Ссылка на билд</p>
                 </div>
                 <div class="flex flex-col justify-evenly col">
-                    <input type="text" class="font font-create input-field px-4 selector selector-create border-shine"
-                        placeholder="Фулл понос">
+                    <input type="text" v-model="build_name" class="font font-create input-field px-4 selector selector-create border-shine"
+                        placeholder="Название">
                     <select name="" id="" class="selector selector-create border-shine">
                         <option value="" class="selector selector-create">Стартер</option>
                         <option value="" class="selector selector-create">Эндгейм</option>
@@ -413,6 +413,7 @@ export default {
             saved: 1,
             encoded: '',
             urlers: `http://localhost:3000/build/`,
+            build_name: '',
         }
     },
     props: [],
@@ -454,8 +455,9 @@ export default {
             this.saved++
         },
         encode(){
-            var obj = {a: this.equiped, b: this.stats};
+            var obj = {a: this.equiped_ids, c: this.equiped_affixes_ids};
             this.encoded = btoa(unescape(encodeURIComponent(JSON.stringify(obj))))
+            console.log(this.encoded)
             console.log(decodeURIComponent(escape(window.atob(this.encoded))))
         },
         get_stat(name){
@@ -528,7 +530,8 @@ export default {
             let token = localStorage.getItem('token')
             let credetentials = {
                 name: this.encoded,
-                class_id: 1,
+                build_name: this.build_name,
+                class_id: this.choose_class,
             }
             fetch('http://127.0.0.1:8000/build/url_create', {
                 method: 'POST',
