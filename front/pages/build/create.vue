@@ -6,7 +6,7 @@
             <div class="flex flex-row justify-evenly gap-10">
                 <img :src="`../img/classes/${classes_en[choose_class]}/Medium.png`" class="class-img" alt="">
                 <div class="flex flex-col justify-evenly col">
-                    <select class="selector selector-create border-shine" name="" id="">
+                    <select class="selector selector-create border-shine" name="" id="cycle">
                         <option value="1" class="selector selector-create">Первое бытие</option>
                         <option value="2" class="selector selector-create">Второе житие</option>
                     </select>
@@ -25,15 +25,15 @@
                     <p class="font font-create text-center">Ссылка на билд</p>
                 </div>
                 <div class="flex flex-col justify-evenly col">
-                    <input type="text" v-model="build_name" class="font font-create input-field px-4 selector selector-create border-shine"
-                        placeholder="Название">
-                    <select name="" id="" class="selector selector-create border-shine">
-                        <option value="" class="selector selector-create">Стартер</option>
-                        <option value="" class="selector selector-create">Эндгейм</option>
+                    <input type="text" class="font font-create input-field px-4 selector selector-create border-shine" id="name"
+                        placeholder="Фулл понос" v-model="build_info.name">
+                    <select name="" id="type" class="selector selector-create border-shine">
+                        <option value="1" class="selector selector-create">Стартер</option>
+                        <option value="2" class="selector selector-create">Эндгейм</option>
                     </select>
-                    <select name="" id="" class="selector selector-create border-shine">
-                        <option value="" class="selector selector-create">Маппинг</option>
-                        <option value="" class="selector selector-create">Боссинг</option>
+                    <select name="" id="purpose" class="selector selector-create border-shine">
+                        <option value="1" class="selector selector-create">Маппинг</option>
+                        <option value="2" class="selector selector-create">Боссинг</option>
                     </select>
                     <input type="text" class="font font-create input-field px-4 selector selector-create border-shine"
                         placeholder="" v-model="urlers">
@@ -234,6 +234,10 @@ export default {
             slots: [[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}]],
             classes: [{ "id": 1, "name": "Богатырь", "main_atr": "Сила", "base_atrs": "60, 20, 20", "base_hp": 1000, "base_mp": 50, "base_armour": 50, "base_evade": 10, "base_elem_res": 30, "base_phys_res": 50 }],
             classes_en: ['Bogatir', 'Antihrist', 'Bogolub', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich', 'Zastrel'],
+            classes_ru: ['Богатырь', 'Антихрист', 'Боголюб', 'Налётчик', 'Богохульник', 'Скоморох', 'Язычница', 'Застрельщица'],
+            cycles: ['Первое житие', 'Второе бытие'],
+            types: ['Стартер', 'Эндгейм'],
+            purposes: ['Маппинг', 'Боссинг'],
             error: false,
             authorized: false,
             equiped: {
@@ -393,6 +397,22 @@ export default {
                     level:0,
                 }
             },
+            stats_export: {
+                strength: 1,
+                dexterity: 1,
+                intelligence: 1,
+                hp: 1,
+                mp: 1,
+                armour: 1,
+                phys_res: 1,
+                elem_res: 1,
+                vamp: 1,
+                critical_chance: 1,
+                critical_damage: 1,
+                phys_damage: 1,
+                elem_damage: 1,
+                evade: 1,
+            },
             stats_dict : {
                 1 : 'strength',
                 2 : 'dexterity',
@@ -408,6 +428,14 @@ export default {
                 12 : 'phys_damage',
                 13 : 'elem_damage',
                 14 : 'evade'
+            },
+            build_info: {
+                cycle: 'none',
+                name: '',
+                class: 'Танцовщица',
+                type: 'kys',
+                purpose: 'kms',
+                lvl: 99,
             },
             save: ['Сохранить'],
             saved: 1,
@@ -433,16 +461,21 @@ export default {
                 })
             return null
         },
-        save_ids(){
+        save_all(){
             for (let i = 1; i < 12; i++) {
                 this.equiped_ids[`${this.equipment[`${i}`]}_id`] = this.equiped[`${this.equipment[`${i}`]}`].id
-            }
-            for (let i = 1; i < 12; i++) {
                 this.equiped_affixes_ids[`${i}`] = this.equiped_affixes[`${i}`]
             }
+            for (let i = 1; i < 15; i++) {
+                this.stats_export[`${this.stats_dict[`${i}`]}`] = this.get_stat(this.stats_dict[`${i}`])
+            }
+            this.build_info.cycle = this.cycles[document.getElementById('cycle').value]
+            this.build_info.type = this.types[document.getElementById('type').value]
+            this.build_info.purpose = this.purposes[document.getElementById('purpose').value]
+            this.build_info.lvl = this.level
         },
         removeButton(btn){
-            this.save_ids()
+            this.save_all()
             this.save.pop()
             this.saved = 0
             this.encode()
