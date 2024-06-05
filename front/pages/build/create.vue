@@ -36,20 +36,25 @@
                         <option value="" class="selector selector-create">Боссинг</option>
                     </select>
                     <input type="text" class="font font-create input-field px-4 selector selector-create border-shine"
-                        placeholder="...">
+                        placeholder="" v-model="urlers">
                 </div>
             </div>
             <div class="flex flex-row justify-between">
                 <ul v-auto-animate style="width: 45%;">
                     <li
                         v-for="k in save"
-                        @click="removeButton(k)"
+                        @click="()=>{
+                            removeButton(k)
+                            urlers = `http://localhost:3000/build/${encoded}`
+                            }"
                         style="width: 100%;"
                     >
                         <button class="font font-create border-shine-create special-btn" style="width: 100%;">{{ k }}</button>
                     </li>
                 </ul>
-                <button class="font font-create border-shine-create special-btn" style="width: 45%;">Создать</button>
+                <button class="font font-create border-shine-create special-btn" @click="()=>{
+                    save_build()
+                }" style="width: 45%;">Создать</button>
             </div>
         </div>
         <div class="mid flex flex-row justify-between mt-5 gap-10">
@@ -380,7 +385,8 @@ export default {
             },
             save: ['Сохранить'],
             saved: 1,
-            encoded: ''
+            encoded: '',
+            urlers: `http://localhost:3000/build/`,
         }
     },
     props: [],
@@ -414,7 +420,8 @@ export default {
         },
         encode(){
             var obj = {a: this.equiped, b: this.stats};
-            this.encoded = btoa(JSON.stringify(obj))
+            this.encoded = btoa(unescape(encodeURIComponent(JSON.stringify(obj))))
+            console.log(decodeURIComponent(escape(window.atob(this.encoded))))
         },
         get_stat(name){
             return +this.stats[`${name}`].base + +this.stats[`${name}`].level + +this.stats[`${name}`].affixes + +this.stats[`${name}`].implicits
@@ -481,6 +488,27 @@ export default {
             this.set_implicits_stat()
             this.choose_item = 0
             this.addButton()
+        },
+        save_build(){
+            let token = localStorage.getItem('token')
+            let credetentials = {
+                name: this.encoded,
+                class_id: 1,
+            }
+            fetch('http://127.0.0.1:8000/build/url_create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(credetentials)
+            })
+                .then(response => response.json())
+                .then(json => {
+                    if(json.detail){
+                        this.error = true
+                    console.log('xdddd')
+        }});
         },
         get_weapons(token) {
             fetch('http://127.0.0.1:8000/weapons', {
