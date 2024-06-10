@@ -20,6 +20,7 @@ class UserLogin(BaseModel):
 class URLCreate(BaseModel):
     id: int = Field(None, gt=0, example=1)
     name: str = Field(..., example='weapons=[1],armour=[1,5,12],accessory=[3,3,15],passives=[1,5,6,7,8,12,15,19,22]')
+    build_name: str = Field(...,example = 'test_build_name')
     class_id: int = Field(...,example=1)
 
 # # тут модели которые используются при создании/редактировании сущностей

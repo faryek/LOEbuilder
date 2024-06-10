@@ -36,20 +36,25 @@
                         <option value="2" class="selector selector-create">Боссинг</option>
                     </select>
                     <input type="text" class="font font-create input-field px-4 selector selector-create border-shine"
-                        placeholder="...">
+                        placeholder="" v-model="urlers">
                 </div>
             </div>
             <div class="flex flex-row justify-between">
                 <ul v-auto-animate style="width: 45%;">
                     <li
                         v-for="k in save"
-                        @click="removeButton(k)"
+                        @click="()=>{
+                            removeButton(k)
+                            urlers = `http://localhost:3000/build/${encoded}`
+                            }"
                         style="width: 100%;"
                     >
                         <button class="font font-create border-shine-create special-btn" style="width: 100%;">{{ k }}</button>
                     </li>
                 </ul>
-                <button class="font font-create border-shine-create special-btn" style="width: 45%;">Создать</button>
+                <button class="font font-create border-shine-create special-btn" @click="()=>{
+                    save_build()
+                }" style="width: 45%;">Создать</button>
             </div>
         </div>
         <div class="mid flex flex-row justify-between mt-5 gap-10">
@@ -317,8 +322,10 @@
                 </div>
             </div>
         </div>
-        <div class="bot border-shine-create flex flex-row justify-between mt-5 gap-10" style="height: 50rem;">
-            
+        <div class="bot border-shine-create flex flex-row justify-between mt-5 gap-10 p-10" style="height: 15rem;">
+            <!-- <div v-for="j in 5" class="1st-col flex flex-col">
+                <img v-for="i in 3" :src="passives[i-1 + (j-1)*3].image" class="item-img border-shine-passive" style="width: 50px;">
+            </div> -->
         </div>
     </div>
 
@@ -334,7 +341,7 @@ export default {
             armour: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
             accessories: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
             affixes: [],
-            passives: [],
+            passives: [{"id": 1,"name": "Ловкость","desc": "+15 к ловкости","image": "/img/icons/dexterity.png","effects": [{"id": 1,"name": "dexterity","value": 15}]},],
             heads:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
             necks: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
             bodies: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
@@ -552,7 +559,10 @@ export default {
                 lvl: 99,
             },
             save: ['Сохранить'],
-            saved: 1
+            saved: 1,
+            encoded: '',
+            urlers: `http://localhost:3000/build/`,
+            build_name: '',
         }
     },
     props: [],
@@ -589,6 +599,7 @@ export default {
             this.save_all()
             this.save.pop()
             this.saved = 0
+            this.encode()
         },
         addButton() {
             if (this.saved < 1)
@@ -596,6 +607,12 @@ export default {
                 this.save.push('Сохранить')
             }
             this.saved++
+        },
+        encode(){
+            var obj = {equiped_ids: this.equiped_ids, equiped_affixes_ids: this.equiped_affixes_ids, top_inputs: this.build_info, stats: this.stats_export};
+            this.encoded = btoa(unescape(encodeURIComponent(JSON.stringify(obj))))
+            console.log(this.encoded)
+            console.log(decodeURIComponent(escape(window.atob(this.encoded))))
         },
         get_stat(name){
             return +this.stats[`${name}`].base + +this.stats[`${name}`].level + +this.stats[`${name}`].affixes + +this.stats[`${name}`].implicits
@@ -662,6 +679,28 @@ export default {
             this.set_implicits_stat()
             this.choose_item = 0
             this.addButton()
+        },
+        save_build(){
+            let token = localStorage.getItem('token')
+            let credetentials = {
+                name: this.encoded,
+                build_name: this.build_name,
+                class_id: 1,
+            }
+            fetch('http://127.0.0.1:8000/build/url_create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(credetentials)
+            })
+                .then(response => response.json())
+                .then(json => {
+                    if(json.detail){
+                        this.error = true
+                    console.log('xdddd')
+        }});
         },
         get_weapons(token) {
             fetch('http://127.0.0.1:8000/weapons', {
@@ -777,6 +816,7 @@ export default {
                         this.error = true
                         return null
                     }
+                    this.passives = []
                     for (let i = 0; i < json.length; i++) {
                         this.passives.push(json[i])
                     }
@@ -910,4 +950,19 @@ export default {
     width: 100%;
     text-align: start;
 }
+
+.border-shine-passive{
+    border: 3px solid;
+    border-radius: 100% !important;
+    border-color: #9b7f4100 !important;
+    box-shadow: 0 0 20px 0 #9b7f4100;
+}
+
+.border-shine-passive:hover {
+    border: 3px solid;
+    border-radius: 100% !important;
+    border-color: #9b7e41 !important;
+    box-shadow: 0 0 20px 0 #9b7e41;
+}
 </style>
+

@@ -11,19 +11,83 @@ from database import engine, get_db
 from auth import AuthHandler
 import base64
 from fastapi.middleware.cors import CORSMiddleware
-# from routers import category_router, product_router, user_router
+import json
 
-# создание таблиц в БД из моделей
-models.Base.metadata.create_all(bind=engine)
 
-# Инициализация фастапи
 app = FastAPI()
-# получение всех категорий
-# @router.get("/", response_model=List[pyd.CategorySchema])
-# async def get_categories(db: Session = Depends(get_db)):
-#     return db.query(models.Category).all()
+
 auth_handler = AuthHandler()
 
+
+@app.post('/check_url/')
+async def check_url(user_input: pyd.URLCheckBase,db:Session=Depends(get_db)):
+    url_db = db.query(models.URL).filter(
+        models.URL.name == user_input.name
+    ).first()
+    if not url_db:
+        raise HTTPException(404, 'Build not found')
+    
+    decoded = base64.b64decode(user_input.name)
+    my_json = decoded.decode('utf8').replace("'", '"')
+
+    weapons = []
+    armour = []
+    accessories = []
+
+    weapons_names = ['left_hand_id','right_hand_id']
+    armour_names = ['belt_id','body_id','boots_id','gloves_id','head_id']
+    accessories_names = ['left_ring_id','neck_id','relic_id','right_ring_id']
+
+    final_arrays = [weapons, armour, accessories]
+
+    arrays = [weapons_names,armour_names,accessories_names]
+
+    ready_armour = []
+    ready_weapon = []
+    ready_accessories = []
+    top_inputs_tuple = ("class","cycle","lvl","name","purpose","type")
+    top_inputs = []
+
+
+    data = json.loads(my_json)
+    s = json.dumps(data, indent=4, sort_keys=True)
+    print(s)
+    print(data['equiped_ids'])
+    for i in range(3):
+        for j in range(len(arrays[i])):
+            final_arrays[i].append(data['equiped_ids'][arrays[i][j]])
+
+    for j in range(len(armour)):
+        armour_db = db.query(models.Armour).filter(
+            models.Armour.id == armour[j]
+        ).first()
+        ready_armour.append(armour_db)
+
+    for j in range(len(weapons)):
+        weapon_db = db.query(models.Weapon).filter(
+            models.Weapon.id == weapons[j]
+        ).first()
+        ready_weapon.append(weapon_db)
+
+    for j in range(len(accessories)):
+        accessories_db = db.query(models.Accessory).filter(
+            models.Accessory.id == accessories[j]
+        ).first()
+        ready_accessories.append(accessories_db)
+
+    for i in range(6):
+        top_inputs.append(data['top_inputs'][top_inputs_tuple[i]])
+        top_inputs[i].replace("\\","\\\\").encode().decode('unicode-escape')
+
+    print(top_inputs)
+
+    return {'accessories':ready_accessories,
+            'armour': ready_armour,
+            'weapons': ready_weapon,
+            'stats':data['stats'],
+            'top_inputs':top_inputs,
+            }
+        
 
 @app.post('/register', response_model=pyd.UserCreate)
 async def user_reg(user_input: pyd.UserCreateReg, db: Session = Depends(get_db)):
@@ -67,10 +131,14 @@ async def url_create(url_input:pyd.URLCreate,username=Depends(auth_handler.auth_
     user_db = db.query(models.User).filter(
         models.User.name == username
     ).first()
+    if not user_db:
+        raise HTTPException(404,'User not found')
+    
     url_db = models.URL(
-        name = base64.b64encode(url_input.name.encode()),
+        name = url_input.name,
         user_id = user_db.id,
-        class_id = url_input.class_id
+        class_id = url_input.class_id,
+        build_name = url_input.build_name,
     )
     db.add(url_db)
     db.commit()
