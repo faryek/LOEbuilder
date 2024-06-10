@@ -1,12 +1,11 @@
 <template>
     <BuildError v-if="error"></BuildError>
     <div v-if="!error">
-
+        {{ ids.id }}
     </div>
 </template>
 
 <script setup>
-const {id} = useRoute().params
 </script>
 
 <script>
@@ -21,7 +20,7 @@ export default {
     methods:{
         check_uri(){
             let credetentials = {
-                name: this.encoded,
+                name: this.ids.id,
             }
             fetch('http://127.0.0.1:8000/check_url/', {
                 method: 'POST',
@@ -32,11 +31,19 @@ export default {
             })
                 .then(response => response.json())
                 .then(json => {
+                    console.log(json)
                     if(json.detail){
                         this.error = true
                     console.log('xdddd')
         }})
+        },
+        decode_uri(){
+            console.log(decodeURIComponent(escape(window.atob(this.ids.id))))
         }
+    },
+    beforeMount(){
+        this.check_uri()
+        this.decode_uri()
     }
 }
 

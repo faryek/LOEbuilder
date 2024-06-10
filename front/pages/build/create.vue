@@ -488,7 +488,7 @@ export default {
             this.saved++
         },
         encode(){
-            var obj = {a: this.equiped_ids, c: this.equiped_affixes_ids};
+            var obj = {equiped_ids: this.equiped_ids, equiped_affixes_ids: this.equiped_affixes_ids, top_inputs: this.build_info, stats: this.stats_export};
             this.encoded = btoa(unescape(encodeURIComponent(JSON.stringify(obj))))
             console.log(this.encoded)
             console.log(decodeURIComponent(escape(window.atob(this.encoded))))
@@ -564,7 +564,7 @@ export default {
             let credetentials = {
                 name: this.encoded,
                 build_name: this.build_name,
-                class_id: this.choose_class,
+                class_id: 1,
             }
             fetch('http://127.0.0.1:8000/build/url_create', {
                 method: 'POST',
