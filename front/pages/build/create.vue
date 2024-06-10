@@ -61,55 +61,175 @@
                                 style="opacity: 0;">
                         </div>
                         <div class="">
-                            <img class="item-img border-shine w-24 slot" :src="equiped.head.image" alt="" @click="choose_item = 1">
+                            <VTooltip>
+                                <img class="item-img border-shine w-24 slot" :src="equiped.head.image" alt="" @click="choose_item = 1">
+                                <template #popper v-if="equiped.head.id != 0">
+                                    <ItemTooltip 
+                                                :name="equiped.head.name" :image="equiped.head.image" :sub_name="equiped.head.sub_id.name"
+                                                :implicits_value_start="equiped.head.sub_id.item_implicits[0].value_start"
+                                                :implicits_value_end="equiped.head.sub_id.item_implicits[0].value_end"
+                                                :implicits_effect="equiped.head.sub_id.item_implicits[0].effect">
+
+                                    </ItemTooltip>
+                                </template>
+                            </VTooltip>
                         </div>
                         <div class="">
-                            <img class="item-img border-shine w-14 slot" :src="equiped.neck.image" alt="" @click="choose_item = 2">
+                            <VTooltip>
+                                <img class="item-img border-shine w-14 slot" :src="equiped.neck.image" alt="" @click="choose_item = 2">
+                                <template #popper v-if="equiped.neck.id != 0">
+                                    <ItemTooltip 
+                                                :name="equiped.neck.name" :image="equiped.neck.image" :sub_name="equiped.neck.sub_id.name"
+                                                :implicits_value_start="equiped.neck.sub_id.item_implicits[0].value_start"
+                                                :implicits_value_end="equiped.neck.sub_id.item_implicits[0].value_end"
+                                                :implicits_effect="equiped.neck.sub_id.item_implicits[0].effect">
+
+                                    </ItemTooltip>
+                                </template>
+                            </VTooltip>
+                        </div>
+                    </div>
+                    <div class="item-row flex flex-row justify-center gap-2">
+
+                        <div class="">
+                            <VTooltip>
+                                <img class="item-img border-shine w-24 slot" :src="equiped.left_hand.image" alt="" @click="choose_item = 3">
+                                <template #popper v-if="equiped.left_hand.id != 0">
+                                    <ItemTooltip 
+                                                :name="equiped.left_hand.name" :image="equiped.left_hand.image" :sub_name="equiped.left_hand.sub_id.name"
+                                                :implicits_value_start="equiped.left_hand.sub_id.item_implicits[0].value_start"
+                                                :implicits_value_end="equiped.left_hand.sub_id.item_implicits[0].value_end"
+                                                :implicits_effect="equiped.left_hand.sub_id.item_implicits[0].effect">
+                            
+                                    </ItemTooltip>
+                                </template>
+                            </VTooltip>
+                        </div>
+
+                        <div class="">
+                            <VTooltip>
+                                <img class="item-img border-shine w-36 slot" :src="equiped.body.image" alt="" @click="choose_item = 4">
+                                <template #popper v-if="equiped.body.id != 0">
+                                    <ItemTooltip 
+                                                :name="equiped.body.name" :image="equiped.body.image" :sub_name="equiped.body.sub_id.name"
+                                                :implicits_value_start="equiped.body.sub_id.item_implicits[0].value_start"
+                                                :implicits_value_end="equiped.body.sub_id.item_implicits[0].value_end"
+                                                :implicits_effect="equiped.body.sub_id.item_implicits[0].effect">
+                            
+                                    </ItemTooltip>
+                                </template>
+                            </VTooltip>
+                        </div>
+
+                        <div class="">
+                            <VTooltip>
+                                <img class="item-img border-shine w-24 slot" :src="equiped.right_hand.image" alt="" @click="choose_item = 5">
+                                <template #popper v-if="equiped.right_hand.id != 0">
+                                    <ItemTooltip 
+                                                :name="equiped.right_hand.name" :image="equiped.right_hand.image" :sub_name="equiped.right_hand.sub_id.name"
+                                                :implicits_value_start="equiped.right_hand.sub_id.item_implicits[0].value_start"
+                                                :implicits_value_end="equiped.right_hand.sub_id.item_implicits[0].value_end"
+                                                :implicits_effect="equiped.right_hand.sub_id.item_implicits[0].effect">
+                            
+                                    </ItemTooltip>
+                                </template>
+                            </VTooltip>
                         </div>
 
                     </div>
                     <div class="item-row flex flex-row justify-center gap-2">
 
                         <div class="">
-                            <img class="item-img border-shine w-24 slot" :src="equiped.left_hand.image" alt="" @click="choose_item = 3">
+                            <VTooltip>
+                                <img class="item-img border-shine w-14 slot" :src="equiped.left_ring.image" alt="" @click="choose_item = 6">
+                                <template #popper v-if="equiped.left_ring.id != 0">
+                                    <ItemTooltip 
+                                                :name="equiped.left_ring.name" :image="equiped.left_ring.image" :sub_name="equiped.left_ring.sub_id.name"
+                                                :implicits_value_start="equiped.left_ring.sub_id.item_implicits[0].value_start"
+                                                :implicits_value_end="equiped.left_ring.sub_id.item_implicits[0].value_end"
+                                                :implicits_effect="equiped.left_ring.sub_id.item_implicits[0].effect">
+                            
+                                    </ItemTooltip>
+                                </template>
+                            </VTooltip>
                         </div>
 
                         <div class="">
-                            <img class="item-img border-shine w-36 slot" :src="equiped.body.image" alt="" @click="choose_item = 4">
+                            <VTooltip>
+                                <img class="item-img border-shine w-36 slot" :src="equiped.belt.image" alt="" @click="choose_item = 7">
+                                <template #popper v-if="equiped.belt.id != 0">
+                                    <ItemTooltip 
+                                                :name="equiped.belt.name" :image="equiped.belt.image" :sub_name="equiped.belt.sub_id.name"
+                                                :implicits_value_start="equiped.belt.sub_id.item_implicits[0].value_start"
+                                                :implicits_value_end="equiped.belt.sub_id.item_implicits[0].value_end"
+                                                :implicits_effect="equiped.belt.sub_id.item_implicits[0].effect">
+                            
+                                    </ItemTooltip>
+                                </template>
+                            </VTooltip>
                         </div>
 
                         <div class="">
-                            <img class="item-img border-shine w-24 slot" :src="equiped.right_hand.image" alt="" @click="choose_item = 5">
+                            <VTooltip>
+                                <img class="item-img border-shine w-14 slot" :src="equiped.right_ring.image" alt="" @click="choose_item = 8">
+                                <template #popper v-if="equiped.right_ring.id != 0">
+                                    <ItemTooltip 
+                                                :name="equiped.right_ring.name" :image="equiped.right_ring.image" :sub_name="equiped.right_ring.sub_id.name"
+                                                :implicits_value_start="equiped.right_ring.sub_id.item_implicits[0].value_start"
+                                                :implicits_value_end="equiped.right_ring.sub_id.item_implicits[0].value_end"
+                                                :implicits_effect="equiped.right_ring.sub_id.item_implicits[0].effect">
+                            
+                                    </ItemTooltip>
+                                </template>
+                            </VTooltip>
                         </div>
 
                     </div>
                     <div class="item-row flex flex-row justify-center gap-2">
 
                         <div class="">
-                            <img class="item-img border-shine w-14 slot" :src="equiped.left_ring.image" alt="" @click="choose_item = 6">
+                            <VTooltip>
+                                <img class="item-img border-shine w-24 slot" :src="equiped.gloves.image" alt="" @click="choose_item = 9">
+                                <template #popper v-if="equiped.gloves.id != 0">
+                                    <ItemTooltip 
+                                                :name="equiped.gloves.name" :image="equiped.gloves.image" :sub_name="equiped.gloves.sub_id.name"
+                                                :implicits_value_start="equiped.gloves.sub_id.item_implicits[0].value_start"
+                                                :implicits_value_end="equiped.gloves.sub_id.item_implicits[0].value_end"
+                                                :implicits_effect="equiped.gloves.sub_id.item_implicits[0].effect">
+                            
+                                    </ItemTooltip>
+                                </template>
+                            </VTooltip>
                         </div>
 
                         <div class="">
-                            <img class="item-img border-shine w-36 slot" :src="equiped.belt.image" alt="" @click="choose_item = 7">
+                            <VTooltip>
+                                <img class="item-img border-shine w-24 slot" :src="equiped.boots.image" alt="" @click="choose_item = 10">
+                                <template #popper v-if="equiped.boots.id != 0">
+                                    <ItemTooltip 
+                                                :name="equiped.boots.name" :image="equiped.boots.image" :sub_name="equiped.boots.sub_id.name"
+                                                :implicits_value_start="equiped.boots.sub_id.item_implicits[0].value_start"
+                                                :implicits_value_end="equiped.boots.sub_id.item_implicits[0].value_end"
+                                                :implicits_effect="equiped.boots.sub_id.item_implicits[0].effect">
+                            
+                                    </ItemTooltip>
+                                </template>
+                            </VTooltip>
                         </div>
 
                         <div class="">
-                            <img class="item-img border-shine w-14 slot" :src="equiped.right_ring.image" alt="" @click="choose_item = 8">
-                        </div>
-
-                    </div>
-                    <div class="item-row flex flex-row justify-center gap-2">
-
-                        <div class="">
-                            <img class="item-img border-shine w-24 slot" :src="equiped.gloves.image" alt="" @click="choose_item = 9">
-                        </div>
-
-                        <div class="">
-                            <img class="item-img border-shine w-24 slot" :src="equiped.boots.image" alt="" @click="choose_item = 10">
-                        </div>
-
-                        <div class="">
-                            <img class="item-img border-shine w-24 slot" :src="equiped.relic.image" alt="" @click="choose_item = 11">
+                            <VTooltip>
+                                <img class="item-img border-shine w-24 slot" :src="equiped.relic.image" alt="" @click="choose_item = 11">
+                                <template #popper v-if="equiped.relic.id != 0">
+                                    <ItemTooltip 
+                                                :name="equiped.relic.name" :image="equiped.relic.image" :sub_name="equiped.relic.sub_id.name"
+                                                :implicits_value_start="equiped.relic.sub_id.item_implicits[0].value_start"
+                                                :implicits_value_end="equiped.relic.sub_id.item_implicits[0].value_end"
+                                                :implicits_effect="equiped.relic.sub_id.item_implicits[0].effect">
+                            
+                                    </ItemTooltip>
+                                </template>
+                            </VTooltip>
                         </div>
 
                     </div>
@@ -134,7 +254,6 @@
                                 <p class="text-xl font">{{ show_item.sub_id.item_implicits[0].value_end }}</p>
                                 <p class="text-xl font">{{ show_item.sub_id.item_implicits[0].effect }}</p>
                             </div>
-                            <button class="font text-2xl border-shine" style="width: 100%;">Снять</button>
                         </div>
                     </div>
                 </div>
@@ -206,6 +325,8 @@
 </template>
 
 <script>
+
+
 export default {
     data() {
         return {
