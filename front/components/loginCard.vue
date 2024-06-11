@@ -13,11 +13,10 @@
             </div>
         </div>
         <div class="flex flex-col align-middle justify-center gap-2">
-            <button @click="()=>{
+            <button @click="() => {
                 get_token()
-                }" class="login-btn mt-5 text-2xl font py-1 px-5">Войти</button>
-            <button class="login-btn text-xl font py-1 px-5">Регистрация</button>
-            <NuxtLink to="/support" class="font text-lg text-center">Забыли пароль?</NuxtLink>
+            }" class="login-btn mt-5 text-2xl font py-1 px-5">Войти</button>
+            <button @click="() => { log_to_reg() }" class="login-btn text-xl font py-1 px-5">Регистрация</button>
         </div>
     </div>
 </template>
@@ -46,7 +45,7 @@ export default {
             })
                 .then(response => response.json())
                 .then(json => {
-                    if(!json.detail){
+                    if (!json.detail) {
                         localStorage.setItem('token', json.token)
                         this.$emit('loggining')
                         location.reload()
@@ -54,8 +53,11 @@ export default {
                         this.error = true
                     }
                 });
+        },
+        log_to_reg() {
+            this.$emit('regActive')
         }
-    },
+    }
 }
 </script>
 

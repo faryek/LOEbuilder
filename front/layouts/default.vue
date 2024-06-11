@@ -1,13 +1,17 @@
 <template>
     <div class="login-background" style="position: fixed; top: 0; left: 0; z-index: 500;"
         @click="() => { log = false; reg = false; back = false }" v-if="back"></div>
-    <LoginCard style="position: fixed; top: 25%; left: 35%; z-index: 501;" v-if="log" @loggining="()=>{
+    <LoginCard style="position: fixed; top: 25%; left: 35%; z-index: 501;" v-if="log" @regActive="()=>{
+        log = false
+        reg = true
+    }" 
+    @loggining="()=>{
         logined = true
         log = false
         back = false
     }"></LoginCard>
     <RegistrationCard style="position: fixed; top: 20%; left: 30%; z-index: 501;" v-if="reg" @regged="()=>{
-        log = false
+        reg = false
         back = false
     }"></RegistrationCard>
     <div class="main">
