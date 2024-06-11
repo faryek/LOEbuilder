@@ -19,6 +19,20 @@ app = FastAPI()
 auth_handler = AuthHandler()
 
 
+@app.get("/weapons_alt", response_model=List[pyd.WeaponsSchema])
+async def get_weapons(db: Session = Depends(get_db)):
+    return db.query(models.Weapon).all()
+
+
+@app.get("/armour_alt", response_model=List[pyd.ArmourSchema])
+async def get_armour(db: Session = Depends(get_db)):
+    return db.query(models.Armour).all()
+
+
+@app.get("/accessory_alt", response_model=List[pyd.AccessorySchema])
+async def get_accessory(db: Session = Depends(get_db)):
+    return db.query(models.Accessory).all()
+
 @app.post('/check_url/')
 async def check_url(user_input: pyd.URLCheckBase,db:Session=Depends(get_db)):
     url_db = db.query(models.URL).filter(
@@ -57,33 +71,15 @@ async def check_url(user_input: pyd.URLCheckBase,db:Session=Depends(get_db)):
         for j in range(len(arrays[i])):
             final_arrays[i].append(data['equiped_ids'][arrays[i][j]])
 
-    for j in range(len(armour)):
-        armour_db = db.query(models.Armour).filter(
-            models.Armour.id == armour[j]
-        ).first()
-        ready_armour.append(armour_db)
-
-    for j in range(len(weapons)):
-        weapon_db = db.query(models.Weapon).filter(
-            models.Weapon.id == weapons[j]
-        ).first()
-        ready_weapon.append(weapon_db)
-
-    for j in range(len(accessories)):
-        accessories_db = db.query(models.Accessory).filter(
-            models.Accessory.id == accessories[j]
-        ).first()
-        ready_accessories.append(accessories_db)
-
     for i in range(6):
         top_inputs.append(data['top_inputs'][top_inputs_tuple[i]])
         top_inputs[i].replace("\\","\\\\").encode().decode('unicode-escape')
 
     print(top_inputs)
 
-    return {'accessories':ready_accessories,
-            'armour': ready_armour,
-            'weapons': ready_weapon,
+    return {'accessories':accessories,
+            'armour': armour,
+            'weapons': weapons,
             'stats':data['stats'],
             'top_inputs':top_inputs,
             }
