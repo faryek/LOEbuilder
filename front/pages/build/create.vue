@@ -620,10 +620,14 @@ export default {
             var obj = {equiped_ids: this.equiped_ids, equiped_affixes_ids: this.equiped_affixes_ids, top_inputs: this.build_info, stats: this.stats_export};
             if(this.stats.strength == 0){
                 this.error_on_choose = true
+                return null
             }
             this.encoded = btoa(unescape(encodeURIComponent(JSON.stringify(obj))))
+            for(let i = 0;i<5;i++)
+            {
+                this.encoded = this.encoded.replace('/','%slash%')
+            }
             console.log(this.encoded)
-            console.log(decodeURIComponent(escape(window.atob(this.encoded))))
         },
         get_stat(name){
             return +this.stats[`${name}`].base + +this.stats[`${name}`].level + +this.stats[`${name}`].affixes + +this.stats[`${name}`].implicits

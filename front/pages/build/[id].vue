@@ -332,8 +332,15 @@ export default {
     },
     methods:{
         check_uri(){
+            console.log(this.ids.id)
+            let true_id = this.ids.id;
+            for(let i = 0;i<5;i++)
+            {
+                true_id = true_id.replace('%slash%','/')
+            }
+            console.log(true_id)
             let credetentials = {
-                name: this.ids.id,
+                name: true_id,
             }
             fetch('http://127.0.0.1:8000/check_url/', {
                 method: 'POST',
