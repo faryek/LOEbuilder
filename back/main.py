@@ -153,7 +153,7 @@ async def get_users(username=Depends(auth_handler.auth_wrapper),db: Session = De
     return db.query(models.User).all()
 
 @app.get('/urls', response_model=List[pyd.URLSSchema])
-async def get_urls(username=Depends(auth_handler.auth_wrapper),db:Session=Depends(get_db)):
+async def get_urls(db:Session=Depends(get_db)):
     return db.query(models.URL)
 
 @app.get("/weapons", response_model=List[pyd.WeaponsSchema])
