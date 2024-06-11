@@ -421,7 +421,6 @@ export default {
     },
     beforeMount(){
         this.check_uri()
-        this.decode_uri()
         this.get_accessories()
         this.get_armour()
         this.get_weapons()
