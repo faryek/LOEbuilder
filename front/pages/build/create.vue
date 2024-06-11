@@ -7,8 +7,8 @@
                 <img :src="`../img/classes/${classes_en[choose_class]}/Medium.png`" class="class-img" alt="">
                 <div class="flex flex-col justify-evenly col">
                     <select class="selector selector-create border-shine" name="" id="cycle">
-                        <option value="1" class="selector selector-create">Первое бытие</option>
-                        <option value="2" class="selector selector-create">Второе житие</option>
+                        <option value="0" class="selector selector-create">Первое бытие</option>
+                        <option value="1" class="selector selector-create">Второе житие</option>
                     </select>
                     <select name="" id="class" class="selector selector-create border-shine" @change="() => {get_class()}">
                         <option v-for="i in classes.length" :value="i - 1" class="selector selector-create">{{classes[i - 1].name }}</option>
@@ -28,12 +28,12 @@
                     <input type="text" class="font font-create input-field px-4 selector selector-create border-shine" id="name"
                         placeholder="Фулл понос" v-model="build_info.name">
                     <select name="" id="type" class="selector selector-create border-shine">
-                        <option value="1" class="selector selector-create">Стартер</option>
-                        <option value="2" class="selector selector-create">Эндгейм</option>
+                        <option value="0" class="selector selector-create">Стартер</option>
+                        <option value="1" class="selector selector-create">Эндгейм</option>
                     </select>
                     <select name="" id="purpose" class="selector selector-create border-shine">
-                        <option value="1" class="selector selector-create">Маппинг</option>
-                        <option value="2" class="selector selector-create">Боссинг</option>
+                        <option value="0" class="selector selector-create">Маппинг</option>
+                        <option value="1" class="selector selector-create">Боссинг</option>
                     </select>
                     <input type="text" class="font font-create input-field px-4 selector selector-create border-shine"
                         placeholder="" v-model="urlers">
@@ -52,9 +52,9 @@
                         <button class="font font-create border-shine-create special-btn" style="width: 100%;">{{ k }}</button>
                     </li>
                 </ul>
-                <button class="font font-create border-shine-create special-btn" @click="()=>{
+                <NuxtLink to="/build/" class="font font-create border-shine-create special-btn text-center" @click="()=>{
                     save_build()
-                }" style="width: 45%;">Создать</button>
+                }" style="width: 45%;">Создать</NuxtLink>
             </div>
         </div>
         <div class="mid flex flex-row justify-between mt-5 gap-10">
@@ -322,11 +322,11 @@
                 </div>
             </div>
         </div>
-        <div class="bot border-shine-create flex flex-row justify-between mt-5 gap-10 p-10" style="height: 15rem;">
-            <!-- <div v-for="j in 5" class="1st-col flex flex-col">
+        <!-- <div class="bot border-shine-create flex flex-row justify-between mt-5 gap-10 p-10" style="height: 15rem;">
+            <div v-for="j in 5" class="1st-col flex flex-col">
                 <img v-for="i in 3" :src="passives[i-1 + (j-1)*3].image" class="item-img border-shine-passive" style="width: 50px;">
-            </div> -->
-        </div>
+            </div>
+        </div> -->
     </div>
 
 </template>
@@ -420,42 +420,42 @@ export default {
             level: 1,
 			stats:{
                 strength:{
-                    base: 0,
+                    base: 60,
                     implicits: 0,
                     affixes: 0,
                     passives: 0,
                     level: 0,
                 },
                 dexterity:{
-                    base: 0,
+                    base: 20,
                     implicits: 0,
                     affixes: 0,
                     passives: 0,
                     level:0,
                 },
                 intelligence:{
-                    base: 0,
+                    base: 20,
                     implicits: 0,
                     affixes: 0,
                     passives: 0,
                     level:0,
                 },
                 hp:{
-                    base: 0,
+                    base: 1000,
                     implicits: 0,
                     affixes: 0,
                     passives: 0,
                     level:0,
                 },
                 mp:{
-                    base: 0,
+                    base: 50,
                     implicits: 0,
                     affixes: 0,
                     passives: 0,
                     level:0,
                 },
                 armour:{
-                    base: 0,
+                    base: 50,
                     implicits: 0,
                     affixes: 0,
                     passives: 0,
@@ -497,21 +497,21 @@ export default {
                     level:0,
                 },
                 phys_damage:{
-                    base: 0,
+                    base: 50,
                     implicits: 0,
                     affixes: 0,
                     passives: 0,
                     level:0,
                 },
                 elem_damage:{
-                    base: 0,
+                    base: 30,
                     implicits: 0,
                     affixes: 0,
                     passives: 0,
                     level:0,
                 },
                 evade:{
-                    base: 0,
+                    base: 10,
                     implicits: 0,
                     affixes: 0,
                     passives: 0,
@@ -594,6 +594,7 @@ export default {
             this.build_info.type = this.types[document.getElementById('type').value]
             this.build_info.purpose = this.purposes[document.getElementById('purpose').value]
             this.build_info.lvl = this.level
+            this.build_info.class = this.classes_ru[document.getElementById('class').value]
         },
         removeButton(btn){
             this.save_all()
