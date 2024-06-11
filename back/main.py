@@ -70,7 +70,8 @@ async def check_url(user_input: pyd.URLCheckBase,db:Session=Depends(get_db)):
 
     for i in range(6):
         top_inputs.append(data['top_inputs'][top_inputs_tuple[i]])
-        top_inputs[i].replace("\\","\\\\").encode().decode('unicode-escape')
+        if i in [0,1,4,5]:
+            top_inputs[i].replace("\\","\\\\").encode().decode('unicode-escape')
 
     print(top_inputs)
 
