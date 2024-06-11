@@ -1,6 +1,7 @@
 <template>
     <AuthError v-if="!authorized && error"></AuthError>
     <CommonError v-if="error && authorized"></CommonError>
+    <CommonError v-if="error_on_choose"></CommonError>
     <div v-if="authorized && !error" class="container flex flex-col" @change="addButton()">
         <div class="top border-shine-create flex flex-col px-10 py-10 gap-10 justify-evenly">
             <div class="flex flex-row justify-evenly gap-10">
@@ -53,7 +54,12 @@
                     </li>
                 </ul>
                 <NuxtLink to="/build/" class="font font-create border-shine-create special-btn text-center" @click="()=>{
-                    save_build()
+                    if(stats.strength.base == 0){
+                        error_on_choose = true
+                    }
+                    else{
+                        save_build()
+                    }
                 }" style="width: 45%;">Создать</NuxtLink>
             </div>
         </div>
@@ -553,7 +559,7 @@ export default {
             build_info: {
                 cycle: 'none',
                 name: '',
-                class: 'Танцовщица',
+                class: 'Богатырь',
                 type: 'kys',
                 purpose: 'kms',
                 lvl: 99,
@@ -563,6 +569,7 @@ export default {
             encoded: '',
             urlers: `http://localhost:3000/build/`,
             build_name: '',
+            error_on_choose: false
         }
     },
     props: [],
@@ -611,6 +618,9 @@ export default {
         },
         encode(){
             var obj = {equiped_ids: this.equiped_ids, equiped_affixes_ids: this.equiped_affixes_ids, top_inputs: this.build_info, stats: this.stats_export};
+            if(this.stats.strength == 0){
+                this.error_on_choose = true
+            }
             this.encoded = btoa(unescape(encodeURIComponent(JSON.stringify(obj))))
             console.log(this.encoded)
             console.log(decodeURIComponent(escape(window.atob(this.encoded))))
