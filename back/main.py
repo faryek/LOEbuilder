@@ -76,9 +76,7 @@ async def check_url(user_input: pyd.URLCheckBase,db:Session=Depends(get_db)):
 
     print(top_inputs)
 
-    return {'accessories':accessories,
-            'armour': armour,
-            'weapons': weapons,
+    return {'equiped_ids':data['equiped_ids'],
             'stats':data['stats'],
             'top_inputs':top_inputs,
             }
