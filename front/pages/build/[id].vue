@@ -4,7 +4,7 @@
         <div v-if="!error" class="container flex flex-col" @change="addButton()">
             <div class="top border-shine-create flex flex-col px-10 py-10 gap-10 justify-evenly">
                 <div class="flex flex-row justify-evenly gap-10">
-                    <img :src="`../img/classes/${data_ids.top_inputs[5]}/Medium.png`" class="class-img" alt="">
+                    <img :src="`../img/classes/${data_ids.top_inputs[6]}/Medium.png`" class="class-img" alt="">
                     <div class="flex flex-col justify-evenly col">
                         <p class="font font-create text-center">{{data_ids.top_inputs[1]}}</p>
                         <p class="font font-create text-center">{{data_ids.top_inputs[0]}}</p>
@@ -332,7 +332,6 @@ export default {
     },
     methods:{
         check_uri(){
-            console.log(this.ids.id)
             let true_id = this.ids.id;
             for(let i = 0;i<5;i++)
             {
@@ -342,7 +341,7 @@ export default {
             let credetentials = {
                 name: true_id,
             }
-            fetch('http://127.0.0.1:8000/check_url/', {
+            fetch('http://127.0.0.1:8000/check_url', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -357,7 +356,7 @@ export default {
                     this.data_ids = json
                     for(let i = 0;i<9;i++){
                         if(this.data_ids.top_inputs[0]==this.classes_ru[i]){
-                            this.data_ids.top_inputs[5]=this.classes_en[i]
+                            this.data_ids.top_inputs[6]=this.classes_en[i]
                         }
                     }
                     
@@ -421,12 +420,9 @@ export default {
     },
     beforeMount(){
         this.check_uri()
-        this.decode_uri()
         this.get_accessories()
         this.get_armour()
         this.get_weapons()
-        console.log(this.accessories[this.data_ids.accessories[0]].image)
-        console.log(this.data_ids)
         this.urlers = "http://localhost:3000/build/" + this.ids.id
     }
 }

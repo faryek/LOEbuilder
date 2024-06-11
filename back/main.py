@@ -22,21 +22,28 @@ auth_handler = AuthHandler()
 async def get_armour(db: Session = Depends(get_db)):
     return db.query(models.Armour).all()
 
-
 @app.get("/accessory_alt", response_model=List[pyd.AccessorySchema])
 async def get_accessory(db: Session = Depends(get_db)):
     return db.query(models.Accessory).all()
 
+@app.get("/weapons_alt", response_model=List[pyd.WeaponsSchema])
+async def get_weapons(db: Session = Depends(get_db)):
+    return db.query(models.Weapon).all()
+
 @app.post('/check_url')
 async def check_url(user_input: pyd.URLCheckBase,db:Session=Depends(get_db)):
+    user_input_correct = user_input.name.replace('/','%slash%')
+    print(user_input_correct)
     url_db = db.query(models.URL).filter(
-        models.URL.name == user_input.name
+        models.URL.name == user_input_correct
     ).first()
     if not url_db:
         raise HTTPException(404, 'Build not found')
-    
+    # url = user_input.name.replace('%\slash%','/')
+    # url = url.replace('%\slash%','/')
+    print(user_input.name)
     decoded = base64.b64decode(user_input.name)
-    my_json = decoded.decode('utf8').replace("'", '"')
+    my_json = decoded.decode('utf-8').replace("'", '"')
 
     weapons = []
     armour = []
