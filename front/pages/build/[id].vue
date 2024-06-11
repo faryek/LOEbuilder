@@ -32,7 +32,7 @@
                         <div class="">
                             <VTooltip>
                                 <!-- HELMET -->
-                                <img class="item-img border-shine w-24 slot" :src="armour[data_ids.armour[4]].image" alt="" @click="choose_item = 1">
+                                <img class="item-img w-24 slot" :src="armour[data_ids.armour[4]].image" alt="">
                                 <template #popper v-if="armour[data_ids.armour[4]].id != 0">
                                     <ItemTooltip 
                                     
@@ -48,7 +48,7 @@
                         <div class="">
                             <!-- NECKLACE -->
                             <VTooltip>
-                                <img class="item-img border-shine w-14 slot" :src="accessories[data_ids.accessories[1]].image" alt="" @click="choose_item = 2">
+                                <img class="item-img w-14 slot" :src="accessories[data_ids.accessories[1]].image" alt="">
                                 <template #popper v-if="accessories[data_ids.accessories[1]].id != 0">
                                     <ItemTooltip 
                                                 :name="accessories[data_ids.accessories[1]].name" :image="accessories[data_ids.accessories[1]].image" :sub_name="accessories[data_ids.accessories[1]].sub_id.name"
@@ -66,7 +66,7 @@
                         <div class="">
                             <VTooltip>
                                 <!-- LEFT_HAND_WPN -->
-                                <img class="item-img border-shine w-24 slot" :src="weapons[data_ids.weapons[0]].image" alt="" @click="choose_item = 3">
+                                <img class="item-img w-24 slot" :src="weapons[data_ids.weapons[0]].image" alt="">
                                 <template #popper v-if="weapons[data_ids.weapons[0]].id != 0">
                                     <ItemTooltip 
                                                 :name="weapons[data_ids.weapons[0]].name" :image="weapons[data_ids.weapons[0]].image" :sub_name="weapons[data_ids.weapons[0]].sub_id.name"
@@ -82,7 +82,7 @@
                         <div class="">
                             <VTooltip>
                                 <!-- BODYARMOUR -->
-                                <img class="item-img border-shine w-36 slot" :src="armour[data_ids.armour[1]].image" alt="" @click="choose_item = 4">
+                                <img class="item-img w-36 slot" :src="armour[data_ids.armour[1]].image" alt="">
                                 <template #popper v-if="armour[data_ids.armour[1]].id != 0">
                                     <ItemTooltip 
                                                 :name="armour[data_ids.armour[1]].name" :image="armour[data_ids.armour[1]].image" :sub_name="armour[data_ids.armour[1]].sub_id.name"
@@ -98,7 +98,7 @@
                         <div class="">
                             <VTooltip>
                                 <!-- RIGHT_HAND_WPN -->
-                                <img class="item-img border-shine w-24 slot" :src="weapons[data_ids.weapons[1]].image" alt="" @click="choose_item = 5">
+                                <img class="item-img w-24 slot" :src="weapons[data_ids.weapons[1]].image" alt="">
                                 <template #popper v-if="weapons[data_ids.weapons[1]].id != 0">
                                     <ItemTooltip 
                                                 :name="weapons[data_ids.weapons[1]].name" :image="weapons[data_ids.weapons[1]].image" :sub_name="weapons[data_ids.weapons[1]].sub_id.name"
@@ -117,7 +117,7 @@
                         <div class="">
                             <VTooltip>
                                 <!-- LEFT_RING -->
-                                <img class="item-img border-shine w-14 slot" :src="accessories[data_ids.accessories[0]].image" alt="" @click="choose_item = 6">
+                                <img class="item-img w-14 slot" :src="accessories[data_ids.accessories[0]].image" alt="">
                                 <template #popper v-if="accessories[data_ids.accessories[0]].id != 0">
                                     <ItemTooltip 
                                                 :name="accessories[data_ids.accessories[0]].name" :image="accessories[data_ids.accessories[0]].image" :sub_name="accessories[data_ids.accessories[0]].sub_id.name"
@@ -133,7 +133,7 @@
                         <div class="">
                             <VTooltip>
                                 <!-- BELT -->
-                                <img class="item-img border-shine w-36 slot" :src="armour[data_ids.armour[0]].image" alt="" @click="choose_item = 7">
+                                <img class="item-img w-36 slot" :src="armour[data_ids.armour[0]].image" alt="">
                                 <template #popper v-if="armour[data_ids.armour[0]].id != 0">
                                     <ItemTooltip 
                                                 :name="armour[data_ids.armour[0]].name" :image="armour[data_ids.armour[0]].image" :sub_name="armour[data_ids.armour[0]].sub_id.name"
@@ -149,7 +149,7 @@
                         <div class="">
                             <VTooltip>
                                 <!-- RIGHT_RING -->
-                                <img class="item-img border-shine w-14 slot" :src="accessories[data_ids.accessories[3]].image" alt="" @click="choose_item = 8">
+                                <img class="item-img w-14 slot" :src="accessories[data_ids.accessories[3]].image" alt="">
                                 <template #popper v-if="accessories[data_ids.accessories[3]].id != 0">
                                     <ItemTooltip 
                                                 :name="accessories[data_ids.accessories[3]].name" :image="accessories[data_ids.accessories[3]].image" :sub_name="accessories[data_ids.accessories[3]].sub_id.name"
@@ -168,7 +168,7 @@
                         <div class="">
                             <VTooltip>
                                 <!-- GLOVES -->
-                                <img class="item-img border-shine w-24 slot" :src="armour[data_ids.armour[3]].image" alt="" @click="choose_item = 9">
+                                <img class="item-img w-24 slot" :src="armour[data_ids.armour[3]].image" alt="">
                                 <template #popper v-if="armour[data_ids.armour[3]].id != 0">
                                     <ItemTooltip 
                                                 :name="armour[data_ids.armour[3]].name" :image="armour[data_ids.armour[3]].image" :sub_name="armour[data_ids.armour[3]].sub_id.name"
@@ -184,7 +184,7 @@
                         <div class="">
                             <VTooltip>
                                 <!-- BOOTS -->
-                                <img class="item-img border-shine w-24 slot" :src="armour[data_ids.armour[2]].image" alt="" @click="choose_item = 10">
+                                <img class="item-img w-24 slot" :src="armour[data_ids.armour[2]].image" alt="">
                                 <template #popper v-if="armour[data_ids.armour[2]].id != 0">
                                     <ItemTooltip 
                                                 :name="armour[data_ids.armour[2]].name" :image="armour[data_ids.armour[2]].image" :sub_name="armour[data_ids.armour[2]].sub_id.name"
@@ -200,7 +200,7 @@
                         <div class="">
                             <VTooltip>
                                 <!-- RELIC -->
-                                <img class="item-img border-shine w-24 slot" :src="accessories[data_ids.accessories[2]].image" alt="" @click="choose_item = 11">
+                                <img class="item-img w-24 slot" :src="accessories[data_ids.accessories[2]].image" alt="">
                                 <template #popper v-if="accessories[data_ids.accessories[2]].id != 0">
                                     <ItemTooltip 
                                                 :name="accessories[data_ids.accessories[2]].name" :image="accessories[data_ids.accessories[2]].image" :sub_name="accessories[data_ids.accessories[2]].sub_id.name"
@@ -293,21 +293,35 @@ export default {
             weapons: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
             armour: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
             accessories: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            // heads:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            // necks: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            // bodies: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            // gloves: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            // boots: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            // relics:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            // left_hands: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            // right_hands: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            // belts:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            // rings: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            affixes: [],
+            passives: [{"id": 1,"name": "Ловкость","desc": "+15 к ловкости","image": "/img/icons/dexterity.png","effects": [{"id": 1,"name": "dexterity","value": 15}]},],
+            heads:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            necks: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            bodies: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            gloves: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            boots: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            relics:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            left_hands: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            right_hands: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            belts:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            rings: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
             classes_en: ['Bogatir', 'Antihrist', 'Bogolub', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich', 'Zastrel'],
             classes_ru: ['Богатырь', 'Антихрист', 'Боголюб', 'Налётчик', 'Богохульник', 'Скоморох', 'Язычница', 'Застрельщица'],
             class_id: 1,
-            data_ids:{accessories:[0,0,0,0],
-                armour:[0,0,0,0,0],
+            data_ids:{
+                equiped_ids: {
+                    head_id: 1,
+                    neck_id: 1,
+                    left_hand_id:  1,
+                    body_id: 1,
+                    right_hand_id: 1,
+                    left_ring_id: 1, 
+                    belt_id: 1,
+                    right_ring_id: 1,
+                    gloves_id: 1,
+                    boots_id: 1,
+                    relic_id: 1,
+                },
                 stats:{
                     armour: 1005,
                     critical_chance:42,
@@ -325,7 +339,6 @@ export default {
                     vamp: 0,
                 },
                 top_inputs:['','','','','',''],
-                weapons: [0,0],
                 urlers:'http://localhost:3000/build/'
             }
         }
@@ -359,6 +372,7 @@ export default {
                             this.data_ids.top_inputs[6]=this.classes_en[i]
                         }
                     }
+                    console.log(json)
                     
         })
         },
@@ -376,6 +390,12 @@ export default {
                     }
                     for (let i = 0; i < json.length; i++) {
                         this.weapons.push(json[i])
+                        if (json[i].sub_id.item_types[0].name == 'Второстепенное') {
+                            this.right_hands.push(json[i])
+                        }
+                        else {
+                            this.left_hands.push(json[i])
+                        }
                     }
                 })
             return null
@@ -394,7 +414,21 @@ export default {
                     }
                     for (let i = 0; i < json.length; i++) {
                         this.armour.push(json[i])
-                        
+                        if (json[i].sub_id.name == 'Шлем') {
+                            this.heads.push(json[i])
+                        }
+                        else if (json[i].sub_id.name == 'Наручи') {
+                            this.gloves.push(json[i])
+                        }
+                        else if (json[i].sub_id.name == 'Ремень') {
+                            this.belts.push(json[i])
+                        }
+                        else if (json[i].sub_id.name == 'Нагрудник') {
+                            this.bodies.push(json[i])
+                        }
+                        else if (json[i].sub_id.name == 'Ботинки') {
+                            this.boots.push(json[i])
+                        }
                     }
                 })
             return null
@@ -413,6 +447,15 @@ export default {
                     }
                     for (let i = 0; i < json.length; i++) {
                         this.accessories.push(json[i])
+                        if (json[i].sub_id.name == 'Ожерелье') {
+                            this.necks.push(json[i])
+                        }
+                        else if (json[i].sub_id.name == 'Кольцо') {
+                            this.rings.push(json[i])
+                        }
+                        else if (json[i].sub_id.name == 'Реликвия') {
+                            this.relics.push(json[i])
+                        }
                     }
                 })
             return null
