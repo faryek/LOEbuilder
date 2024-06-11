@@ -55,6 +55,39 @@ export default {
             classes: ['Antihrist', 'Bogatir', 'Bogolub', 'Zastrel', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich'],
             classes_ru: ['Антихрист', 'Богатырь', 'Боголюб', 'Застрельщица', 'Налетчик', 'Богохульник', 'Скоморох', 'Язычница']
         }
+    },
+    methods:{
+        get_urls() {
+            fetch('http://127.0.0.1:8000/urls', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            }).then(response => response.json())
+                .then(json => {
+                    if (json.detail) {
+                        this.error = true
+                        return null
+                    }
+                    console.log(json)
+                    let decoded_urls = []
+                    let stock_urls = []
+                    for(let i = 0;i <= json.length;i++){
+                        console.log(json[i].name)
+                        stock_urls.push(json[i].name)
+                        for(let j = 0;j<5;j++){
+                            stock_urls[i] = stock_urls[i].replace('%slash%','/')
+                        }
+                        decoded_urls[i] = btoa(unescape(encodeURIComponent(decoded_urls[i])));
+                        decoded_urls[i] = decodeURIComponent(escape(atob(decoded_urls[i])))
+                    }
+                    console.log(decoded_urls)
+                })
+            return null
+        },
+    },
+    beforeMount(){
+        this.get_urls()
     }
 }
 </script>
