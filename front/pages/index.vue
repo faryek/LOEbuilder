@@ -54,27 +54,9 @@ export default {
             icon_click: 0,
             classes: ['Antihrist', 'Bogatir', 'Bogolub', 'Zastrel', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich'],
             classes_ru: ['Антихрист', 'Богатырь', 'Боголюб', 'Застрельщица', 'Налетчик', 'Богохульник', 'Скоморох', 'Язычница'],
-            urls: []
         }
     },
     methods: {
-        get_urls(token) {
-            fetch('http://127.0.0.1:8000/urls', {
-                method: 'GET',
-                headers: {
-                }
-            }).then(response => response.json())
-                .then(json => {
-                    if (json.detail) {
-                        this.error = true
-                        return null
-                    }
-                    for (let i = 0; i < json.length; i++) {
-                        this.urls.push(json[i])
-                    }
-                })
-            return null
-        }
     },
 }
 </script>
