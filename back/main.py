@@ -33,7 +33,7 @@ async def get_armour(db: Session = Depends(get_db)):
 async def get_accessory(db: Session = Depends(get_db)):
     return db.query(models.Accessory).all()
 
-@app.post('/check_url/')
+@app.post('/check_url')
 async def check_url(user_input: pyd.URLCheckBase,db:Session=Depends(get_db)):
     url_db = db.query(models.URL).filter(
         models.URL.name == user_input.name
@@ -56,10 +56,7 @@ async def check_url(user_input: pyd.URLCheckBase,db:Session=Depends(get_db)):
 
     arrays = [weapons_names,armour_names,accessories_names]
 
-    ready_armour = []
-    ready_weapon = []
-    ready_accessories = []
-    top_inputs_tuple = ("class","cycle","lvl","name","purpose","type")
+    top_inputs_tuple = ["class","cycle","lvl","name","purpose","type"]
     top_inputs = []
 
 
