@@ -18,6 +18,23 @@ app = FastAPI()
 
 auth_handler = AuthHandler()
 
+@app.get('/urls_user', response_model=List[pyd.URLSSchema])
+async def get_urls(username=Depends(auth_handler.auth_wrapper),db:Session=Depends(get_db)):
+    user_db = db.query(models.User).filter(
+        models.User.name == username
+    ).first()
+    url_db =  db.query(models.URL).filter(
+        models.URL.user_id == user_db.id
+    ).all()
+    for i in range(len(url_db)):
+        for_decode = url_db[i].name.replace('%slash%','/')
+        decoded = base64.b64decode(for_decode)
+        my_json = decoded.decode('utf-8').replace("'", '"')
+
+        url_db[i].name = my_json
+    return url_db
+
+
 @app.get("/armour_alt", response_model=List[pyd.ArmourSchema])
 async def get_armour(db: Session = Depends(get_db)):
     return db.query(models.Armour).all()
@@ -127,6 +144,9 @@ async def url_create(url_input:pyd.URLCreate,username=Depends(auth_handler.auth_
     if not user_db:
         raise HTTPException(404,'User not found')
     
+    if url_input.build_name == '':
+        raise HTTPException(404,detail='Enter build name')
+
     url_db = models.URL(
         name = url_input.name,
         user_id = user_db.id,
