@@ -74,17 +74,8 @@ export default {
                     let encoded = []
                     for(let i = 0;i < json.length;i++){
                         encoded.push(json[i].name)
-                        for(let j = 0;j<5;j++){
-                            encoded[i] = encoded[i].replace('%slash%','/')
-                        }
-                        encoded[i] = decodeURIComponent(atob(encoded[i]))
                         encoded[i] = JSON.parse(encoded[i])
-                        // for(let j = 0;j <=5;j++){
-                        //     if(j in [0,1,4,5]){
-                                
-                        //     }
-                        // }
-                        // this.decoded[i].name = encoded[i]
+                        this.decoded[i].name = encoded[i]
                     }
                     console.log(encoded)
                     console.log(this.decoded)

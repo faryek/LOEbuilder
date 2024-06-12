@@ -4,7 +4,8 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss', '@formkit/auto-animate/nuxt', "@nuxt/image", 'floating-vue/nuxt'],
   app: {
     head: {
-      title: 'LOEbuilder'
+      title: 'LOEbuilder',
+      charset: 'utf-8',
     }
   }
 })

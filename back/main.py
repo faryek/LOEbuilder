@@ -147,7 +147,15 @@ async def get_users(username=Depends(auth_handler.auth_wrapper),db: Session = De
 
 @app.get('/urls', response_model=List[pyd.URLSSchema])
 async def get_urls(db:Session=Depends(get_db)):
-    return db.query(models.URL)
+    url_db =  db.query(models.URL).all()
+    for i in range(len(url_db)):
+        for_decode = url_db[i].name.replace('%slash%','/')
+        decoded = base64.b64decode(for_decode)
+        my_json = decoded.decode('utf-8').replace("'", '"')
+
+        url_db[i].name = my_json
+    return url_db
+
 
 @app.get("/weapons", response_model=List[pyd.WeaponsSchema])
 async def get_weapons(username=Depends(auth_handler.auth_wrapper),db: Session = Depends(get_db)):
