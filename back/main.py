@@ -21,7 +21,33 @@ auth_handler = AuthHandler()
 @app.post('/urls', response_model=List[pyd.URLSSchema])
 async def urls_sort(user_input:pyd.URLSortBase,db:Session=Depends(get_db)):
     url_db = db.query(models.URL).all()
+
     sorted_array = []
+    cycles = []
+    classes = []
+    types = []
+    purposes = []
+
+    if user_input.cycle == '':
+        cycles = ['Первое бытие','Второе житие']
+    else:
+        cycles.append(user_input.cycle)
+
+    if user_input.class_id== 0:
+        classes = [1,2,3,4,5,6,7,8]
+    else:
+        classes.append(user_input.class_id)
+    
+    if user_input.type == '':
+        types = ['Стартер','Эндгейм']
+    else:
+        types.append(user_input.type)
+    
+    if user_input.purpose == '':
+        purposes = ['Боссинг','Маппинг']
+    else:
+        purposes.append(user_input.purpose)
+
     for i in range(len(url_db)):
         for_decode = url_db[i].name.replace('%slash%','/')
         decoded = base64.b64decode(for_decode)
@@ -33,8 +59,10 @@ async def urls_sort(user_input:pyd.URLSortBase,db:Session=Depends(get_db)):
         my_json = my_json + url_db[i].name
         url_db[i].name = my_json
         
-        if url_db[i].class_id == user_input.class_id and parsed['top_inputs']['cycle'] == user_input.cycle and parsed['top_inputs']['type'] == user_input.type and parsed['top_inputs']['purpose'] == user_input.purpose:
+        if url_db[i].class_id in classes and parsed['top_inputs']['cycle'] in cycles and parsed['top_inputs']['type'] in types and parsed['top_inputs']['purpose'] in purposes:
             sorted_array.append(url_db[i])
+
+            
     return sorted_array
 
 
