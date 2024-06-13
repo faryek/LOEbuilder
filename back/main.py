@@ -21,7 +21,7 @@ auth_handler = AuthHandler()
 @app.post('/urls', response_model=List[pyd.URLSSchema])
 async def urls_sort(user_input:pyd.URLSortBase,db:Session=Depends(get_db)):
     url_db = db.query(models.URL).all()
-    sorted_arary = []
+    sorted_array = []
     for i in range(len(url_db)):
         for_decode = url_db[i].name.replace('%slash%','/')
         decoded = base64.b64decode(for_decode)
@@ -33,8 +33,9 @@ async def urls_sort(user_input:pyd.URLSortBase,db:Session=Depends(get_db)):
         my_json = my_json + url_db[i].name
         url_db[i].name = my_json
         
-        # if user_input.cycle !=0:
-        #     if parsed['top_inputs']
+        if url_db[i].class_id == user_input.class_id and parsed['top_inputs']['cycle'] == user_input.cycle and parsed['top_inputs']['type'] == user_input.type and parsed['top_inputs']['purpose'] == user_input.purpose:
+            sorted_array.append(url_db[i])
+    return sorted_array
 
 
 
