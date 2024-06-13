@@ -175,6 +175,8 @@ async def get_urls(db:Session=Depends(get_db)):
         for_decode = url_db[i].name.replace('%slash%','/')
         decoded = base64.b64decode(for_decode)
         my_json = decoded.decode('utf-8').replace("'", '"')
+        my_json =my_json + 'HereWeAre'
+        my_json = my_json + url_db[i].name
 
         url_db[i].name = my_json
     return url_db

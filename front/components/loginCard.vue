@@ -1,5 +1,5 @@
 <template>
-    <div class="login-form container py-10 px-10">
+    <form onsubmit="return false" class="login-form container py-10 px-10">
         <p class="font text-4xl">Авторизация</p>
         <div class="flex flex-col gap-10 align-middle">
             <p v-if="error" class="font text-2xl text-center">Неверный логин или пароль!</p>
@@ -9,7 +9,7 @@
             </div>
             <div class="login-row">
                 <p class="font text-2xl">Пароль</p>
-                <input type="text" class="font text-2xl pl-1" v-model="pwd" style="width: 100%;">
+                <input type="password" minlength="6" class="font text-2xl pl-1" v-model="pwd" style="width: 100%;">
             </div>
         </div>
         <div class="flex flex-col align-middle justify-center gap-2">
@@ -18,7 +18,7 @@
             }" class="login-btn mt-5 text-2xl font py-1 px-5">Войти</button>
             <button @click="() => { log_to_reg() }" class="login-btn text-xl font py-1 px-5">Регистрация</button>
         </div>
-    </div>
+    </form>
 </template>
 
 <script>
