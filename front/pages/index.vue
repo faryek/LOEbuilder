@@ -20,6 +20,7 @@
         <div class="wrapper flex flex-row relative justify-between">
             <button class="icon char_icon1 flex flex-col-reverse border-shine" v-for="i in 8" @click="() => {
                 icon_click = i
+                filtering(i)
             }"
                 @mouseenter="icon_hover = i" @mouseleave="icon_hover = 0">
                 <img :src="`../img/classes/${classes[i - 1]}/Small.png`" alt="" class="icon-image">
@@ -63,6 +64,15 @@ export default {
             icon_click: 0,
             classes: ['Bogatir', 'Antihrist', 'Bogolub', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich', 'Zastrel'],
             classes_ru: ['Богатырь', 'Антихрист',  'Боголюб', 'Налетчик', 'Богохульник', 'Скоморох', 'Язычница', 'Застрельщица'],
+            cycles: ['Первое житие', 'Второе бытие'],
+            types: ['Стартер', 'Эндгейм'],
+            purposes: ['Маппинг', 'Боссинг'],
+            filter: {
+                cycle: '',
+                type: '',
+                purpose: '',
+                class: ''
+            },
             decoded:[
                 {
                     build_name: 'хуй',
@@ -150,6 +160,18 @@ export default {
                 })
             return null
         },
+        filtering(n){
+
+                this.filter.cycle = document.getElementById('cycle').value
+
+
+                this.filter.type = document.getElementById('type').value
+
+
+                this.filter.purpose = document.getElementById('purpose').value
+
+                this.filter.class = n
+        }
     },
     beforeMount(){
         this.get_urls()
