@@ -8,8 +8,14 @@
             </NuxtLink>
         </div>
         <div class="container flex flex-row flex-wrap justify-between gap-y-10">
-            <BuildCard v-for="i in 7" :league="'Первое бытие'" :build_class="'Bogolub'" :build_lvl="100"
-                :build_name="'test_name'" :build_class_name="'Боголюб'" :id="i"></BuildCard>
+            <BuildCard v-for="i in decoded.length" 
+            :league="decoded[i-1].name[0].top_inputs.cycle" 
+            :build_class="classes[+decoded[i-1].class_id-1]" 
+            :build_class_name="decoded[i-1].name[0].top_inputs.class" 
+            :build_lvl="decoded[i-1].name[0].top_inputs.lvl"
+            :build_name="decoded[i-1].build_name"
+            :url="decoded[i-1].name[1]"
+            ></BuildCard>
         </div>
     </div>
 </template>
@@ -20,6 +26,66 @@ export default {
         return {
             error: false,
             authorized: false,
+            classes: ['Bogatir', 'Antihrist', 'Bogolub', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich', 'Zastrel'],
+            classes_ru: ['Богатырь', 'Антихрист',  'Боголюб', 'Налетчик', 'Богохульник', 'Скоморох', 'Язычница', 'Застрельщица'],
+            decoded:[
+                {
+                    build_name: 'хуй',
+                    class_id: 1,
+                    name: [
+                        {
+                            stats: {
+                                armour: 0,
+                                elem_damage: 0,
+                                elem_res: 0,
+                                phys_damage: 0,
+                                phys_res: 0,
+                                hp: 0,
+                            },
+                            top_inputs: {
+                                class: 'Танцовщица',
+                                cycle: 'her',
+                                lvl: '1',
+                                name: 'hui',
+                                purpose: 'sosat',
+                                type: 'zalupa'
+                            }
+                        },
+                        '123'
+                    ],
+                    user: {
+                        name: 'down'
+                    }
+                },
+                {
+                    build_name: 'хуй',
+                    class_id: 1,
+                    name: [
+                        {
+                            stats: {
+                                armour: 0,
+                                elem_damage: 0,
+                                elem_res: 0,
+                                phys_damage: 0,
+                                phys_res: 0,
+                                hp: 0,
+                            },
+                            top_inputs: {
+                                class: 'Танцовщица',
+                                cycle: 'her',
+                                lvl: '1',
+                                name: 'hui',
+                                purpose: 'sosat',
+                                type: 'zalupa'
+                            }
+                        },
+                        '123'
+                    ],
+                    user: {
+                        name: 'down'
+                    }
+                },
+            ],
         }
     },
     methods: {

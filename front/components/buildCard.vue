@@ -1,5 +1,5 @@
 <template>
-    <NuxtLink :to="`/build/${id}`" class="card border-shine flex flex-row gap-10 p-5">
+    <NuxtLink :to="`/build/${url}`" class="card border-shine flex flex-row gap-10 p-5">
         <img :src="`../img/classes/${build_class}/Medium.png`" alt="">
         <div class="flex flex-col gap-2">
             <p class="font text-2xl" style="color: #C68200;">{{league}}</p>
@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-    const props = defineProps(['league','build_name','build_lvl','build_class','id', 'build_class_name'])
+    const props = defineProps(['league','build_name','build_lvl','build_class','url', 'build_class_name'])
 
 </script>
 

@@ -1,23 +1,26 @@
 <template>
     <div class="flex flex-row justify-evenly">
-        <select name="" id="" class="selector border-shine">
-            <option value="Мать" class="selector">Все</option>
-            <option value="Мать" class="selector">не все</option>
-            <option value="Мать" class="selector">Светка</option>
-            <option value="Мать" class="selector">Колька</option>
+        <select name="" id="" class="selector border-shine" @change="filtering()">
+            <option value="-1" class="selector">Все</option>
+            <option value="0" class="selector">Первое бытие</option>
+            <option value="1" class="selector">Второе житие</option>
         </select>
-        <select name="" id="" class="selector border-shine">
-            <option value="Мать" class="selector">Стартер</option>
-            <option value="Мать" class="selector">Эндгейм</option>
+        <select name="" id="" class="selector border-shine" @change="filtering()">
+            <option value="-1" class="selector">Все</option>
+            <option value="0" class="selector">Стартер</option>
+            <option value="1" class="selector">Эндгейм</option>
         </select>
-        <select name="" id="" class="selector border-shine">
-            <option value="Мать" class="selector">Боссинг</option>
-            <option value="Мать" class="selector">Маппинг</option>
+        <select name="" id="" class="selector border-shine" @change="filtering()">
+            <option value="-1" class="selector">Все</option>
+            <option value="0" class="selector">Боссинг</option>
+            <option value="1" class="selector">Маппинг</option>
         </select>
     </div>
     <div class="container character_selector mt-8" style="min-height: 8vw;">
         <div class="wrapper flex flex-row relative justify-between">
-            <button class="icon char_icon1 flex flex-col-reverse border-shine" v-for="i in 8" @click="icon_click = i"
+            <button class="icon char_icon1 flex flex-col-reverse border-shine" v-for="i in 8" @click="() => {
+                icon_click = i
+            }"
                 @mouseenter="icon_hover = i" @mouseleave="icon_hover = 0">
                 <img :src="`../img/classes/${classes[i - 1]}/Small.png`" alt="" class="icon-image">
                 <p v-if="icon_hover == i || icon_click == i" class="icon-text font">{{ classes_ru[i - 1] }}</p>
@@ -36,8 +39,10 @@
                 <p class="text-xl font text-center">Урон в секунду</p>
                 <p class="text-xl font text-center">Автор</p>
         </div>
-            <BuildCardBig v-for="i in decoded.length" :league="decoded[i-1].name[0].top_inputs.cycle" 
-                :build_class="classes[+decoded[i-1].class_id-1]" :build_class_name="decoded[i-1].name[0].top_inputs.class" 
+            <BuildCardBig v-for="i in decoded.length" 
+                :league="decoded[i-1].name[0].top_inputs.cycle" 
+                :build_class="classes[+decoded[i-1].class_id-1]" 
+                :build_class_name="decoded[i-1].name[0].top_inputs.class" 
                 :build_lvl="decoded[i-1].name[0].top_inputs.lvl"
                 :build_name="decoded[i-1].build_name" 
                 :build_ehp="Math.round(+decoded[i-1].name[0].stats.hp*(+decoded[i-1].name[0].stats.armour)/10*(1+ +decoded[i-1].name[0].stats.phys_res/100)*(1+ +decoded[i-1].name[0].stats.elem_res/100))" 
