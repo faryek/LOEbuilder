@@ -169,19 +169,23 @@ export default {
             return null
         },
         filtering(){
-
-                this.filter.cycle = document.getElementById('cycle').value
-
-
-                this.filter.type = document.getElementById('type').value
-
-
-                this.filter.purpose = document.getElementById('purpose').value
-
-                this.filter.class = this.icon_click
-        },
-        noClassFilter(){
-
+            if (document.getElementById('cycle').value != -1)
+            {
+                this.filter.cycle = this.cycles[document.getElementById('cycle').value]
+            } else {
+                this.filter.cycle = ''
+            }
+            if (document.getElementById('type').value != -1){
+                this.filter.type = this.types[document.getElementById('type').value]
+            } else {
+                this.filter.type = ''
+            }
+            if (document.getElementById('purpose').value != -1){
+                this.filter.purpose = this.purposes[document.getElementById('purpose').value]
+            } else {
+                this.filter.purpose = ''
+            }
+            this.filter.class = this.icon_click
         }
     },
     beforeMount(){
