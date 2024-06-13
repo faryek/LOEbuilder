@@ -53,14 +53,21 @@
                         <button class="font font-create border-shine-create special-btn" style="width: 100%;">{{ k }}</button>
                     </li>
                 </ul>
-                <NuxtLink to="/build/" class="font font-create border-shine-create special-btn text-center" @click="()=>{
-                    if(stats.strength.base == 0){
-                        error_on_choose = true
-                    }
-                    else{
-                        save_build()
-                    }
-                }" style="width: 45%;">Создать</NuxtLink>
+                <ul v-auto-animate style="width: 45%;">
+                    <li
+                        v-for="l in create"
+                        style="width: 100%;"
+                    >
+                        <NuxtLink to="/build/" @click="()=>{
+                            if(stats.strength.base == 0){
+                                error_on_choose = true
+                            }
+                            else{
+                                save_build()
+                            }
+                        }"><p class="font font-create border-shine-create special-btn text-center" style="width: 100%;">{{ l }}</p></NuxtLink>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="mid flex flex-row justify-between mt-5 gap-10">
@@ -564,8 +571,10 @@ export default {
                 purpose: 'kms',
                 lvl: 99,
             },
-            save: ['Сохранить'],
-            saved: 1,
+            save: [],
+            create: [],
+            saved: 0,
+            createable: 0,
             encoded: '',
             urlers: `http://localhost:3000/build/`,
             build_name: '',
@@ -608,6 +617,7 @@ export default {
             this.save.pop()
             this.saved = 0
             this.encode()
+            this.addCreate()
         },
         addButton() {
             if (this.saved < 1)
@@ -615,6 +625,12 @@ export default {
                 this.save.push('Сохранить')
             }
             this.saved++
+        },
+        addCreate(){
+            if (this.createable == 0){
+                this.create.push('Создать')
+            }
+            this.createable++
         },
         encode(){
             var obj = {equiped_ids: this.equiped_ids, equiped_affixes_ids: this.equiped_affixes_ids, top_inputs: this.build_info, stats: this.stats_export};

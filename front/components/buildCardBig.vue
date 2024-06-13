@@ -9,7 +9,7 @@
                 <p class="text-lg font">{{ build_class_name }}</p>
                 <p class="text-lg font">{{ build_ehp }}</p>
                 <p class="text-lg font">{{ build_dps }}</p>
-                <p class="text-lg font">{{ build_date }}</p>
+                <p class="text-lg font">{{ build_author }}</p>
             </div>
             <div v-show="!show_drop" class="hide font text-lg px-5 py-5 mb-2" style="width: 100%; text-align: center">
                 Скрыть</div>
@@ -48,7 +48,7 @@ onMounted(() => {
 
 <script>
 export default {
-    props: ['league', 'build_name', 'build_lvl', 'build_class_name', 'build_class', 'id', 'build_date', 'build_ehp', 'build_dps', 'more', 'selected'],
+    props: ['league', 'build_name', 'build_lvl', 'build_class_name', 'build_class', 'id', 'build_author', 'build_ehp', 'build_dps', 'more', 'selected'],
     data() {
         return {
             show_drop: true,
