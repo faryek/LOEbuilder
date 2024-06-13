@@ -699,7 +699,7 @@ export default {
             let token = localStorage.getItem('token')
             let credetentials = {
                 name: this.encoded,
-                build_name: this.build_name,
+                build_name: this.build_info.name,
                 class_id: 1,
             }
             fetch('http://127.0.0.1:8000/build/url_create', {

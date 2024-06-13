@@ -38,6 +38,30 @@ export default {
                 })
             return null
         },
+        get_urls(token) {
+            fetch('http://127.0.0.1:8000/urls_user', {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            }).then(response => response.json())
+                .then(json => {
+                    if (json.detail) {
+                        this.error = true
+                        return null
+                    }
+                    this.decoded = json
+                    let encoded = []
+                    for(let i = 0;i < json.length;i++){
+                        encoded.push(json[i].name)
+                        encoded[i] = JSON.parse(encoded[i])
+                        this.decoded[i].name = encoded[i]
+                    }
+                    console.log(encoded)
+                    console.log(this.decoded)
+                })
+            return null
+        },
     },
     beforeMount(){
         let token = localStorage.getItem('token')
@@ -45,6 +69,7 @@ export default {
             this.authorized = true
         }
         this.auth_check(token)
+        this.get_urls(token)
     }
 }
 
