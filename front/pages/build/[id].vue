@@ -16,7 +16,7 @@
                     </div>
                     <div class="flex flex-col justify-evenly col">
                         <p class="font font-create text-center">Название: {{data_ids.top_inputs[3]}}</p>
-                        <p class="font font-create text-center">Время: {{data_ids.top_inputs[5]}}</p>
+                        <p class="font font-create text-center">Тип: {{data_ids.top_inputs[5]}}</p>
                         <p class="font font-create text-center">Назначение: {{data_ids.top_inputs[4]}}</p>
                         <input type="text" class="font font-create input-field px-4 selector selector-create border-shine" placeholder="" v-model="urlers">
                     </div>

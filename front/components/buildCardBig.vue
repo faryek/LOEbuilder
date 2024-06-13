@@ -25,7 +25,7 @@
                         <p class="text-2xl font">Уровень: {{ build_lvl }}</p>
                         <p class="text-2xl font">Класс: {{ build_class_name }}</p>
                     </div>
-                    <button class="font font-create border-shine-create special-btn" style="width: 100%;">Подробнее</button>
+                    <NuxtLink :to="`/build/${url}`" style="width: 100%;"><button class="font font-create border-shine-create special-btn" style="width: 100%;">Подробнее</button></NuxtLink>
                 </div>
                 
                 <img class="class-img" :src="`../img/classes/${build_class}/Medium.png`" alt="">
@@ -52,7 +52,7 @@ onMounted(() => {
 
 <script>
 export default {
-    props: ['league', 'build_name', 'build_lvl', 'build_class_name', 'build_class', 'id', 'build_author', 'build_ehp', 'build_dps', 'more', 'selected'],
+    props: ['league', 'build_name', 'build_lvl', 'build_class_name', 'build_class', 'id', 'build_author', 'build_ehp', 'build_dps', 'more', 'selected', 'url'],
     data() {
         return {
             show_drop: true,

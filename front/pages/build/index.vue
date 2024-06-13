@@ -74,12 +74,7 @@ export default {
 }
 
 </script>
-export default {
-data() {
-return {
-}
-}
-}
+
 <style>
 .create-build-btn {
     background-color: rgba(0, 0, 0, 0.5);
