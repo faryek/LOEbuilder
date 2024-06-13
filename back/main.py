@@ -18,6 +18,28 @@ app = FastAPI()
 
 auth_handler = AuthHandler()
 
+@app.post('/urls', response_model=List[pyd.URLSSchema])
+async def urls_sort(user_input:pyd.URLSortBase,db:Session=Depends(get_db)):
+    url_db = db.query(models.URL).all()
+    sorted_arary = []
+    for i in range(len(url_db)):
+        for_decode = url_db[i].name.replace('%slash%','/')
+        decoded = base64.b64decode(for_decode)
+        my_json = decoded.decode('utf-8').replace("'", '"')
+        parsed = json.loads(my_json)
+        print(parsed['top_inputs'])
+        print(url_db[i].class_id)
+        my_json =my_json + 'HereWeAre'
+        my_json = my_json + url_db[i].name
+        url_db[i].name = my_json
+        
+        # if user_input.cycle !=0:
+        #     if parsed['top_inputs']
+
+
+
+
+
 @app.get('/urls_user', response_model=List[pyd.URLSSchema])
 async def get_urls(username=Depends(auth_handler.auth_wrapper),db:Session=Depends(get_db)):
     user_db = db.query(models.User).filter(
@@ -35,7 +57,6 @@ async def get_urls(username=Depends(auth_handler.auth_wrapper),db:Session=Depend
 
         url_db[i].name = my_json
     return url_db
-
 
 @app.get("/armour_alt", response_model=List[pyd.ArmourSchema])
 async def get_armour(db: Session = Depends(get_db)):
@@ -99,7 +120,6 @@ async def check_url(user_input: pyd.URLCheckBase,db:Session=Depends(get_db)):
             'stats':data['stats'],
             'top_inputs':top_inputs,
             }
-        
 
 @app.post('/register', response_model=pyd.UserCreate)
 async def user_reg(user_input: pyd.UserCreateReg, db: Session = Depends(get_db)):
