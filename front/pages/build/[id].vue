@@ -6,17 +6,18 @@
                 <div class="flex flex-row justify-evenly gap-10">
                     <img :src="`../img/classes/${data_ids.top_inputs[6]}/Medium.png`" class="class-img" alt="">
                     <div class="flex flex-col justify-evenly col">
-                        <p class="font font-create text-center">{{data_ids.top_inputs[1]}}</p>
-                        <p class="font font-create text-center">{{data_ids.top_inputs[0]}}</p>
-                        <div class="flex flex-row gap-5">
+                        <p class="font font-create text-center">Цикл: {{data_ids.top_inputs[1]}}</p>
+                        <p class="font font-create text-center">Класс: {{data_ids.top_inputs[0]}}</p>
+                        <div class="flex flex-row gap-5 justify-center">
+                            <p class="font font-create text-center">Уровень: </p>
                             <p class="font font-create text-center">{{data_ids.top_inputs[2]}}</p>
                         </div>
                         <p class="font font-create text-center">Ссылка на билд</p>
                     </div>
                     <div class="flex flex-col justify-evenly col">
-                        <p class="font font-create text-center">{{data_ids.top_inputs[3]}}</p>
-                        <p class="font font-create text-center">{{data_ids.top_inputs[5]}}</p>
-                        <p class="font font-create text-center">{{data_ids.top_inputs[4]}}</p>
+                        <p class="font font-create text-center">Название: {{data_ids.top_inputs[3]}}</p>
+                        <p class="font font-create text-center">Время: {{data_ids.top_inputs[5]}}</p>
+                        <p class="font font-create text-center">Назначение: {{data_ids.top_inputs[4]}}</p>
                         <input type="text" class="font font-create input-field px-4 selector selector-create border-shine" placeholder="" v-model="urlers">
                     </div>
                 </div>
@@ -32,14 +33,15 @@
                         <div class="">
                             <VTooltip>
                                 <!-- HELMET -->
-                                <img class="item-img w-24 slot" :src="armour[data_ids.armour[4]].image" alt="">
-                                <template #popper v-if="armour[data_ids.armour[4]].id != 0">
+                                <img class="item-img w-24 slot" v-if="armour[data_ids.equiped_ids.head_id].id !=0" :src="armour[data_ids.equiped_ids.head_id].image" alt="">
+                                <img class="item-img w-24 slot" v-if="armour[data_ids.equiped_ids.head_id].id ==0" src="public/img/items/head_0.png" alt="">
+                                <template #popper v-if="armour[data_ids.equiped_ids.head_id].id != 0">
                                     <ItemTooltip 
                                     
-                                                :name="armour[data_ids.armour[4]].name" :image="armour[data_ids.armour[4]].image" :sub_name="armour[data_ids.armour[4]].sub_id.name"
-                                                :implicits_value_start="armour[data_ids.armour[4]].sub_id.item_implicits[0].value_start"
-                                                :implicits_value_end="armour[data_ids.armour[4]].sub_id.item_implicits[0].value_end"
-                                                :implicits_effect="armour[data_ids.armour[4]].sub_id.item_implicits[0].effect">
+                                                :name="armour[data_ids.equiped_ids.head_id].name" :image="armour[data_ids.equiped_ids.head_id].image" :sub_name="armour[data_ids.equiped_ids.head_id].sub_id.name"
+                                                :implicits_value_start="armour[data_ids.equiped_ids.head_id].sub_id.item_implicits[0].value_start"
+                                                :implicits_value_end="armour[data_ids.equiped_ids.head_id].sub_id.item_implicits[0].value_end"
+                                                :implicits_effect="armour[data_ids.equiped_ids.head_id].sub_id.item_implicits[0].effect">
 
                                     </ItemTooltip>
                                 </template>
@@ -48,13 +50,13 @@
                         <div class="">
                             <!-- NECKLACE -->
                             <VTooltip>
-                                <img class="item-img w-14 slot" :src="accessories[data_ids.accessories[1]].image" alt="">
-                                <template #popper v-if="accessories[data_ids.accessories[1]].id != 0">
+                                <img class="item-img w-14 slot" :src="accessories[data_ids.equiped_ids.neck_id].image" alt="">
+                                <template #popper v-if="accessories[data_ids.equiped_ids.neck_id].id != 0">
                                     <ItemTooltip 
-                                                :name="accessories[data_ids.accessories[1]].name" :image="accessories[data_ids.accessories[1]].image" :sub_name="accessories[data_ids.accessories[1]].sub_id.name"
-                                                :implicits_value_start="accessories[data_ids.accessories[1]].sub_id.item_implicits[0].value_start"
-                                                :implicits_value_end="accessories[data_ids.accessories[1]].sub_id.item_implicits[0].value_end"
-                                                :implicits_effect="accessories[data_ids.accessories[1]].sub_id.item_implicits[0].effect">
+                                                :name="accessories[data_ids.equiped_ids.neck_id].name" :image="accessories[data_ids.equiped_ids.neck_id].image" :sub_name="accessories[data_ids.equiped_ids.neck_id].sub_id.name"
+                                                :implicits_value_start="accessories[data_ids.equiped_ids.neck_id].sub_id.item_implicits[0].value_start"
+                                                :implicits_value_end="accessories[data_ids.equiped_ids.neck_id].sub_id.item_implicits[0].value_end"
+                                                :implicits_effect="accessories[data_ids.equiped_ids.neck_id].sub_id.item_implicits[0].effect">
 
                                     </ItemTooltip>
                                 </template>
@@ -66,13 +68,13 @@
                         <div class="">
                             <VTooltip>
                                 <!-- LEFT_HAND_WPN -->
-                                <img class="item-img w-24 slot" :src="weapons[data_ids.weapons[0]].image" alt="">
-                                <template #popper v-if="weapons[data_ids.weapons[0]].id != 0">
+                                <img class="item-img w-24 slot" :src="weapons[data_ids.equiped_ids.left_hand_id].image" alt="">
+                                <template #popper v-if="weapons[data_ids.equiped_ids.left_hand_id].id != 0">
                                     <ItemTooltip 
-                                                :name="weapons[data_ids.weapons[0]].name" :image="weapons[data_ids.weapons[0]].image" :sub_name="weapons[data_ids.weapons[0]].sub_id.name"
-                                                :implicits_value_start="weapons[data_ids.weapons[0]].sub_id.item_implicits[0].value_start"
-                                                :implicits_value_end="weapons[data_ids.weapons[0]].sub_id.item_implicits[0].value_end"
-                                                :implicits_effect="weapons[data_ids.weapons[0]].sub_id.item_implicits[0].effect">
+                                                :name="weapons[data_ids.equiped_ids.left_hand_id].name" :image="weapons[data_ids.equiped_ids.left_hand_id].image" :sub_name="weapons[data_ids.equiped_ids.left_hand_id].sub_id.name"
+                                                :implicits_value_start="weapons[data_ids.equiped_ids.left_hand_id].sub_id.item_implicits[0].value_start"
+                                                :implicits_value_end="weapons[data_ids.equiped_ids.left_hand_id].sub_id.item_implicits[0].value_end"
+                                                :implicits_effect="weapons[data_ids.equiped_ids.left_hand_id].sub_id.item_implicits[0].effect">
                             
                                     </ItemTooltip>
                                 </template>
@@ -82,13 +84,13 @@
                         <div class="">
                             <VTooltip>
                                 <!-- BODYARMOUR -->
-                                <img class="item-img w-36 slot" :src="armour[data_ids.armour[1]].image" alt="">
-                                <template #popper v-if="armour[data_ids.armour[1]].id != 0">
+                                <img class="item-img w-36 slot" :src="armour[data_ids.equiped_ids.body_id].image" alt="">
+                                <template #popper v-if="armour[data_ids.equiped_ids.body_id].id != 0">
                                     <ItemTooltip 
-                                                :name="armour[data_ids.armour[1]].name" :image="armour[data_ids.armour[1]].image" :sub_name="armour[data_ids.armour[1]].sub_id.name"
-                                                :implicits_value_start="armour[data_ids.armour[1]].sub_id.item_implicits[0].value_start"
-                                                :implicits_value_end="armour[data_ids.armour[1]].sub_id.item_implicits[0].value_end"
-                                                :implicits_effect="armour[data_ids.armour[1]].sub_id.item_implicits[0].effect">
+                                                :name="armour[data_ids.equiped_ids.body_id].name" :image="armour[data_ids.equiped_ids.body_id].image" :sub_name="armour[data_ids.equiped_ids.body_id].sub_id.name"
+                                                :implicits_value_start="armour[data_ids.equiped_ids.body_id].sub_id.item_implicits[0].value_start"
+                                                :implicits_value_end="armour[data_ids.equiped_ids.body_id].sub_id.item_implicits[0].value_end"
+                                                :implicits_effect="armour[data_ids.equiped_ids.body_id].sub_id.item_implicits[0].effect">
                             
                                     </ItemTooltip>
                                 </template>
@@ -98,13 +100,13 @@
                         <div class="">
                             <VTooltip>
                                 <!-- RIGHT_HAND_WPN -->
-                                <img class="item-img w-24 slot" :src="weapons[data_ids.weapons[1]].image" alt="">
-                                <template #popper v-if="weapons[data_ids.weapons[1]].id != 0">
+                                <img class="item-img w-24 slot" :src="weapons[data_ids.equiped_ids.right_hand_id].image" alt="">
+                                <template #popper v-if="weapons[data_ids.equiped_ids.right_hand_id].id != 0">
                                     <ItemTooltip 
-                                                :name="weapons[data_ids.weapons[1]].name" :image="weapons[data_ids.weapons[1]].image" :sub_name="weapons[data_ids.weapons[1]].sub_id.name"
-                                                :implicits_value_start="weapons[data_ids.weapons[1]].sub_id.item_implicits[0].value_start"
-                                                :implicits_value_end="weapons[data_ids.weapons[1]].sub_id.item_implicits[0].value_end"
-                                                :implicits_effect="weapons[data_ids.weapons[1]].sub_id.item_implicits[0].effect">
+                                                :name="weapons[data_ids.equiped_ids.right_hand_id].name" :image="weapons[data_ids.equiped_ids.right_hand_id].image" :sub_name="weapons[data_ids.equiped_ids.right_hand_id].sub_id.name"
+                                                :implicits_value_start="weapons[data_ids.equiped_ids.right_hand_id].sub_id.item_implicits[0].value_start"
+                                                :implicits_value_end="weapons[data_ids.equiped_ids.right_hand_id].sub_id.item_implicits[0].value_end"
+                                                :implicits_effect="weapons[data_ids.equiped_ids.right_hand_id].sub_id.item_implicits[0].effect">
                             
                                     </ItemTooltip>
                                 </template>
@@ -117,13 +119,13 @@
                         <div class="">
                             <VTooltip>
                                 <!-- LEFT_RING -->
-                                <img class="item-img w-14 slot" :src="accessories[data_ids.accessories[0]].image" alt="">
-                                <template #popper v-if="accessories[data_ids.accessories[0]].id != 0">
+                                <img class="item-img w-14 slot" :src="accessories[data_ids.equiped_ids.left_ring_id].image" alt="">
+                                <template #popper v-if="accessories[data_ids.equiped_ids.left_ring_id].id != 0">
                                     <ItemTooltip 
-                                                :name="accessories[data_ids.accessories[0]].name" :image="accessories[data_ids.accessories[0]].image" :sub_name="accessories[data_ids.accessories[0]].sub_id.name"
-                                                :implicits_value_start="accessories[data_ids.accessories[0]].sub_id.item_implicits[0].value_start"
-                                                :implicits_value_end="accessories[data_ids.accessories[0]].sub_id.item_implicits[0].value_end"
-                                                :implicits_effect="accessories[data_ids.accessories[0]].sub_id.item_implicits[0].effect">
+                                                :name="accessories[data_ids.equiped_ids.left_ring_id].name" :image="accessories[data_ids.equiped_ids.left_ring_id].image" :sub_name="accessories[data_ids.equiped_ids.left_ring_id].sub_id.name"
+                                                :implicits_value_start="accessories[data_ids.equiped_ids.left_ring_id].sub_id.item_implicits[0].value_start"
+                                                :implicits_value_end="accessories[data_ids.equiped_ids.left_ring_id].sub_id.item_implicits[0].value_end"
+                                                :implicits_effect="accessories[data_ids.equiped_ids.left_ring_id].sub_id.item_implicits[0].effect">
                             
                                     </ItemTooltip>
                                 </template>
@@ -133,13 +135,13 @@
                         <div class="">
                             <VTooltip>
                                 <!-- BELT -->
-                                <img class="item-img w-36 slot" :src="armour[data_ids.armour[0]].image" alt="">
-                                <template #popper v-if="armour[data_ids.armour[0]].id != 0">
+                                <img class="item-img w-36 slot" :src="armour[data_ids.equiped_ids.belt_id].image" alt="">
+                                <template #popper v-if="armour[data_ids.equiped_ids.belt_id].id != 0">
                                     <ItemTooltip 
-                                                :name="armour[data_ids.armour[0]].name" :image="armour[data_ids.armour[0]].image" :sub_name="armour[data_ids.armour[0]].sub_id.name"
-                                                :implicits_value_start="armour[data_ids.armour[0]].sub_id.item_implicits[0].value_start"
-                                                :implicits_value_end="armour[data_ids.armour[0]].sub_id.item_implicits[0].value_end"
-                                                :implicits_effect="armour[data_ids.armour[0]].sub_id.item_implicits[0].effect">
+                                                :name="armour[data_ids.equiped_ids.belt_id].name" :image="armour[data_ids.equiped_ids.belt_id].image" :sub_name="armour[data_ids.equiped_ids.belt_id].sub_id.name"
+                                                :implicits_value_start="armour[data_ids.equiped_ids.belt_id].sub_id.item_implicits[0].value_start"
+                                                :implicits_value_end="armour[data_ids.equiped_ids.belt_id].sub_id.item_implicits[0].value_end"
+                                                :implicits_effect="armour[data_ids.equiped_ids.belt_id].sub_id.item_implicits[0].effect">
                             
                                     </ItemTooltip>
                                 </template>
@@ -149,13 +151,13 @@
                         <div class="">
                             <VTooltip>
                                 <!-- RIGHT_RING -->
-                                <img class="item-img w-14 slot" :src="accessories[data_ids.accessories[3]].image" alt="">
-                                <template #popper v-if="accessories[data_ids.accessories[3]].id != 0">
+                                <img class="item-img w-14 slot" :src="accessories[data_ids.equiped_ids.right_ring_id].image" alt="">
+                                <template #popper v-if="accessories[data_ids.equiped_ids.right_ring_id].id != 0">
                                     <ItemTooltip 
-                                                :name="accessories[data_ids.accessories[3]].name" :image="accessories[data_ids.accessories[3]].image" :sub_name="accessories[data_ids.accessories[3]].sub_id.name"
-                                                :implicits_value_start="accessories[data_ids.accessories[3]].sub_id.item_implicits[0].value_start"
-                                                :implicits_value_end="accessories[data_ids.accessories[3]].sub_id.item_implicits[0].value_end"
-                                                :implicits_effect="accessories[data_ids.accessories[3]].sub_id.item_implicits[0].effect">
+                                                :name="accessories[data_ids.equiped_ids.right_ring_id].name" :image="accessories[data_ids.equiped_ids.right_ring_id].image" :sub_name="accessories[data_ids.equiped_ids.right_ring_id].sub_id.name"
+                                                :implicits_value_start="accessories[data_ids.equiped_ids.right_ring_id].sub_id.item_implicits[0].value_start"
+                                                :implicits_value_end="accessories[data_ids.equiped_ids.right_ring_id].sub_id.item_implicits[0].value_end"
+                                                :implicits_effect="accessories[data_ids.equiped_ids.right_ring_id].sub_id.item_implicits[0].effect">
                             
                                     </ItemTooltip>
                                 </template>
@@ -168,13 +170,13 @@
                         <div class="">
                             <VTooltip>
                                 <!-- GLOVES -->
-                                <img class="item-img w-24 slot" :src="armour[data_ids.armour[3]].image" alt="">
-                                <template #popper v-if="armour[data_ids.armour[3]].id != 0">
+                                <img class="item-img w-24 slot" :src="armour[data_ids.equiped_ids.gloves_id].image" alt="">
+                                <template #popper v-if="armour[data_ids.equiped_ids.gloves_id].id != 0">
                                     <ItemTooltip 
-                                                :name="armour[data_ids.armour[3]].name" :image="armour[data_ids.armour[3]].image" :sub_name="armour[data_ids.armour[3]].sub_id.name"
-                                                :implicits_value_start="armour[data_ids.armour[3]].sub_id.item_implicits[0].value_start"
-                                                :implicits_value_end="armour[data_ids.armour[3]].sub_id.item_implicits[0].value_end"
-                                                :implicits_effect="armour[data_ids.armour[3]].sub_id.item_implicits[0].effect">
+                                                :name="armour[data_ids.equiped_ids.gloves_id].name" :image="armour[data_ids.equiped_ids.gloves_id].image" :sub_name="armour[data_ids.equiped_ids.gloves_id].sub_id.name"
+                                                :implicits_value_start="armour[data_ids.equiped_ids.gloves_id].sub_id.item_implicits[0].value_start"
+                                                :implicits_value_end="armour[data_ids.equiped_ids.gloves_id].sub_id.item_implicits[0].value_end"
+                                                :implicits_effect="armour[data_ids.equiped_ids.gloves_id].sub_id.item_implicits[0].effect">
                             
                                     </ItemTooltip>
                                 </template>
@@ -184,13 +186,13 @@
                         <div class="">
                             <VTooltip>
                                 <!-- BOOTS -->
-                                <img class="item-img w-24 slot" :src="armour[data_ids.armour[2]].image" alt="">
-                                <template #popper v-if="armour[data_ids.armour[2]].id != 0">
+                                <img class="item-img w-24 slot" :src="armour[data_ids.equiped_ids.boots_id].image" alt="">
+                                <template #popper v-if="armour[data_ids.equiped_ids.boots_id].id != 0">
                                     <ItemTooltip 
-                                                :name="armour[data_ids.armour[2]].name" :image="armour[data_ids.armour[2]].image" :sub_name="armour[data_ids.armour[2]].sub_id.name"
-                                                :implicits_value_start="armour[data_ids.armour[2]].sub_id.item_implicits[0].value_start"
-                                                :implicits_value_end="armour[data_ids.armour[2]].sub_id.item_implicits[0].value_end"
-                                                :implicits_effect="armour[data_ids.armour[2]].sub_id.item_implicits[0].effect">
+                                                :name="armour[data_ids.equiped_ids.boots_id].name" :image="armour[data_ids.equiped_ids.boots_id].image" :sub_name="armour[data_ids.equiped_ids.boots_id].sub_id.name"
+                                                :implicits_value_start="armour[data_ids.equiped_ids.boots_id].sub_id.item_implicits[0].value_start"
+                                                :implicits_value_end="armour[data_ids.equiped_ids.boots_id].sub_id.item_implicits[0].value_end"
+                                                :implicits_effect="armour[data_ids.equiped_ids.boots_id].sub_id.item_implicits[0].effect">
                             
                                     </ItemTooltip>
                                 </template>
@@ -200,13 +202,13 @@
                         <div class="">
                             <VTooltip>
                                 <!-- RELIC -->
-                                <img class="item-img w-24 slot" :src="accessories[data_ids.accessories[2]].image" alt="">
-                                <template #popper v-if="accessories[data_ids.accessories[2]].id != 0">
+                                <img class="item-img w-24 slot" :src="accessories[data_ids.equiped_ids.relic_id].image" alt="">
+                                <template #popper v-if="accessories[data_ids.equiped_ids.relic_id].id != 0">
                                     <ItemTooltip 
-                                                :name="accessories[data_ids.accessories[2]].name" :image="accessories[data_ids.accessories[2]].image" :sub_name="accessories[data_ids.accessories[2]].sub_id.name"
-                                                :implicits_value_start="accessories[data_ids.accessories[2]].sub_id.item_implicits[0].value_start"
-                                                :implicits_value_end="accessories[data_ids.accessories[2]].sub_id.item_implicits[0].value_end"
-                                                :implicits_effect="accessories[data_ids.accessories[2]].sub_id.item_implicits[0].effect">
+                                                :name="accessories[data_ids.equiped_ids.relic_id].name" :image="accessories[data_ids.equiped_ids.relic_id].image" :sub_name="accessories[data_ids.equiped_ids.relic_id].sub_id.name"
+                                                :implicits_value_start="accessories[data_ids.equiped_ids.relic_id].sub_id.item_implicits[0].value_start"
+                                                :implicits_value_end="accessories[data_ids.equiped_ids.relic_id].sub_id.item_implicits[0].value_end"
+                                                :implicits_effect="accessories[data_ids.equiped_ids.relic_id].sub_id.item_implicits[0].effect">
                             
                                     </ItemTooltip>
                                 </template>
@@ -290,37 +292,25 @@ export default {
         return {
             ids: useRoute().params,
             error: false,
-            weapons: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            armour: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            accessories: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            affixes: [],
-            passives: [{"id": 1,"name": "Ловкость","desc": "+15 к ловкости","image": "/img/icons/dexterity.png","effects": [{"id": 1,"name": "dexterity","value": 15}]},],
-            heads:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            necks: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            bodies: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            gloves: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            boots: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            relics:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            left_hands: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            right_hands: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            belts:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            rings: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            weapons: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/left_hand_0.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            armour: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/empty_slot.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            accessories: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/empty_slot.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
             classes_en: ['Bogatir', 'Antihrist', 'Bogolub', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich', 'Zastrel'],
             classes_ru: ['Богатырь', 'Антихрист', 'Боголюб', 'Налётчик', 'Богохульник', 'Скоморох', 'Язычница', 'Застрельщица'],
             class_id: 1,
             data_ids:{
                 equiped_ids: {
-                    head_id: 1,
-                    neck_id: 1,
-                    left_hand_id:  1,
-                    body_id: 1,
-                    right_hand_id: 1,
-                    left_ring_id: 1, 
-                    belt_id: 1,
-                    right_ring_id: 1,
-                    gloves_id: 1,
-                    boots_id: 1,
-                    relic_id: 1,
+                    head_id: 0,
+                    neck_id: 0,
+                    left_hand_id:  0,
+                    body_id: 0,
+                    right_hand_id: 0,
+                    left_ring_id: 0, 
+                    belt_id: 0,
+                    right_ring_id: 0,
+                    gloves_id: 0,
+                    boots_id: 0,
+                    relic_id: 0,
                 },
                 stats:{
                     armour: 1005,
@@ -390,12 +380,6 @@ export default {
                     }
                     for (let i = 0; i < json.length; i++) {
                         this.weapons.push(json[i])
-                        if (json[i].sub_id.item_types[0].name == 'Второстепенное') {
-                            this.right_hands.push(json[i])
-                        }
-                        else {
-                            this.left_hands.push(json[i])
-                        }
                     }
                 })
             return null
@@ -414,21 +398,6 @@ export default {
                     }
                     for (let i = 0; i < json.length; i++) {
                         this.armour.push(json[i])
-                        if (json[i].sub_id.name == 'Шлем') {
-                            this.heads.push(json[i])
-                        }
-                        else if (json[i].sub_id.name == 'Наручи') {
-                            this.gloves.push(json[i])
-                        }
-                        else if (json[i].sub_id.name == 'Ремень') {
-                            this.belts.push(json[i])
-                        }
-                        else if (json[i].sub_id.name == 'Нагрудник') {
-                            this.bodies.push(json[i])
-                        }
-                        else if (json[i].sub_id.name == 'Ботинки') {
-                            this.boots.push(json[i])
-                        }
                     }
                 })
             return null
@@ -447,15 +416,6 @@ export default {
                     }
                     for (let i = 0; i < json.length; i++) {
                         this.accessories.push(json[i])
-                        if (json[i].sub_id.name == 'Ожерелье') {
-                            this.necks.push(json[i])
-                        }
-                        else if (json[i].sub_id.name == 'Кольцо') {
-                            this.rings.push(json[i])
-                        }
-                        else if (json[i].sub_id.name == 'Реликвия') {
-                            this.relics.push(json[i])
-                        }
                     }
                 })
             return null
@@ -467,6 +427,7 @@ export default {
         this.get_armour()
         this.get_weapons()
         this.urlers = "http://localhost:3000/build/" + this.ids.id
+        console.log(this.armour[this.data_ids.equiped_ids.head_id].id)
     }
 }
 
