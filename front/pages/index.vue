@@ -36,10 +36,10 @@
                 <p class="text-xl font text-center">Урон в секунду</p>
                 <p class="text-xl font text-center">Автор</p>
         </div>
-            <BuildCardBig v-for="i in decoded.length" :league="decoded[i-1].name.top_inputs.cycle" :build_class="classes[i-1]" :build_class_name="decoded[i-1].name.top_inputs.class" 
+            <BuildCardBig v-for="i in decoded.length" :league="decoded[i-1].name.top_inputs.cycle" :build_class="classes[+decoded[i-1].class_id-1]" :build_class_name="decoded[i-1].name.top_inputs.class" 
                 :build_lvl="decoded[i-1].name.top_inputs.lvl"
                 :build_name="decoded[i-1].build_name" 
-                :build_ehp="+decoded[i-1].name.stats.hp*(+decoded[i-1].name.stats.armour)/10*(1+ +decoded[i-1].name.stats.phys_res/100)*(1+ +decoded[i-1].name.stats.elem_res/100)" 
+                :build_ehp="Math.round(+decoded[i-1].name.stats.hp*(+decoded[i-1].name.stats.armour)/10*(1+ +decoded[i-1].name.stats.phys_res/100)*(1+ +decoded[i-1].name.stats.elem_res/100))" 
                 :build_dps="(+decoded[i-1].name.stats.elem_damage+ +decoded[i-1].name.stats.phys_damage)*75" :id="i"
                 :build_author="decoded[i-1].user.name" :more="more" :selected = "selected" class="border-shine" @click="() => {selected = i; if(selected == i){more = true}else{more=false}}"></BuildCardBig>
         </div>
@@ -55,11 +55,12 @@ export default {
             selected: 0,
             icon_hover: 0,
             icon_click: 0,
-            classes: ['Antihrist', 'Bogatir', 'Bogolub', 'Zastrel', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich'],
-            classes_ru: ['Антихрист', 'Богатырь', 'Боголюб', 'Застрельщица', 'Налетчик', 'Богохульник', 'Скоморох', 'Язычница'],
+            classes: ['Bogatir', 'Antihrist', 'Bogolub', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich', 'Zastrel'],
+            classes_ru: ['Богатырь', 'Антихрист',  'Боголюб', 'Налетчик', 'Богохульник', 'Скоморох', 'Язычница', 'Застрельщица'],
             decoded:[
                 {
                     build_name: 'хуй',
+                    class_id: 1,
                     name: {
                         stats: {
                             armour: 0,
@@ -84,6 +85,7 @@ export default {
                 },
                 {
                     build_name: 'хуй',
+                    class_id: 1,
                     name: {
                         stats: {
                             armour: 0,
@@ -136,10 +138,9 @@ export default {
         },
     },
     beforeMount(){
-        this.xdd = 1
+        this.get_urls()
     },
     mounted(){
-        this.get_urls()
     }
 }
 </script>

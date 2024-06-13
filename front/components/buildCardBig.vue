@@ -15,15 +15,19 @@
                 Скрыть</div>
         </NuxtLink>
         <div class="dropdown-content" v-if="show" style="color: white;">
-            <NuxtLink class="card flex flex-row px-10 pb-10 pt-5 justify-between">
-                <div class="right flex flex-col">
-                    <div class="flex flex-col gap-2">
-                        <p class="text-4xl font">{{ build_name }}</p>
-                        <p class="text-2xl font" style="color: #C68200;">{{ league }}</p>
+            <NuxtLink class="card flex flex-row px-20 pb-10 pt-5 justify-between">
+                <div class="flex flex-col justify-between">
+                    <div class="right flex flex-col">
+                        <div class="flex flex-col gap-2">
+                            <p class="text-4xl font">{{ build_name }} от {{ build_author }}</p>
+                            <p class="text-2xl font" style="color: #C68200;">{{ league }}</p>
+                        </div>
+                        <p class="text-2xl font">Уровень: {{ build_lvl }}</p>
+                        <p class="text-2xl font">Класс: {{ build_class_name }}</p>
                     </div>
-                    <p class="text-2xl font">Уровень: {{ build_lvl }}</p>
-                    <p class="text-2xl font">Класс: {{ build_class_name }}</p>
+                    <button class="font font-create border-shine-create special-btn" style="width: 100%;">Подробнее</button>
                 </div>
+                
                 <img class="class-img" :src="`../img/classes/${build_class}/Medium.png`" alt="">
             </NuxtLink>
         </div>

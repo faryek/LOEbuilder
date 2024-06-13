@@ -716,7 +716,7 @@ export default {
             let credetentials = {
                 name: this.encoded,
                 build_name: this.build_info.name,
-                class_id: this.choose_class,
+                class_id: +this.choose_class+1,
             }
             fetch('http://127.0.0.1:8000/build/url_create', {
                 method: 'POST',
