@@ -1,26 +1,34 @@
 <template>
     <div class="flex flex-row justify-evenly">
-        <select name="" id="" class="selector border-shine" @change="filtering()">
-            <option value="-1" class="selector">Все</option>
-            <option value="0" class="selector">Первое бытие</option>
-            <option value="1" class="selector">Второе житие</option>
+        <select name="" id="" class="selector border-shine text-2xl" @change="filtering()">
+            <option value="-1" class="selector text-2xl">Все</option>
+            <option value="0" class="selector text-2xl">Первое бытие</option>
+            <option value="1" class="selector text-2xl">Второе житие</option>
         </select>
-        <select name="" id="" class="selector border-shine" @change="filtering()">
-            <option value="-1" class="selector">Все</option>
-            <option value="0" class="selector">Стартер</option>
-            <option value="1" class="selector">Эндгейм</option>
+        <select name="" id="" class="selector border-shine text-2xl" @change="filtering()">
+            <option value="-1" class="selector text-2xl">Все</option>
+            <option value="0" class="selector text-2xl">Стартер</option>
+            <option value="1" class="selector text-2xl">Эндгейм</option>
         </select>
-        <select name="" id="" class="selector border-shine" @change="filtering()">
-            <option value="-1" class="selector">Все</option>
-            <option value="0" class="selector">Боссинг</option>
-            <option value="1" class="selector">Маппинг</option>
+        <select name="" id="" class="selector border-shine text-2xl" @change="filtering()">
+            <option value="-1" class="selector text-2xl">Все</option>
+            <option value="0" class="selector text-2xl">Боссинг</option>
+            <option value="1" class="selector text-2xl">Маппинг</option>
         </select>
     </div>
     <div class="container character_selector mt-8" style="min-height: 8vw;">
         <div class="wrapper flex flex-row relative justify-between">
-            <button class="icon char_icon1 flex flex-col-reverse border-shine" v-for="i in 8" @click="() => {
-                icon_click = i
-                filtering(i)
+            <button class="icon flex flex-col-reverse border-shine" v-for="i in 8" @click="() => {
+                if (icon_click == 0){
+                    icon_click = i
+                }
+                else if (icon_click == i){
+                    icon_click = 0
+                }
+                else {
+                    icon_click = i
+                }
+                filtering()
             }"
                 @mouseenter="icon_hover = i" @mouseleave="icon_hover = 0">
                 <img :src="`../img/classes/${classes[i - 1]}/Small.png`" alt="" class="icon-image">
@@ -32,13 +40,13 @@
         <div class="card-column px-4" style="display: flex; flex-direction: column;">
             <div class="card-block w-100 px-5"
                 style="display: flex; flex-direction: row; justify-content: space-between;">
-                <p class="text-xl font text-center">Лига</p>
-                <p class="text-xl font text-center">Название</p>
-                <p class="text-xl font text-center">Уровень</p>
-                <p class="text-xl font text-center">Класс</p>
-                <p class="text-xl font text-center">Эфф. здоровье</p>
-                <p class="text-xl font text-center">Урон в секунду</p>
-                <p class="text-xl font text-center">Автор</p>
+                <p class="text-2xl font text-center">Лига</p>
+                <p class="text-2xl font text-center">Название</p>
+                <p class="text-2xl font text-center">Уровень</p>
+                <p class="text-2xl font text-center">Класс</p>
+                <p class="text-2xl font text-center">Эфф. здоровье</p>
+                <p class="text-2xl font text-center">Урон в секунду</p>
+                <p class="text-2xl font text-center">Автор</p>
         </div>
             <BuildCardBig v-for="i in decoded.length" 
                 :league="decoded[i-1].name[0].top_inputs.cycle" 
@@ -71,7 +79,7 @@ export default {
                 cycle: '',
                 type: '',
                 purpose: '',
-                class: ''
+                class_id: ''
             },
             decoded:[
                 {
@@ -160,7 +168,7 @@ export default {
                 })
             return null
         },
-        filtering(n){
+        filtering(){
 
                 this.filter.cycle = document.getElementById('cycle').value
 
@@ -170,7 +178,10 @@ export default {
 
                 this.filter.purpose = document.getElementById('purpose').value
 
-                this.filter.class = n
+                this.filter.class = this.icon_click
+        },
+        noClassFilter(){
+
         }
     },
     beforeMount(){

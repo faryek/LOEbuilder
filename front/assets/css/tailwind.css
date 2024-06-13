@@ -36,12 +36,6 @@
         border-color: #9b7e41 !important;
         box-shadow: 0 0 20px 0 #9b7e41;
     }
-    .border-shine:focus {
-        border: 3px solid;
-        border-radius: 25px;
-        border-color: #9b7e41 !important;
-        box-shadow: 0 0 20px 0 #9b7e41;
-    }
     .selector:focus{
         border: 3px solid;
         border-radius: 25px;
