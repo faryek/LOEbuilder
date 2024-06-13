@@ -369,7 +369,7 @@ export default {
             classes: [{ "id": 1, "name": "Богатырь", "main_atr": "Сила", "base_atrs": "60, 20, 20", "base_hp": 1000, "base_mp": 50, "base_armour": 50, "base_evade": 10, "base_elem_res": 30, "base_phys_res": 50 }],
             classes_en: ['Bogatir', 'Antihrist', 'Bogolub', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich', 'Zastrel'],
             classes_ru: ['Богатырь', 'Антихрист', 'Боголюб', 'Налётчик', 'Богохульник', 'Скоморох', 'Язычница', 'Застрельщица'],
-            cycles: ['Первое житие', 'Второе бытие'],
+            cycles: ['Первое бытие', 'Второе житие'],
             types: ['Стартер', 'Эндгейм'],
             purposes: ['Маппинг', 'Боссинг'],
             error: false,

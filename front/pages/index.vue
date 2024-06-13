@@ -72,7 +72,7 @@ export default {
             icon_click: 0,
             classes: ['Bogatir', 'Antihrist', 'Bogolub', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich', 'Zastrel'],
             classes_ru: ['Богатырь', 'Антихрист',  'Боголюб', 'Налетчик', 'Богохульник', 'Скоморох', 'Язычница', 'Застрельщица'],
-            cycles: ['Первое житие', 'Второе бытие'],
+            cycles: ['Первое бытие', 'Второе житие'],
             types: ['Стартер', 'Эндгейм'],
             purposes: ['Маппинг', 'Боссинг'],
             filter: {
