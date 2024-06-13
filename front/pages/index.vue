@@ -23,7 +23,7 @@
                     icon_click = i
                 }
                 else if (icon_click == i){
-                    icon_click = 0
+                    icon_click = 9
                 }
                 else {
                     icon_click = i
@@ -186,6 +186,7 @@ export default {
                 this.filter.purpose = ''
             }
             this.filter.class_id = this.icon_click
+            console.log(this.filter)
             this.get_urls_filtered()
         },
         get_urls_filtered() {
