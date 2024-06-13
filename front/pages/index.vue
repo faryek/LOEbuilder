@@ -1,16 +1,16 @@
 <template>
     <div class="flex flex-row justify-evenly">
-        <select name="" id="" class="selector border-shine text-2xl" @change="filtering()">
+        <select name="" id="cycle" class="selector border-shine text-2xl" @change="filtering()">
             <option value="-1" class="selector text-2xl">Все</option>
             <option value="0" class="selector text-2xl">Первое бытие</option>
             <option value="1" class="selector text-2xl">Второе житие</option>
         </select>
-        <select name="" id="" class="selector border-shine text-2xl" @change="filtering()">
+        <select name="" id="type" class="selector border-shine text-2xl" @change="filtering()">
             <option value="-1" class="selector text-2xl">Все</option>
             <option value="0" class="selector text-2xl">Стартер</option>
             <option value="1" class="selector text-2xl">Эндгейм</option>
         </select>
-        <select name="" id="" class="selector border-shine text-2xl" @change="filtering()">
+        <select name="" id="purpose" class="selector border-shine text-2xl" @change="filtering()">
             <option value="-1" class="selector text-2xl">Все</option>
             <option value="0" class="selector text-2xl">Боссинг</option>
             <option value="1" class="selector text-2xl">Маппинг</option>
@@ -169,46 +169,23 @@ export default {
             return null
         },
         filtering(){
-
-                this.filter.cycle = document.getElementById('cycle').value
-
-
-                this.filter.type = document.getElementById('type').value
-
-
-                this.filter.purpose = document.getElementById('purpose').value
-
-                this.filter.class = this.icon_click
-
-                this.get_urls_filtered()
-        },
-        noClassFilter(){
-
-        },
-        get_urls_filtered(){
-            fetch('http://127.0.0.1:8000/urls', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(this.filter),
-            }).then(response => response.json())
-                .then(json => {
-                    if (json.detail) {
-                        this.error = true
-                        return null
-                    }
-                    this.decoded = json
-                    let encoded = []
-                    for(let i = 0;i < json.length;i++){
-                        json[i].name = json[i].name.split('HereWeAre')
-                        encoded.push(json[i].name)
-                        encoded[i][0] = JSON.parse(encoded[i][0])
-                        this.decoded[i].name = encoded[i]
-                    }
-                    console.log(this.decoded)
-                })
-            return null
+            if (document.getElementById('cycle').value != -1)
+            {
+                this.filter.cycle = this.cycles[document.getElementById('cycle').value]
+            } else {
+                this.filter.cycle = ''
+            }
+            if (document.getElementById('type').value != -1){
+                this.filter.type = this.types[document.getElementById('type').value]
+            } else {
+                this.filter.type = ''
+            }
+            if (document.getElementById('purpose').value != -1){
+                this.filter.purpose = this.purposes[document.getElementById('purpose').value]
+            } else {
+                this.filter.purpose = ''
+            }
+            this.filter.class = this.icon_click
         }
     },
     beforeMount(){
