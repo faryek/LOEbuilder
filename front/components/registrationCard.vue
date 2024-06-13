@@ -1,6 +1,7 @@
 <template>
     <div class="reg-form container py-10 px-10">
         <p class="font text-4xl">Регистрация</p>
+        <p v-if="user_exists == true" class="font text-2xl">Пользователь с таким именем уже существует!</p>
         <div class="reg-row">
             <p class="font text-2xl">Логин</p>
             <input type="text" class="font pl-1 text-2xl" v-model="login">
