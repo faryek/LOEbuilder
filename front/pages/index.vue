@@ -79,7 +79,7 @@ export default {
                 'cycle': '',
                 'type': '',
                 'purpose': '',
-                'class_id': 0
+                'class_id': 1
             },
             decoded:[
                 {
@@ -185,8 +185,35 @@ export default {
             } else {
                 this.filter.purpose = ''
             }
-            this.filter.class = this.icon_click
-        }
+            this.filter.class_id = this.icon_click
+            this.get_urls_filtered()
+        },
+        get_urls_filtered() {
+            fetch('http://127.0.0.1:8000/urls', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(this.filter)
+            }).then(response => response.json())
+                .then(json => {
+                    if (json.detail) {
+                        this.error = true
+                        return null
+                    }
+                    this.decoded = json
+                    let encoded = []
+                    for(let i = 0;i < json.length;i++){
+                        json[i].name = json[i].name.split('HereWeAre')
+                        encoded.push(json[i].name)
+                        // console.log(encoded[i])
+                        encoded[i][0] = JSON.parse(encoded[i][0])
+                        this.decoded[i].name = encoded[i]
+                    }
+                    console.log(this.decoded)
+                })
+            return null
+        },
     },
     beforeMount(){
         this.get_urls()
