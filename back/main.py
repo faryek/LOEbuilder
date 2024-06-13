@@ -144,6 +144,9 @@ async def url_create(url_input:pyd.URLCreate,username=Depends(auth_handler.auth_
     if not user_db:
         raise HTTPException(404,'User not found')
     
+    if url_input.name == '':
+        raise HTTPException(404,detail='Error')
+    
     if url_input.build_name == '':
         raise HTTPException(404,detail='Enter build name')
 
