@@ -18,6 +18,57 @@ app = FastAPI()
 
 auth_handler = AuthHandler()
 
+@app.post('/urls', response_model=List[pyd.URLSSchema])
+async def urls_sort(user_input:pyd.URLSortBase,db:Session=Depends(get_db)):
+    url_db = db.query(models.URL).all()
+
+    sorted_array = []
+    cycles = []
+    classes = []
+    types = []
+    purposes = []
+
+    if user_input.cycle == '':
+        cycles = ['Первое бытие','Второе житие']
+    else:
+        cycles.append(user_input.cycle)
+
+    if user_input.class_id== 0:
+        classes = [1,2,3,4,5,6,7,8]
+    else:
+        classes.append(user_input.class_id)
+    
+    if user_input.type == '':
+        types = ['Стартер','Эндгейм']
+    else:
+        types.append(user_input.type)
+    
+    if user_input.purpose == '':
+        purposes = ['Боссинг','Маппинг']
+    else:
+        purposes.append(user_input.purpose)
+
+    for i in range(len(url_db)):
+        for_decode = url_db[i].name.replace('%slash%','/')
+        decoded = base64.b64decode(for_decode)
+        my_json = decoded.decode('utf-8').replace("'", '"')
+        parsed = json.loads(my_json)
+        print(parsed['top_inputs'])
+        print(url_db[i].class_id)
+        my_json =my_json + 'HereWeAre'
+        my_json = my_json + url_db[i].name
+        url_db[i].name = my_json
+        
+        if url_db[i].class_id in classes and parsed['top_inputs']['cycle'] in cycles and parsed['top_inputs']['type'] in types and parsed['top_inputs']['purpose'] in purposes:
+            sorted_array.append(url_db[i])
+
+            
+    return sorted_array
+
+
+
+
+
 @app.get('/urls_user', response_model=List[pyd.URLSSchema])
 async def get_urls(username=Depends(auth_handler.auth_wrapper),db:Session=Depends(get_db)):
     user_db = db.query(models.User).filter(
@@ -35,7 +86,6 @@ async def get_urls(username=Depends(auth_handler.auth_wrapper),db:Session=Depend
 
         url_db[i].name = my_json
     return url_db
-
 
 @app.get("/armour_alt", response_model=List[pyd.ArmourSchema])
 async def get_armour(db: Session = Depends(get_db)):
@@ -99,7 +149,6 @@ async def check_url(user_input: pyd.URLCheckBase,db:Session=Depends(get_db)):
             'stats':data['stats'],
             'top_inputs':top_inputs,
             }
-        
 
 @app.post('/register', response_model=pyd.UserCreate)
 async def user_reg(user_input: pyd.UserCreateReg, db: Session = Depends(get_db)):
