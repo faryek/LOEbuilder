@@ -1,23 +1,35 @@
 <template>
     <div class="flex flex-row justify-evenly">
-        <select name="" id="" class="selector border-shine">
-            <option value="Мать" class="selector">Все</option>
-            <option value="Мать" class="selector">не все</option>
-            <option value="Мать" class="selector">Светка</option>
-            <option value="Мать" class="selector">Колька</option>
+        <select name="" id="" class="selector border-shine text-2xl" @change="filtering()">
+            <option value="-1" class="selector text-2xl">Все</option>
+            <option value="0" class="selector text-2xl">Первое бытие</option>
+            <option value="1" class="selector text-2xl">Второе житие</option>
         </select>
-        <select name="" id="" class="selector border-shine">
-            <option value="Мать" class="selector">Стартер</option>
-            <option value="Мать" class="selector">Эндгейм</option>
+        <select name="" id="" class="selector border-shine text-2xl" @change="filtering()">
+            <option value="-1" class="selector text-2xl">Все</option>
+            <option value="0" class="selector text-2xl">Стартер</option>
+            <option value="1" class="selector text-2xl">Эндгейм</option>
         </select>
-        <select name="" id="" class="selector border-shine">
-            <option value="Мать" class="selector">Боссинг</option>
-            <option value="Мать" class="selector">Маппинг</option>
+        <select name="" id="" class="selector border-shine text-2xl" @change="filtering()">
+            <option value="-1" class="selector text-2xl">Все</option>
+            <option value="0" class="selector text-2xl">Боссинг</option>
+            <option value="1" class="selector text-2xl">Маппинг</option>
         </select>
     </div>
     <div class="container character_selector mt-8" style="min-height: 8vw;">
         <div class="wrapper flex flex-row relative justify-between">
-            <button class="icon char_icon1 flex flex-col-reverse border-shine" v-for="i in 8" @click="icon_click = i"
+            <button class="icon flex flex-col-reverse border-shine" v-for="i in 8" @click="() => {
+                if (icon_click == 0){
+                    icon_click = i
+                }
+                else if (icon_click == i){
+                    icon_click = 0
+                }
+                else {
+                    icon_click = i
+                }
+                filtering()
+            }"
                 @mouseenter="icon_hover = i" @mouseleave="icon_hover = 0">
                 <img :src="`../img/classes/${classes[i - 1]}/Small.png`" alt="" class="icon-image">
                 <p v-if="icon_hover == i || icon_click == i" class="icon-text font">{{ classes_ru[i - 1] }}</p>
@@ -28,17 +40,23 @@
         <div class="card-column px-4" style="display: flex; flex-direction: column;">
             <div class="card-block w-100 px-5"
                 style="display: flex; flex-direction: row; justify-content: space-between;">
-                <p class="text-xl font text-center">Лига</p>
-                <p class="text-xl font text-center">Название</p>
-                <p class="text-xl font text-center">Уровень</p>
-                <p class="text-xl font text-center">Класс</p>
-                <p class="text-xl font text-center">Эфф. здоровье</p>
-                <p class="text-xl font text-center">Урон в секунду</p>
-                <p class="text-xl font text-center">Дата создания</p>
+                <p class="text-2xl font text-center">Лига</p>
+                <p class="text-2xl font text-center">Название</p>
+                <p class="text-2xl font text-center">Уровень</p>
+                <p class="text-2xl font text-center">Класс</p>
+                <p class="text-2xl font text-center">Эфф. здоровье</p>
+                <p class="text-2xl font text-center">Урон в секунду</p>
+                <p class="text-2xl font text-center">Автор</p>
         </div>
-            <BuildCardBig v-for="i in 8" :league="'Первое бытие'" :build_class="classes[i-1]" :build_class_name="classes_ru[i - 1]" :build_lvl="100"
-                :build_name="'Билд ' + `${i}`" :build_ehp="'10000'" :build_dps="'10кк'" :id="i"
-                :build_date="'09.11.2001'" :more="more" :selected = "selected" class="border-shine" @click="() => {selected = i; if(selected == i){more = true}else{more=false}}"></BuildCardBig>
+            <BuildCardBig v-for="i in decoded.length" 
+                :league="decoded[i-1].name[0].top_inputs.cycle" 
+                :build_class="classes[+decoded[i-1].class_id-1]" 
+                :build_class_name="decoded[i-1].name[0].top_inputs.class" 
+                :build_lvl="decoded[i-1].name[0].top_inputs.lvl"
+                :build_name="decoded[i-1].build_name" 
+                :build_ehp="Math.round(+decoded[i-1].name[0].stats.hp*(+decoded[i-1].name[0].stats.armour)/10*(1+ +decoded[i-1].name[0].stats.phys_res/100)*(1+ +decoded[i-1].name[0].stats.elem_res/100))" 
+                :build_dps="(+decoded[i-1].name[0].stats.elem_damage+ +decoded[i-1].name[0].stats.phys_damage)*75" :id="i"
+                :build_author="decoded[i-1].user.name" :more="more" :selected = "selected" :url="decoded[i-1].name[1]" class="border-shine" @click="() => {selected = i; if(selected == i){more = true}else{more=false}}"></BuildCardBig>
         </div>
     </div>
 </template>
@@ -52,9 +70,76 @@ export default {
             selected: 0,
             icon_hover: 0,
             icon_click: 0,
-            classes: ['Antihrist', 'Bogatir', 'Bogolub', 'Zastrel', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich'],
-            classes_ru: ['Антихрист', 'Богатырь', 'Боголюб', 'Застрельщица', 'Налетчик', 'Богохульник', 'Скоморох', 'Язычница'],
-            decoded:[]
+            classes: ['Bogatir', 'Antihrist', 'Bogolub', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich', 'Zastrel'],
+            classes_ru: ['Богатырь', 'Антихрист',  'Боголюб', 'Налетчик', 'Богохульник', 'Скоморох', 'Язычница', 'Застрельщица'],
+            cycles: ['Первое житие', 'Второе бытие'],
+            types: ['Стартер', 'Эндгейм'],
+            purposes: ['Маппинг', 'Боссинг'],
+            filter: {
+                cycle: '',
+                type: '',
+                purpose: '',
+                class_id: ''
+            },
+            decoded:[
+                {
+                    build_name: 'хуй',
+                    class_id: 1,
+                    name: [
+                        {
+                            stats: {
+                                armour: 0,
+                                elem_damage: 0,
+                                elem_res: 0,
+                                phys_damage: 0,
+                                phys_res: 0,
+                                hp: 0,
+                            },
+                            top_inputs: {
+                                class: 'Танцовщица',
+                                cycle: 'her',
+                                lvl: '1',
+                                name: 'hui',
+                                purpose: 'sosat',
+                                type: 'zalupa'
+                            }
+                        },
+                        '123'
+                    ],
+                    user: {
+                        name: 'down'
+                    }
+                },
+                {
+                    build_name: 'хуй',
+                    class_id: 1,
+                    name: [
+                        {
+                            stats: {
+                                armour: 0,
+                                elem_damage: 0,
+                                elem_res: 0,
+                                phys_damage: 0,
+                                phys_res: 0,
+                                hp: 0,
+                            },
+                            top_inputs: {
+                                class: 'Танцовщица',
+                                cycle: 'her',
+                                lvl: '1',
+                                name: 'hui',
+                                purpose: 'sosat',
+                                type: 'zalupa'
+                            }
+                        },
+                        '123'
+                    ],
+                    user: {
+                        name: 'down'
+                    }
+                },
+            ],
+            xdd: 0
         }
     },
     methods: {
@@ -79,14 +164,30 @@ export default {
                         encoded[i][0] = JSON.parse(encoded[i][0])
                         this.decoded[i].name = encoded[i]
                     }
-                    // console.log(encoded)
                     console.log(this.decoded)
                 })
             return null
         },
+        filtering(){
+
+                this.filter.cycle = document.getElementById('cycle').value
+
+
+                this.filter.type = document.getElementById('type').value
+
+
+                this.filter.purpose = document.getElementById('purpose').value
+
+                this.filter.class = this.icon_click
+        },
+        noClassFilter(){
+
+        }
     },
     beforeMount(){
         this.get_urls()
+    },
+    mounted(){
     }
 }
 </script>
