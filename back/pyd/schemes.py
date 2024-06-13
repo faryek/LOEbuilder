@@ -43,6 +43,7 @@ class AccessorySchema(AccessoryBase):
 
 
 
+
 # # Схемы включают в себя ссылки на другие сущности для вложеного вывода
 # # их нужно выносить отдельно, чтобы избежать рекурсии в импорте
 # class CategorySchema(CategoryBase):
