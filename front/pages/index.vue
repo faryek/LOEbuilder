@@ -185,7 +185,7 @@ export default {
             } else {
                 this.filter.purpose = ''
             }
-            this.filter.class = this.icon_click
+            this.filter.class_id = this.icon_click
         }
     },
     beforeMount(){
