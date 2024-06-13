@@ -1,16 +1,16 @@
 <template>
     <div class="flex flex-row justify-evenly">
-        <select name="" id="" class="selector border-shine text-2xl" @change="filtering()">
+        <select name="" id="cycle" class="selector border-shine text-2xl" @change="filtering()">
             <option value="-1" class="selector text-2xl">Все</option>
             <option value="0" class="selector text-2xl">Первое бытие</option>
             <option value="1" class="selector text-2xl">Второе житие</option>
         </select>
-        <select name="" id="" class="selector border-shine text-2xl" @change="filtering()">
+        <select name="" id="type" class="selector border-shine text-2xl" @change="filtering()">
             <option value="-1" class="selector text-2xl">Все</option>
             <option value="0" class="selector text-2xl">Стартер</option>
             <option value="1" class="selector text-2xl">Эндгейм</option>
         </select>
-        <select name="" id="" class="selector border-shine text-2xl" @change="filtering()">
+        <select name="" id="purpose" class="selector border-shine text-2xl" @change="filtering()">
             <option value="-1" class="selector text-2xl">Все</option>
             <option value="0" class="selector text-2xl">Боссинг</option>
             <option value="1" class="selector text-2xl">Маппинг</option>
