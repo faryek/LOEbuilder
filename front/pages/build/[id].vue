@@ -367,7 +367,7 @@ export default {
         })
         },
         get_weapons() {
-            fetch('http://127.0.0.1:8000/weapons_alt', {
+            fetch('http://127.0.0.1:8000/weapons', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -385,7 +385,7 @@ export default {
             return null
         },
         get_armour() {
-            fetch('http://127.0.0.1:8000/armour_alt', {
+            fetch('http://127.0.0.1:8000/armour', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -403,7 +403,7 @@ export default {
             return null
         },
         get_accessories() {
-            fetch('http://127.0.0.1:8000/accessory_alt', {
+            fetch('http://127.0.0.1:8000/accessory', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

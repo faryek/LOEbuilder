@@ -44,14 +44,18 @@
                 <p class="text-2xl w-max">Создать новый билд!</p>
             </NuxtLink>
         </div>
-        <div class="container flex flex-row flex-wrap justify-between gap-y-10">
-            <BuildCard v-for="i in decoded.length" 
+        <div class="container flex flex-row flex-wrap justify-start gap-y-10 gap-x-5">
+            <BuildCard v-for="i in decoded.length"
+            :id="decoded[i-1].id" 
             :league="decoded[i-1].name[0].top_inputs.cycle" 
             :build_class="classes[+decoded[i-1].class_id-1]" 
             :build_class_name="decoded[i-1].name[0].top_inputs.class" 
             :build_lvl="decoded[i-1].name[0].top_inputs.lvl"
             :build_name="decoded[i-1].build_name"
             :url="decoded[i-1].name[1]"
+            @deleted="()=>{
+                filtering()
+            }"
             ></BuildCard>
         </div>
     </div>
@@ -64,7 +68,7 @@ export default {
             more: false,
             selected: 0,
             icon_hover: 0,
-            icon_click: 0,
+            icon_click: 9,
             cycles: ['Первое бытие', 'Второе житие'],
             types: ['Стартер', 'Эндгейм'],
             purposes: ['Маппинг', 'Боссинг'],
@@ -72,7 +76,7 @@ export default {
                 "cycle": "",
                 "type": "",
                 "purpose": "",
-                "class_id": 0
+                "class_id": 9
             },
             error: false,
             authorized: false,
@@ -80,6 +84,7 @@ export default {
             classes_ru: ['Богатырь', 'Антихрист',  'Боголюб', 'Налетчик', 'Богохульник', 'Скоморох', 'Язычница', 'Застрельщица'],
             decoded:[
                 {
+                    id: 0,
                     build_name: 'хуй',
                     class_id: 1,
                     name: [
@@ -204,7 +209,7 @@ export default {
             this.get_urls_filtered(token)
         },
         get_urls_filtered(token) {
-            fetch('http://127.0.0.1:8000/urls_user_da', {
+            fetch('http://127.0.0.1:8000/urls_user', {
                 method: 'POST',
                 headers: {
                     Authorization: `Bearer ${token}`,

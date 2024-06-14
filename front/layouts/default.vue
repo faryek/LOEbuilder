@@ -25,9 +25,6 @@
                         <li>
                             <NuxtLink to="/build/" class="text-2xl fonted">Мои билды</NuxtLink>
                         </li>
-                        <li>
-                            <NuxtLink to="/guide" class="text-2xl fonted">Руководство</NuxtLink>
-                        </li>
                     </ul>
                     <div class="flex gap-4">
                         <button v-if="!logined" class="text-2xl fonted login" @click="() => { reg = true; back = true }">
@@ -94,6 +91,7 @@ export default {
             back: false,
             logined: false,
             username: '',
+            email: '',
         }
     },
     methods:{
@@ -112,6 +110,7 @@ export default {
                     else{
                         this.logined= true
                         this.username = json.username
+                        this.email = json.email
                     }
                 })
             return null
