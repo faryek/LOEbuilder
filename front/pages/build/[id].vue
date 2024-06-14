@@ -1,29 +1,31 @@
 <template>
     <BuildError v-if="error"></BuildError>
     <div v-if="!error">
-        <div v-if="!error" class="container flex flex-col" @change="addButton()">
+        <div v-if="!error" class="container flex flex-col">
             <div class="top border-shine-create flex flex-col px-10 py-10 gap-10 justify-evenly">
-                <div class="flex flex-row justify-evenly gap-10">
+                <div class="build-info flex flex-row justify-evenly gap-10">
                     <img :src="`../img/classes/${data_ids.top_inputs[6]}/Medium.png`" class="class-img" alt="">
-                    <div class="flex flex-col justify-evenly col">
-                        <p class="font font-create text-center">Цикл: {{data_ids.top_inputs[1]}}</p>
-                        <p class="font font-create text-center">Класс: {{data_ids.top_inputs[0]}}</p>
-                        <div class="flex flex-row gap-5 justify-center">
-                            <p class="font font-create text-center">Уровень: </p>
-                            <p class="font font-create text-center">{{data_ids.top_inputs[2]}}</p>
+                    <div class="build-info-sub flex flex-row justify-evenly gap-10">
+                        <div class="flex flex-col justify-evenly col">
+                            <p class="font font-create text-center">Цикл: {{data_ids.top_inputs[1]}}</p>
+                            <p class="font font-create text-center">Класс: {{data_ids.top_inputs[0]}}</p>
+                            <div class="flex flex-row gap-5 justify-center level-flex">
+                                <p class="font font-create text-center">Уровень: </p>
+                                <p class="font font-create text-center">{{data_ids.top_inputs[2]}}</p>
+                            </div>
+                            <p class="font font-create text-center link-text">Ссылка на билд</p>
                         </div>
-                        <p class="font font-create text-center">Ссылка на билд</p>
-                    </div>
-                    <div class="flex flex-col justify-evenly col">
-                        <p class="font font-create text-center">Название: {{data_ids.top_inputs[3]}}</p>
-                        <p class="font font-create text-center">Тип: {{data_ids.top_inputs[5]}}</p>
-                        <p class="font font-create text-center">Назначение: {{data_ids.top_inputs[4]}}</p>
-                        <input type="text" class="font font-create input-field px-4 selector selector-create border-shine" placeholder="" v-model="urlers">
+                        <div class="flex flex-col justify-evenly col">
+                            <p class="font font-create text-center build-name">Название: {{data_ids.top_inputs[3]}}</p>
+                            <p class="font font-create text-center">Тип: {{data_ids.top_inputs[5]}}</p>
+                            <p class="font font-create text-center">Назначение: {{data_ids.top_inputs[4]}}</p>
+                            <input type="text" class="font font-create input-field px-4 selector selector-create border-shine" placeholder="" v-model="urlers">
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="mid flex flex-row justify-center mt-5 gap-10">
-                <div class="border-shine-create p-10" style="width: 30%;">
+                <div class="panel border-shine-create p-10" style="width: 30%;">
                     <div class="item-col flex flex-col gap-2">
                         <div class="item-row flex flex-row justify-center gap-2">
                         <div class="">
@@ -219,7 +221,7 @@
                     </div>
                 </div>
                 
-                <div class="border-shine-create p-10" style="width: 30%;">
+                <div class="panel border-shine-create p-10" style="width: 30%;">
                     <div class="flex flex-col justify-evenly" style="height: 100%;">
                         <div class="stat-row flex flex-row justyfy-between">
                             <p class="text-xl stat-name font">Аттрибуты</p>
@@ -515,6 +517,45 @@ export default {
     border-radius: 100% !important;
     border-color: #9b7e41 !important;
     box-shadow: 0 0 20px 0 #9b7e41;
+}
+
+@media screen and (max-width: 1530px){
+    .build-name{
+        display: none;
+    }
+    .link-text{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1280px){
+    .col{
+        width: 100%;
+    }
+    .build-info{
+        flex-wrap: wrap;
+    }
+    .selector{
+        border: 3px solid;
+        border-radius: 25px;
+        border-color: #9b7e41 !important;
+        box-shadow: 0 0 20px 0 #9b7e41;
+    }
+    .mid{
+        flex-direction: column;
+    }
+    .panel{
+        width: 100% !important;
+    }
+}
+@media screen and (max-width: 1024px){
+    .build-info-sub{
+        width: 100%;
+        flex-direction: column;
+    }
+    .selector{
+        width: 100%;
+    }
 }
 </style>
 

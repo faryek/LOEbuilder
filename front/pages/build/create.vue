@@ -4,41 +4,43 @@
     <CommonError v-if="error_on_choose"></CommonError>
     <div v-if="authorized && !error" class="container flex flex-col" @change="addButton()">
         <div class="top border-shine-create flex flex-col px-10 py-10 gap-10 justify-evenly">
-            <div class="flex flex-row justify-evenly gap-10">
+            <div class="build-info flex flex-row justify-evenly gap-10">
                 <img :src="`../img/classes/${classes_en[choose_class]}/Medium.png`" class="class-img" alt="">
-                <div class="flex flex-col justify-evenly col">
-                    <select class="selector selector-create border-shine" name="" id="cycle">
-                        <option value="0" class="selector selector-create">Первое бытие</option>
-                        <option value="1" class="selector selector-create">Второе житие</option>
-                    </select>
-                    <select name="" id="class" class="selector selector-create border-shine" @change="() => {get_class()}">
-                        <option v-for="i in classes.length" :value="i - 1" class="selector selector-create">{{classes[i - 1].name }}</option>
-                    </select>
-                    <div class="flex flex-row gap-5">
-                        <p class="font font-create">Уровень:</p>
-                        <input 
-                            type="text"
-                            class="font font-create input-field px-4 selector selector-create border-shine"
-                            placeholder="100"
-                            v-model="level" 
-                            @change="set_level_stats()">
+                <div class="build-info-sub flex flex-row justify-evenly gap-10">
+                    <div class="flex flex-col justify-evenly col">
+                        <select class="selector selector-create border-shine" name="" id="cycle">
+                            <option value="0" class="selector selector-create">Первое бытие</option>
+                            <option value="1" class="selector selector-create">Второе житие</option>
+                        </select>
+                        <select name="" id="class" class="selector selector-create border-shine" @change="() => {get_class()}">
+                            <option v-for="i in classes.length" :value="i - 1" class="selector selector-create">{{classes[i - 1].name }}</option>
+                        </select>
+                        <div class="level-flex flex flex-row gap-5">
+                            <p class="font font-create level-text pl-4">Уровень:</p>
+                            <input 
+                                type="text"
+                                class="font font-create input-field px-4 selector selector-create border-shine"
+                                placeholder="100"
+                                v-model="level" 
+                                @change="set_level_stats()">
+                        </div>
+                        <p class="font font-create text-center link-text">Ссылка на билд</p>
                     </div>
-                    <p class="font font-create text-center">Ссылка на билд</p>
-                </div>
-                <div class="flex flex-col justify-evenly col">
-                    <input type="text" class="font font-create input-field px-4 selector selector-create border-shine" id="name"
-                        placeholder="Фулл понос" v-model="build_info.name">
-                    <select name="" id="type" class="selector selector-create border-shine">
-                        <option value="0" class="selector selector-create">Стартер</option>
-                        <option value="1" class="selector selector-create">Эндгейм</option>
-                    </select>
-                    <select name="" id="purpose" class="selector selector-create border-shine">
-                        <option value="0" class="selector selector-create">Маппинг</option>
-                        <option value="1" class="selector selector-create">Боссинг</option>
-                    </select>
-                    <input type="text" class="font font-create input-field px-4 selector selector-create border-shine"
-                        placeholder="" v-model="urlers">
-                </div>
+                    <div class="flex flex-col justify-evenly col">
+                        <input type="text" class="font font-create input-field px-4 selector selector-create border-shine" id="name"
+                            placeholder="Фулл понос" v-model="build_info.name">
+                        <select name="" id="type" class="selector selector-create border-shine">
+                            <option value="0" class="selector selector-create">Стартер</option>
+                            <option value="1" class="selector selector-create">Эндгейм</option>
+                        </select>
+                        <select name="" id="purpose" class="selector selector-create border-shine">
+                            <option value="0" class="selector selector-create">Маппинг</option>
+                            <option value="1" class="selector selector-create">Боссинг</option>
+                        </select>
+                        <input type="text" class="font font-create input-field px-4 selector selector-create border-shine"
+                            placeholder="" v-model="urlers">
+                    </div>
+                </div> 
             </div>
             <div class="flex flex-row justify-between">
                 <ul v-auto-animate style="width: 45%;">
@@ -71,7 +73,7 @@
             </div>
         </div>
         <div class="mid flex flex-row justify-between mt-5 gap-10">
-            <div class="border-shine-create p-10" style="width: 30%;">
+            <div class="panel items border-shine-create p-10" style="width: 30%;">
                 <div class="item-col flex flex-col gap-2">
                     <div class="item-row flex flex-row justify-center gap-2">
                         <div class="">
@@ -253,7 +255,7 @@
                     </div>
                 </div>
             </div>
-            <div class="border-shine-create p-10" style="width: 40%;">
+            <div class="panel items-more border-shine-create p-10" style="width: 40%;">
                 <div v-for="i in 11" v-show="choose_item == i" class="container flex flex-wrap p-10 gap-5">
                     <img v-for="j in slots[choose_item].length" v-show="j != 1" class="border-shine item-img slot"
                         :src="`..${slots[choose_item][j - 1].image}`" alt="" @click="get_item(j - 1)">
@@ -276,7 +278,7 @@
                     </div>
                 </div>
             </div>
-            <div class="border-shine-create p-10" style="width: 30%;">
+            <div class="panel stats border-shine-create p-10" style="width: 30%;">
                 <div class="flex flex-col justify-evenly" style="height: 100%;">
                     <div class="stat-row flex flex-row justyfy-between">
                         <p class="text-xl stat-name font">Аттрибуты</p>
@@ -994,6 +996,42 @@ export default {
     border-radius: 100% !important;
     border-color: #9b7e41 !important;
     box-shadow: 0 0 20px 0 #9b7e41;
+}
+
+@media screen and (max-width: 1024px){
+    .col{
+        width: 100%;
+    }
+    .link-text{
+        display: none;
+    }
+    .build-info{
+        flex-wrap: wrap;
+    }
+    .selector{
+        border: 3px solid;
+        border-radius: 25px;
+        border-color: #9b7e41 !important;
+        box-shadow: 0 0 20px 0 #9b7e41;
+    }
+    .mid{
+        flex-direction: column;
+    }
+    .panel{
+        width: 100% !important;
+    }
+}
+@media screen and (max-width: 770px){
+    .build-info-sub{
+        width: 100%;
+    }
+    .selector{
+        width: 100%;
+    }
+    .level-flex{
+        flex-direction: column;
+        gap: 0;
+    }
 }
 </style>
 
