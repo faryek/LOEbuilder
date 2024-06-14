@@ -41,7 +41,7 @@
                                 {{ username }}
                             </button>
                             <div v-if="show" class="flex flex-col justify-start absolute bg-black bg-opacity-80 p-2" @mouseleave="show = false">
-                                <button v-if="logined" class="text-2xl fonted login dropdown-label text-left">Профиль</button>
+                                <button v-if="logined" class="text-2xl fonted login dropdown-label text-left">{{email}}</button>
                                 <button v-if="logined" class="text-2xl fonted login dropdown-label text-left"@click="() => {
                                     logined = false
                                     remove_token()
