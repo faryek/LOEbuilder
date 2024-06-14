@@ -19,13 +19,13 @@
             <header class="bg-black bg-opacity-80">
                 <nav class="container mx-auto p-4 flex justify-between">
                     <ul class="flex gap-4">
-                        <li>
+                        <li class="flex flex-col justify-center">
                             <NuxtLink to="/" class="text-2xl fonted">Билды</NuxtLink>
                         </li>
-                        <li>
+                        <li class="flex flex-col justify-center">
                             <NuxtLink to="/build/" class="text-2xl fonted">Мои билды</NuxtLink>
                         </li>
-                        <li>
+                        <li class="flex flex-col justify-center">
                             <NuxtLink to="/guide" class="text-2xl fonted">Руководство</NuxtLink>
                         </li>
                     </ul>
@@ -36,12 +36,18 @@
                         <button v-if="!logined" class="text-2xl fonted login" @click="() => { log = true; back = true }">
                             Вход
                         </button>
-                        <button v-if="logined" class="text-2xl fonted login" @click="() => {
-                            logined = false
-                            remove_token()
-                            }">
-                            {{ username }}
-                        </button>
+                        <div ref="dropdown" class="dropdown">
+                            <button v-if="logined" class="text-2xl fonted login dropdown-label p-2" @click="show = true">
+                                {{ username }}
+                            </button>
+                            <div v-if="show" class="flex flex-col justify-start absolute bg-black bg-opacity-80 p-2" @mouseleave="show = false">
+                                <button v-if="logined" class="text-2xl fonted login dropdown-label text-left">Профиль</button>
+                                <button v-if="logined" class="text-2xl fonted login dropdown-label text-left"@click="() => {
+                                    logined = false
+                                    remove_token()
+                                }">Выйти</button>
+                            </div>
+                        </div>
                     </div>
                 </nav>
             </header>
@@ -85,6 +91,23 @@
         </div>
     </div>
 </template>
+
+<script setup>
+import { ref, onMounted } from "vue"
+import autoAnimate from "@formkit/auto-animate"
+
+//const props = defineProps(['league', 'build_name', 'build_lvl', 'build_class_name', 'build_class', 'id', 'build_date', 'build_ehp', 'build_dps', 'more', 'selected'])
+
+const dropdown = ref() // we need a DOM node
+const show = ref(false)
+
+
+
+onMounted(() => {
+    autoAnimate(dropdown.value) // thats it!
+})
+</script>
+
 <script>
 export default {
     data() {
