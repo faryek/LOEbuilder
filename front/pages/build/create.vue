@@ -1,7 +1,7 @@
 <template>
     <AuthError v-if="!authorized && error"></AuthError>
     <CommonError v-if="error && authorized"></CommonError>
-    <CommonError v-if="error_on_choose"></CommonError>
+    <div class="flex flex-row justify-center m-5" style="width: 100%;"><BuildNameError v-if="error_on_choose"></BuildNameError></div>
     <div v-if="authorized && !error" class="container flex flex-col" @change="addButton()">
         <div class="top border-shine-create flex flex-col px-10 py-10 gap-10 justify-evenly">
             <div class="build-info flex flex-row justify-evenly gap-10">
@@ -52,16 +52,23 @@
                             }"
                         style="width: 100%;"
                     >
-                        <button class="font font-create border-shine-create special-btn" style="width: 100%;">{{ k }}</button>
+                        <button class="font font-create border-shine-create special-btn" @click="()=>{
+                            if(build_info.name == ''){
+                                route=''
+                            }
+                            else{
+                                route = '/build/'
+                            }
+                        }" style="width: 100%;">{{ k }}</button>
                     </li>
                 </ul>
                 <ul v-auto-animate style="width: 45%;">
-                    <li
+                    <li 
                         v-for="l in create"
                         style="width: 100%;"
                     >
-                        <NuxtLink to="/build/" @click="()=>{
-                            if(stats.strength.base == 0){
+                        <NuxtLink :to="route" @click="()=>{
+                            if(build_info.name == ''){
                                 error_on_choose = true
                             }
                             else{
@@ -352,6 +359,7 @@
 export default {
     data() {
         return {
+            route:'/build/',
             weapons: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
             armour: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
             accessories: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
@@ -377,17 +385,17 @@ export default {
             error: false,
             authorized: false,
             equiped: {
-                head: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/head_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
-                neck: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/neck_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
-                left_hand: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/left_hand_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
-                body: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/body_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
-                right_hand: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/right_hand_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
-                left_ring: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/ring_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 1, 'value_end': 0, 'tag': 'phys_damage' }] } },
-                belt: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/belt_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
-                right_ring: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/ring_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 1, 'value_end': 0, 'tag': 'phys_damage' }] } },
-                gloves: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/gloves_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
-                boots: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/boots_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
-                relic: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/relic_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
+                head: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/head_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'test_effect', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
+                neck: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/neck_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'test_effect', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
+                left_hand: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/left_hand_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'test_effect', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
+                body: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/body_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'test_effect', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
+                right_hand: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/right_hand_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'test_effect', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
+                left_ring: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/ring_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'test_effect', 'value_start': 1, 'value_end': 0, 'tag': 'phys_damage' }] } },
+                belt: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/belt_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'test_effect', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
+                right_ring: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/ring_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'test_effect', 'value_start': 1, 'value_end': 0, 'tag': 'phys_damage' }] } },
+                gloves: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/gloves_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'test_effect', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
+                boots: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/boots_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'test_effect', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
+                relic: { 'id': 0, 'name': 'Сиракузиан', 'image': '../img/items/relic_0.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'test_effect', 'value_start': 0, 'value_end': 0, 'tag': 'phys_damage' }] } },
             },
             equipment: { 1: 'head', 2: 'neck', 3: 'left_hand', 4: 'body', 5: 'right_hand', 6: 'left_ring', 7: 'belt', 8: 'right_ring', 9: 'gloves', 10: 'boots', 11: 'relic' },
             equiped_ids: {
@@ -430,7 +438,7 @@ export default {
                 11 : [1, 2],  
             },
             choose_item: 0,
-            show_item: { 'id': 0, 'name': 'Сиракузиан', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'фулл понос', 'value_start': 1, 'value_end': 2, 'tag': 'phys_damage' }] } },
+            show_item: { 'id': 0, 'name': 'Сиракузиан', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': { 'name': 'Сайко', 'item_implicits': [{ 'effect': 'test_effect', 'value_start': 1, 'value_end': 2, 'tag': 'phys_damage' }] } },
             choose_class: 0,
             level: 1,
 			stats:{
@@ -739,7 +747,7 @@ export default {
             fetch('http://127.0.0.1:8000/weapons', {
                 method: 'GET',
                 headers: {
-                    Authorization: `Bearer ${token}`,
+
                 }
             }).then(response => response.json())
                 .then(json => {
@@ -763,7 +771,7 @@ export default {
             fetch('http://127.0.0.1:8000/armour', {
                 method: 'GET',
                 headers: {
-                    Authorization: `Bearer ${token}`,
+
                 }
             }).then(response => response.json())
                 .then(json => {
@@ -796,7 +804,7 @@ export default {
             fetch('http://127.0.0.1:8000/accessory', {
                 method: 'GET',
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    
                 }
             }).then(response => response.json())
                 .then(json => {
@@ -823,7 +831,7 @@ export default {
             fetch('http://127.0.0.1:8000/affixes', {
                 method: 'GET',
                 headers: {
-                    Authorization: `Bearer ${token}`,
+
                 }
             }).then(response => response.json())
                 .then(json => {
@@ -841,7 +849,7 @@ export default {
             fetch('http://127.0.0.1:8000/passives', {
                 method: 'GET',
                 headers: {
-                    Authorization: `Bearer ${token}`,
+
                 }
             }).then(response => response.json())
                 .then(json => {
@@ -860,7 +868,7 @@ export default {
             fetch('http://127.0.0.1:8000/classes', {
                 method: 'GET',
                 headers: {
-                    Authorization: `Bearer ${token}`,
+
                 }
             }).then(response => response.json())
                 .then(json => {
@@ -896,6 +904,7 @@ export default {
         if (token) {
             this.authorized = true
         }
+        this.get_auth(token)
         this.get_weapons(token)
         this.get_armour(token)
         this.get_accessories(token)

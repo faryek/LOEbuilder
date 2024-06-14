@@ -19,7 +19,7 @@ app = FastAPI()
 auth_handler = AuthHandler()
 
 
-@app.post('/urls_user_da', response_model=List[pyd.URLSSchema])
+@app.post('/urls_user', response_model=List[pyd.URLSSchema])
 async def get_urls_user(user_input:pyd.URLSortBase,username=Depends(auth_handler.auth_wrapper),db:Session=Depends(get_db)):
     user_db = db.query(models.User).filter(
         models.User.name == username
@@ -137,18 +137,6 @@ async def get_urls(username=Depends(auth_handler.auth_wrapper),db:Session=Depend
         url_db[i].name = my_json
     return url_db
 
-@app.get("/armour_alt", response_model=List[pyd.ArmourSchema])
-async def get_armour(db: Session = Depends(get_db)):
-    return db.query(models.Armour).all()
-
-@app.get("/accessory_alt", response_model=List[pyd.AccessorySchema])
-async def get_accessory(db: Session = Depends(get_db)):
-    return db.query(models.Accessory).all()
-
-@app.get("/weapons_alt", response_model=List[pyd.WeaponsSchema])
-async def get_weapons(db: Session = Depends(get_db)):
-    return db.query(models.Weapon).all()
-
 @app.post('/check_url')
 async def check_url(user_input: pyd.URLCheckBase,db:Session=Depends(get_db)):
     user_input_correct = user_input.name.replace('/','%slash%')
@@ -261,9 +249,34 @@ async def url_create(url_input:pyd.URLCreate,username=Depends(auth_handler.auth_
     db.commit()
     return url_db
 
+@app.delete('/build/delete/{url_id}')
+async def delete_url(url_id:int,username = Depends(auth_handler.auth_wrapper),db:Session=Depends(get_db)):
+    user_db = db.query(models.User).filter(
+        models.User.name == username
+    ).first()
+
+    url_db = db.query(models.URL).filter(
+        models.URL.user_id == user_db.id
+    ).first()
+
+    if not url_db:
+        raise HTTPException(404,'Ошибка')
+    
+    url_db_del = db.query(models.URL).filter(
+        models.URL.id == url_id
+    ).first()
+    
+    db.delete(url_db_del)
+    db.commit()
+    return 'success'
+
 @app.get('/user_name')
 async def get_username(username=Depends(auth_handler.auth_wrapper),db: Session = Depends(get_db)):
-    return {"username": username}
+    user_db = db.query(models.User).filter(
+        models.User.name == username
+    ).first()
+    return {"username": username,
+            "email":user_db.email}
 
 @app.get("/users", response_model=List[pyd.UserSchema])
 async def get_users(username=Depends(auth_handler.auth_wrapper),db: Session = Depends(get_db)):
@@ -284,32 +297,32 @@ async def get_urls(db:Session=Depends(get_db)):
 
 
 @app.get("/weapons", response_model=List[pyd.WeaponsSchema])
-async def get_weapons(username=Depends(auth_handler.auth_wrapper),db: Session = Depends(get_db)):
+async def get_weapons(db: Session = Depends(get_db)):
     return db.query(models.Weapon).all()
 
 
 @app.get("/armour", response_model=List[pyd.ArmourSchema])
-async def get_armour(username=Depends(auth_handler.auth_wrapper),db: Session = Depends(get_db)):
+async def get_armour(db: Session = Depends(get_db)):
     return db.query(models.Armour).all()
 
 
 @app.get("/accessory", response_model=List[pyd.AccessorySchema])
-async def get_accessory(username=Depends(auth_handler.auth_wrapper),db: Session = Depends(get_db)):
+async def get_accessory(db: Session = Depends(get_db)):
     return db.query(models.Accessory).all()
 
 
 @app.get("/classes", response_model=List[pyd.ClassBase])
-async def get_classes(username=Depends(auth_handler.auth_wrapper),db: Session = Depends(get_db)):
+async def get_classes(db: Session = Depends(get_db)):
     return db.query(models.Class).all()
 
 
 @app.get("/passives", response_model=List[pyd.PassiveSchema])
-async def get_passives(username=Depends(auth_handler.auth_wrapper),db: Session = Depends(get_db)):
+async def get_passives(db: Session = Depends(get_db)):
     return db.query(models.Passive).all()
 
 
 @app.get("/affixes", response_model=List[pyd.AffixesSchema])
-async def get_affixes(username=Depends(auth_handler.auth_wrapper),db: Session = Depends(get_db)):
+async def get_affixes(db: Session = Depends(get_db)):
     return db.query(models.Affix).all()
 
 origins = ["*"]

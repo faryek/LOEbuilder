@@ -117,6 +117,7 @@ export default {
             back: false,
             logined: false,
             username: '',
+            email: '',
         }
     },
     methods:{
@@ -135,6 +136,7 @@ export default {
                     else{
                         this.logined= true
                         this.username = json.username
+                        this.email = json.email
                     }
                 })
             return null
