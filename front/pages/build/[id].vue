@@ -1,5 +1,7 @@
 <template>
-    <BuildError v-if="error"></BuildError>
+    <div class="flex flex-row justify-center" style="width: 100%;">
+        <BuildError v-if="error"></BuildError>
+    </div>
     <div v-if="!error">
         <div v-if="!error" class="container flex flex-col">
             <div class="top border-shine-create flex flex-col px-10 py-10 gap-10 justify-evenly">
@@ -294,9 +296,9 @@ export default {
         return {
             ids: useRoute().params,
             error: false,
-            weapons: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/left_hand_0.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            armour: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/empty_slot.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            accessories: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/empty_slot.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            weapons: [{'id' : 1, 'name' : 'test_name', 'image': '/img/items/left_hand_0.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            armour: [{'id' : 1, 'name' : 'test_name', 'image': '/img/items/empty_slot.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            accessories: [{'id' : 1, 'name' : 'test_name', 'image': '/img/items/empty_slot.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
             classes_en: ['Bogatir', 'Antihrist', 'Bogolub', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich', 'Zastrel'],
             classes_ru: ['Богатырь', 'Антихрист', 'Боголюб', 'Налётчик', 'Богохульник', 'Скоморох', 'Язычница', 'Застрельщица'],
             class_id: 1,

@@ -18,7 +18,7 @@
     <div class="login-background" style="z-index:5 !important;position: fixed; top: 0; left: 0; z-index: 500;"
         @click="() => {back = false }" v-if="back"></div>
     <CommonError v-if="error"></CommonError>
-    <div class="accepting p-10" style="z-index: 500 !important; position: fixed; top: 25%; left: 35%;" v-if="back">
+    <div class="accepting p-10" style="z-index: 500 !important; position: fixed; top: 25%; left: 35%;" v-if="back" v-auto-animate>
         <p class="font text-4xl">Удалить билд?</p>
         <div class="flex flex-row align-middle justify-center gap-2">
             <button @click="() => {

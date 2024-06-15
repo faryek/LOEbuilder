@@ -1,6 +1,8 @@
 <template>
-    <AuthError v-if="!authorized && error"></AuthError>
-    <CommonError v-if="error && authorized"></CommonError>
+    <div class="flex flex-row justify-center" style="width: 100%;">
+        <AuthError v-if="!authorized && error"></AuthError>
+        <CommonError v-if="error && authorized"></CommonError>
+    </div>
     <div v-if="authorized && !error">
             <div class="flex flex-row justify-evenly">
                 <select name="" id="cycle" class="selector border-shine text-2xl" @change="filtering()">
@@ -99,21 +101,21 @@ export default {
                             },
                             top_inputs: {
                                 class: 'Танцовщица',
-                                cycle: 'her',
+                                cycle: '',
                                 lvl: '1',
-                                name: 'hui',
-                                purpose: 'sosat',
-                                type: 'zalupa'
+                                name: '',
+                                purpose: '',
+                                type: ''
                             }
                         },
                         '123'
                     ],
                     user: {
-                        name: 'down'
+                        name: ''
                     }
                 },
                 {
-                    build_name: 'хуй',
+                    build_name: '',
                     class_id: 1,
                     name: [
                         {
@@ -127,17 +129,17 @@ export default {
                             },
                             top_inputs: {
                                 class: 'Танцовщица',
-                                cycle: 'her',
+                                cycle: '',
                                 lvl: '1',
-                                name: 'hui',
-                                purpose: 'sosat',
-                                type: 'zalupa'
+                                name: '',
+                                purpose: '',
+                                type: ''
                             }
                         },
                         '123'
                     ],
                     user: {
-                        name: 'down'
+                        name: ''
                     }
                 },
             ],
