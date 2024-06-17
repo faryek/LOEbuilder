@@ -10,10 +10,10 @@
             </div>
         </div>
     </NuxtLink>
-    <div class="deleting flex justify-center" style="max-width: 100%;" @click="()=>{
+    <div class="deleting flex flex-col justify-center" style="max-width: 100%;">
+            <img :src="`../img/icons/delete.png`" alt="" style="object-fit: contain;max-width: 40px; height: fit-content; cursor: pointer;" @click="()=>{
             back= true
         }">
-            <img :src="`../img/icons/delete.png`" alt="" style="object-fit: contain;max-width: 40px;">
         </div>
     <div class="login-background" style="z-index:5 !important;position: fixed; top: 0; left: 0; z-index: 500;"
         @click="() => {back = false }" v-if="back"></div>
