@@ -20,6 +20,9 @@
                 <nav class="container mx-auto p-4 flex justify-between">
                     <ul class="flex gap-4">
                         <li class="flex flex-col justify-center">
+                            <NuxtLink to="/" class="text-2xl fonted"><img :src="'img/icons/LoELogo.png'" alt="" style="max-width: 50px;"></NuxtLink>
+                        </li>
+                        <li class="flex flex-col justify-center">
                             <NuxtLink to="/" class="text-2xl fonted">Билды</NuxtLink>
                         </li>
                         <li class="flex flex-col justify-center">
@@ -89,6 +92,9 @@
                         </li>
                     </ul>
                 </nav>
+                <div class="flex flex-row justify-center" style="width: 100%;">
+                    <NuxtLink to="/"><img :src="'img/icons/LoELogo.png'" alt="" style="max-width: 100px;"></NuxtLink>
+                </div>
                 <nav class="container mx-auto p-4 my-10">
                     <ul class="flex justify-center gap-5">
                         <li>
