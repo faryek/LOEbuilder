@@ -15,15 +15,15 @@
                 Скрыть</div>
         </NuxtLink>
         <div class="dropdown-content" v-if="show" style="color: white;">
-            <NuxtLink class="card flex flex-row px-20 pb-10 pt-5 justify-between">
+            <NuxtLink class="card-meida card flex flex-row px-20 pb-10 pt-5 justify-between">
                 <div class="flex flex-col justify-between">
                     <div class="right flex flex-col">
                         <div class="flex flex-col gap-2">
-                            <p class="text-4xl font">{{ build_name }} от {{ build_author }}</p>
-                            <p class="text-2xl font" style="color: #C68200;">{{ league }}</p>
+                            <p class="text-4xl font p-media">{{ build_name }} от {{ build_author }}</p>
+                            <p class="text-2xl font p-media" style="color: #C68200;">{{ league }}</p>
                         </div>
-                        <p class="text-2xl font">Уровень: {{ build_lvl }}</p>
-                        <p class="text-2xl font">Класс: {{ build_class_name }}</p>
+                        <p class="text-2xl font p-media">Уровень: {{ build_lvl }}</p>
+                        <p class="text-2xl font p-media">Класс: {{ build_class_name }}</p>
                     </div>
                     <NuxtLink :to="`/build/${url}`" style="width: 100%;"><button class="font font-create border-shine-create special-btn" style="width: 100%;">Подробнее</button></NuxtLink>
                 </div>
@@ -85,5 +85,18 @@ export default {
     border-color: rgba(0, 0, 0, 0);
     object-fit: cover;
     border-radius: 13px;
+}
+@media screen and (max-width: 1025px){
+    .card-meida{
+        flex-direction: column !important;
+    }
+    .card-meida img{
+        object-fit: contain;
+        max-height: 450px;
+        margin-top: 50px;
+    }
+    .p-media{
+        font-size: 3vw;
+    }
 }
 </style>
