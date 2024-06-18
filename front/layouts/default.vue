@@ -80,11 +80,11 @@
                             <p class="text-2xl fonted-footer mb-2">Товары</p>
                             <div class="contact-row flex flex-row justify-center gap-3 mb-2">
                                 <img :src="'img/icons/epic-games-100.png'" alt="">
-                                <a href="https://store.steampowered.com/?l=russian" class="text-xl fonted-footer footer-min-text" style="min-width: 175px;">Epic Games Store</a>
+                                <a href="https://store.epicgames.com/ru/" class="text-xl fonted-footer footer-min-text" style="min-width: 175px;">Epic Games Store</a>
                             </div>
                             <div class="contact-row flex flex-row justify-center gap-3 mb-2">
                                 <img :src="'img/icons/steam-100.png'" alt="">
-                                <a href="https://store.epicgames.com/ru/" class="text-xl fonted-footer footer-min-text">Steam</a>
+                                <a href="https://store.steampowered.com/?l=russian" class="text-xl fonted-footer footer-min-text">Steam</a>
                             </div>
                         </li>
                     </ul>
