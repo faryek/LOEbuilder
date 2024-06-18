@@ -103,4 +103,16 @@ export default {
     border-color: #9b7e41 !important;
     box-shadow: 0 0 20px 0 #9b7e41;
 }
+@media screen and (max-width: 1024px){
+    .login-row{
+        flex-direction: column;
+    }
+    .login-row input{
+        width: 100%;
+    }
+    .login-form{
+        width: 80%;
+        left: 10% !important;
+    }
+}
 </style>
