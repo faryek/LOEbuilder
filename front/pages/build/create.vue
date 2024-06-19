@@ -650,7 +650,6 @@ export default {
             {
                 this.encoded = this.encoded.replace('/','%slash%')
             }
-            console.log(this.encoded)
         },
         get_stat(name){
             return +this.stats[`${name}`].base + +this.stats[`${name}`].level + +this.stats[`${name}`].affixes + +this.stats[`${name}`].implicits
