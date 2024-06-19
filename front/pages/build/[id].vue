@@ -366,7 +366,6 @@ export default {
                             this.data_ids.top_inputs[6]=this.classes_en[i]
                         }
                     }
-                    console.log(json)
                     
         })
         },
