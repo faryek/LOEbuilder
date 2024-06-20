@@ -11,31 +11,9 @@ py seed.py
 
 uvicorn main:app --reload
 
-Для установки модулей, необходимых для Фронтенда, вевести команды в консоль
+Для установки модулей, необходимых для Фронтенда, вевести команды в консоль(нужно находится в папке front)
 
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init
-npm install @formkit/auto-animate
-npm i floating-vue
-npx nuxi@latest module add image
-
-После добавить в файл nuxt.config.ts строку
-
-modules: ['@nuxtjs/tailwindcss', '@formkit/auto-animate/nuxt', "@nuxt/image", 'floating-vue/nuxt'],
-
-*Пример итогового файла*
-
-*// https://nuxt.com/docs/api/configuration/nuxt-config
-export default defineNuxtConfig({
-  devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', '@formkit/auto-animate/nuxt', "@nuxt/image", 'floating-vue/nuxt'],
-  app: {
-    head: {
-      title: 'LOEbuilder',
-      charset: 'utf-8',
-    }
-  }
-})*
+npm install
 
 После установки модулей, для запуска сервера, пропписать в консоль(нужно находится в папке front)
 
