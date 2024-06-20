@@ -83,7 +83,7 @@ export default {
             },
             decoded:[
                 {
-                    build_name: 'хуй',
+                    build_name: '',
                     class_id: 1,
                     name: [
                         {
@@ -97,21 +97,21 @@ export default {
                             },
                             top_inputs: {
                                 class: 'Танцовщица',
-                                cycle: 'her',
+                                cycle: '',
                                 lvl: '1',
-                                name: 'hui',
-                                purpose: 'sosat',
-                                type: 'zalupa'
+                                name: '',
+                                purpose: '',
+                                type: ''
                             }
                         },
                         '123'
                     ],
                     user: {
-                        name: 'down'
+                        name: ''
                     }
                 },
                 {
-                    build_name: 'хуй',
+                    build_name: '',
                     class_id: 1,
                     name: [
                         {
@@ -125,17 +125,17 @@ export default {
                             },
                             top_inputs: {
                                 class: 'Танцовщица',
-                                cycle: 'her',
+                                cycle: '',
                                 lvl: '1',
-                                name: 'hui',
-                                purpose: 'sosat',
-                                type: 'zalupa'
+                                name: '',
+                                purpose: '',
+                                type: ''
                             }
                         },
                         '123'
                     ],
                     user: {
-                        name: 'down'
+                        name: ''
                     }
                 },
             ],

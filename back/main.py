@@ -105,8 +105,6 @@ async def urls_sort(user_input:pyd.URLSortBase,db:Session=Depends(get_db)):
         decoded = base64.b64decode(for_decode)
         my_json = decoded.decode('utf-8').replace("'", '"')
         parsed = json.loads(my_json)
-        print(parsed['top_inputs'])
-        print(url_db[i].class_id)
         my_json =my_json + 'HereWeAre'
         my_json = my_json + url_db[i].name
         url_db[i].name = my_json
@@ -146,8 +144,6 @@ async def check_url(user_input: pyd.URLCheckBase,db:Session=Depends(get_db)):
     ).first()
     if not url_db:
         raise HTTPException(404, 'Build not found')
-    # url = user_input.name.replace('%\slash%','/')
-    # url = url.replace('%\slash%','/')
     print(user_input.name)
     decoded = base64.b64decode(user_input.name)
     my_json = decoded.decode('utf-8').replace("'", '"')
@@ -170,8 +166,6 @@ async def check_url(user_input: pyd.URLCheckBase,db:Session=Depends(get_db)):
 
     data = json.loads(my_json)
     s = json.dumps(data, indent=4, sort_keys=True)
-    print(s)
-    print(data['equiped_ids'])
     for i in range(3):
         for j in range(len(arrays[i])):
             final_arrays[i].append(data['equiped_ids'][arrays[i][j]])
@@ -180,8 +174,6 @@ async def check_url(user_input: pyd.URLCheckBase,db:Session=Depends(get_db)):
         top_inputs.append(data['top_inputs'][top_inputs_tuple[i]])
         if i in [0,1,4,5]:
             top_inputs[i].replace("\\","\\\\").encode().decode('unicode-escape')
-
-    print(top_inputs)
 
     return {'equiped_ids':data['equiped_ids'],
             'stats':data['stats'],

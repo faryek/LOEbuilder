@@ -10,15 +10,15 @@
             </div>
         </div>
     </NuxtLink>
-    <div class="deleting flex flex-col justify-center" style="max-width: 100%;">
-            <img :src="`../img/icons/delete.png`" alt="" style="object-fit: contain;max-width: 40px; height: fit-content; cursor: pointer;" @click="()=>{
+    <div class="deleting flex justify-center" style="max-width: 100%;" @click="()=>{
             back= true
         }">
+            <img :src="`../img/icons/delete.png`" alt="" style="object-fit: contain;max-width: 40px;">
         </div>
     <div class="login-background" style="z-index:5 !important;position: fixed; top: 0; left: 0; z-index: 500;"
         @click="() => {back = false }" v-if="back"></div>
     <CommonError v-if="error"></CommonError>
-    <div class="accepting p-10" style="z-index: 500 !important; position: fixed; top: 25%; left: 35%;" v-if="back">
+    <div class="accepting p-10" style="z-index: 500 !important; position: fixed; top: 25%; left: 35%;" v-if="back" v-auto-animate>
         <p class="font text-4xl">Удалить билд?</p>
         <div class="flex flex-row align-middle justify-center gap-2">
             <button @click="() => {

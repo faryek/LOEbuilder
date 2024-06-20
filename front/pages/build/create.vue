@@ -1,6 +1,8 @@
 <template>
-    <AuthError v-if="!authorized && error"></AuthError>
-    <CommonError v-if="error && authorized"></CommonError>
+    <div class="flex flex-row justify-center" style="width: 100%;">
+        <AuthError v-if="!authorized && error"></AuthError>
+        <CommonError v-if="error && authorized"></CommonError>
+    </div>
     <div class="flex flex-row justify-center m-5" style="width: 100%;"><BuildNameError v-if="error_on_choose"></BuildNameError></div>
     <div v-if="authorized && !error" class="container flex flex-col" @change="addButton()">
         <div class="top border-shine-create flex flex-col px-10 py-10 gap-10 justify-evenly">
@@ -28,7 +30,7 @@
                     </div>
                     <div class="flex flex-col justify-evenly col">
                         <input type="text" class="font font-create input-field px-4 selector selector-create border-shine" id="name"
-                            placeholder="Фулл понос" v-model="build_info.name">
+                            placeholder="Название" v-model="build_info.name">
                         <select name="" id="type" class="selector selector-create border-shine">
                             <option value="0" class="selector selector-create">Стартер</option>
                             <option value="1" class="selector selector-create">Эндгейм</option>
@@ -344,11 +346,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="bot border-shine-create flex flex-row justify-between mt-5 gap-10 p-10" style="height: 15rem;">
-            <div v-for="j in 5" class="1st-col flex flex-col">
-                <img v-for="i in 3" :src="passives[i-1 + (j-1)*3].image" class="item-img border-shine-passive" style="width: 50px;">
-            </div>
-        </div> -->
     </div>
 
 </template>
@@ -360,22 +357,22 @@ export default {
     data() {
         return {
             route:'/build/',
-            weapons: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            armour: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            accessories: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            weapons: [{'id' : 1, 'name' : 'test_name', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            armour: [{'id' : 1, 'name' : 'test_name', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            accessories: [{'id' : 1, 'name' : 'test_name', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
             affixes: [],
             passives: [{"id": 1,"name": "Ловкость","desc": "+15 к ловкости","image": "/img/icons/dexterity.png","effects": [{"id": 1,"name": "dexterity","value": 15}]},],
-            heads:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            necks: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            bodies: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            gloves: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            boots: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            relics:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            left_hands: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            right_hands: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            belts:[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            rings: [{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
-            slots: [[{'id' : 1, 'name' : 'Накст Моча', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}]],
+            heads:[{'id' : 1, 'name' : 'test_name', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            necks: [{'id' : 1, 'name' : 'test_name', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            bodies: [{'id' : 1, 'name' : 'test_name', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            gloves: [{'id' : 1, 'name' : 'test_name', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            boots: [{'id' : 1, 'name' : 'test_name', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            relics:[{'id' : 1, 'name' : 'test_name', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            left_hands: [{'id' : 1, 'name' : 'test_name', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            right_hands: [{'id' : 1, 'name' : 'test_name', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            belts:[{'id' : 1, 'name' : 'test_name', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            rings: [{'id' : 1, 'name' : 'test_name', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}],
+            slots: [[{'id' : 1, 'name' : 'test_name', 'image': '/img/items/one_hand_sword_1.png', 'sub_id': {'effect': 'тест_еффект', 'value_start': 'тест_значение_старт', 'value_end': 'тест_значение_конец'}}]],
             classes: [{ "id": 1, "name": "Богатырь", "main_atr": "Сила", "base_atrs": "60, 20, 20", "base_hp": 1000, "base_mp": 50, "base_armour": 50, "base_evade": 10, "base_elem_res": 30, "base_phys_res": 50 }],
             classes_en: ['Bogatir', 'Antihrist', 'Bogolub', 'Medvesh', 'Pahan', 'Skomoroh', 'Yazich', 'Zastrel'],
             classes_ru: ['Богатырь', 'Антихрист', 'Боголюб', 'Налётчик', 'Богохульник', 'Скоморох', 'Язычница', 'Застрельщица'],
@@ -653,7 +650,6 @@ export default {
             {
                 this.encoded = this.encoded.replace('/','%slash%')
             }
-            console.log(this.encoded)
         },
         get_stat(name){
             return +this.stats[`${name}`].base + +this.stats[`${name}`].level + +this.stats[`${name}`].affixes + +this.stats[`${name}`].implicits

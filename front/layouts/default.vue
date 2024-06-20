@@ -20,13 +20,13 @@
                 <nav class="container mx-auto p-4 flex justify-between">
                     <ul class="flex gap-4">
                         <li class="flex flex-col justify-center">
+                            <NuxtLink to="/" class="text-2xl fonted"><img :src="'img/icons/LoELogo.png'" alt="" style="max-width: 50px;"></NuxtLink>
+                        </li>
+                        <li class="flex flex-col justify-center">
                             <NuxtLink to="/" class="text-2xl fonted">Билды</NuxtLink>
                         </li>
                         <li class="flex flex-col justify-center">
                             <NuxtLink to="/build/" class="text-2xl fonted">Мои билды</NuxtLink>
-                        </li>
-                        <li class="flex flex-col justify-center">
-                            <NuxtLink to="/guide" class="text-2xl fonted">Руководство</NuxtLink>
                         </li>
                     </ul>
                     <div class="flex gap-4">
@@ -60,20 +60,41 @@
             </div>
         </div>
         <div>
-            <footer class="mt-10">
+            <footer class="mt-10" style="background-color: rgba(0, 0, 0, 0.623);">
                 <nav class="container mx-auto p-4 w-screen mt-10">
                     <ul class="flex justify-around">
-                        <li>
-                            <NuxtLink to="/about" class="text-2xl fonted">О нас</NuxtLink>
+                        <li style="width: 200px;text-align: center;">
+                            <div class="flex flex-col justify-center" style="height: 100%;">
+                                <NuxtLink to="/about" class="text-2xl fonted">О нас</NuxtLink>
+                            </div>
                         </li>
-                        <li>
-                            <NuxtLink to="/contacts" class="text-2xl fonted">Контакты</NuxtLink>
+                        <li style="width: 200px;text-align: center;">
+                            <p class="text-2xl fonted-footer mb-2">Контакты</p>
+                            <div class="contact-row flex flex-row justify-center gap-3 mb-2">
+                                <img :src="'img/icons/phone.png'" alt="">
+                                <p class="text-xl fonted-footer footer-min-text" style="min-width: 175px;">8 (3435) 23-09-09</p>
+                            </div>
+                            <div class="contact-row email flex flex-row justify-center gap-3 mb-2">
+                                <img :src="'img/icons/email.png'" alt="">
+                                <p class="text-xl fonted-footer footer-min-text">nti@urfu.ru</p>
+                            </div>
                         </li>
-                        <li>
-                            <NuxtLink to="/support" class="text-2xl fonted">Поддержать нас</NuxtLink>
+                        <li style="width: 200px;text-align: center;">
+                            <p class="text-2xl fonted-footer mb-2">Товары</p>
+                            <div class="contact-row flex flex-row justify-center gap-3 mb-2">
+                                <img :src="'img/icons/epic-games-100.png'" alt="">
+                                <a href="https://store.epicgames.com/ru/" class="text-xl fonted-footer footer-min-text" style="min-width: 175px;">Epic Games Store</a>
+                            </div>
+                            <div class="contact-row flex flex-row justify-center gap-3 mb-2">
+                                <img :src="'img/icons/steam-100.png'" alt="">
+                                <a href="https://store.steampowered.com/?l=russian" class="text-xl fonted-footer footer-min-text">Steam</a>
+                            </div>
                         </li>
                     </ul>
                 </nav>
+                <div class="flex flex-row justify-center" style="width: 100%;">
+                    <NuxtLink to="/"><img :src="'img/icons/LoELogo.png'" alt="" style="max-width: 100px;"></NuxtLink>
+                </div>
                 <nav class="container mx-auto p-4 my-10">
                     <ul class="flex justify-center gap-5">
                         <li>
@@ -158,6 +179,21 @@ export default {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.623);
+}
+
+.fonted-footer {
+    font-family: 'TLheader-Regular';
+    color: white;
+}
+
+.contact-row img{
+    width: 30px;
+}
+
+
+
+.footer-min-text{
+    color: gray;
 }
 
 body {
