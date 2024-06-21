@@ -3,6 +3,7 @@
         <AuthError v-if="!authorized && error"></AuthError>
         <CommonError v-if="error && authorized"></CommonError>
     </div>
+    <button @click="() => { goToPrev() }" class="login-btn text-xl font py-1 px-5" style="margin-bottom: -25px;">Назад</button>
     <div class="flex flex-row justify-center m-5" style="width: 100%;"><BuildNameError v-if="error_on_choose"></BuildNameError></div>
     <div v-if="authorized && !error" class="container flex flex-col" @change="addButton()">
         <div class="top border-shine-create flex flex-col px-10 py-10 gap-10 justify-evenly">
@@ -14,13 +15,15 @@
                             <option value="0" class="selector selector-create">Первое бытие</option>
                             <option value="1" class="selector selector-create">Второе житие</option>
                         </select>
-                        <select name="" id="class" class="selector selector-create border-shine" @change="() => {get_class()}">
+                        <select name="" id="class" class="selector selector-create border-shine" @change="() => {get_class()
+                        level = 1
+                        set_level_stats()}">
                             <option v-for="i in classes.length" :value="i - 1" class="selector selector-create">{{classes[i - 1].name }}</option>
                         </select>
                         <div class="level-flex flex flex-row gap-5">
                             <p class="font font-create level-text pl-4">Уровень:</p>
                             <input 
-                                type="text"
+                                type="number"
                                 class="font font-create input-field px-4 selector selector-create border-shine"
                                 placeholder="100"
                                 v-model="level" 
@@ -894,6 +897,9 @@ export default {
                 })
             return null
         },
+        goToPrev() {
+            this.$router.go(-1);
+        },
     },
     beforeMount() {
         let token = localStorage.getItem('token')
@@ -1001,6 +1007,14 @@ export default {
     border-radius: 100% !important;
     border-color: #9b7e41 !important;
     box-shadow: 0 0 20px 0 #9b7e41;
+}
+
+.login-btn {
+    border: 3px solid;
+    border-radius: 25px;
+    border-color: #9b7e41 !important;
+    box-shadow: 0 0 20px 0 #9b7e41;
+    width: 100%;
 }
 
 @media screen and (max-width: 1024px){

@@ -20,7 +20,7 @@
                 <nav class="container mx-auto p-4 flex justify-between">
                     <ul class="flex gap-4">
                         <li class="flex flex-col justify-center">
-                            <NuxtLink to="/" class="text-2xl fonted"><img :src="'img/icons/LoELogo.png'" alt="" style="max-width: 50px;"></NuxtLink>
+                            <NuxtLink to="/" class="text-2xl fonted"><img :src="'../img/icons/LoELogo.png'" alt="" style="max-width: 50px;"></NuxtLink>
                         </li>
                         <li class="flex flex-col justify-center">
                             <NuxtLink to="/" class="text-2xl fonted">Билды</NuxtLink>
@@ -71,40 +71,40 @@
                         <li style="width: 200px;text-align: center;">
                             <p class="text-2xl fonted-footer mb-2">Контакты</p>
                             <div class="contact-row flex flex-row justify-center gap-3 mb-2">
-                                <img :src="'img/icons/phone.png'" alt="">
+                                <img :src="'../img/icons/phone.png'" alt="">
                                 <p class="text-xl fonted-footer footer-min-text" style="min-width: 175px;">8 (3435) 23-09-09</p>
                             </div>
                             <div class="contact-row email flex flex-row justify-center gap-3 mb-2">
-                                <img :src="'img/icons/email.png'" alt="">
+                                <img :src="'../img/icons/email.png'" alt="">
                                 <p class="text-xl fonted-footer footer-min-text">nti@urfu.ru</p>
                             </div>
                         </li>
                         <li style="width: 200px;text-align: center;">
                             <p class="text-2xl fonted-footer mb-2">Товары</p>
                             <div class="contact-row flex flex-row justify-center gap-3 mb-2">
-                                <img :src="'img/icons/epic-games-100.png'" alt="">
+                                <img :src="'../img/icons/epic-games-100.png'" alt="">
                                 <a href="https://store.epicgames.com/ru/" class="text-xl fonted-footer footer-min-text" style="min-width: 175px;">Epic Games Store</a>
                             </div>
                             <div class="contact-row flex flex-row justify-center gap-3 mb-2">
-                                <img :src="'img/icons/steam-100.png'" alt="">
+                                <img :src="'../img/icons/steam-100.png'" alt="">
                                 <a href="https://store.steampowered.com/?l=russian" class="text-xl fonted-footer footer-min-text">Steam</a>
                             </div>
                         </li>
                     </ul>
                 </nav>
                 <div class="flex flex-row justify-center" style="width: 100%;">
-                    <NuxtLink to="/"><img :src="'img/icons/LoELogo.png'" alt="" style="max-width: 100px;"></NuxtLink>
+                    <NuxtLink to="/"><img :src="'../img/icons/LoELogo.png'" alt="" style="max-width: 100px;"></NuxtLink>
                 </div>
                 <nav class="container mx-auto p-4 my-10">
                     <ul class="flex justify-center gap-5">
                         <li>
-                            <a href="https://discord.com/"><img src="/assets/img/icons/dis_png_1.png" alt=""></a>
+                            <a href="https://discord.com/"><img src="../assets/img/icons/dis_png_1.png" alt=""></a>
                         </li>
                         <li>
-                            <a href="https://vk.com/feed"><img src="/assets/img/icons/vk_png_1.png" alt=""></a>
+                            <a href="https://vk.com/feed"><img src="../assets/img/icons/vk_png_1.png" alt=""></a>
                         </li>
                         <li>
-                            <a href="https://www.youtube.com/"><img src="/assets/img/icons/yotube_png_1.png" alt=""></a>
+                            <a href="https://www.youtube.com/"><img src="../assets/img/icons/yotube_png_1.png" alt=""></a>
                         </li>
                     </ul>
                 </nav>
@@ -122,7 +122,12 @@ import autoAnimate from "@formkit/auto-animate"
 const dropdown = ref() // we need a DOM node
 const show = ref(false)
 
-
+useSeoMeta({
+  ogTitle: 'LoE Builder',
+  description: 'Идеальный инструмент для любомго игрока в Last of Exiles! С помощью этого сайта вы сможете создать свой уникальный билд,сохранить, а после опубликовать его.',
+  ogDescription: 'Идеальный инструмент для любомго игрока в Last of Exiles! С помощью этого сайта вы сможете создать свой уникальный билд,сохранить, а после опубликовать его.',
+  ogImage: '../public/img/icons/LoELogo.png',
+})
 
 onMounted(() => {
     autoAnimate(dropdown.value) // thats it!

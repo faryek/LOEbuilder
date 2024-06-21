@@ -22,4 +22,7 @@
     border-color: #9b7e41 !important;
     box-shadow: 0 0 20px 0 #9b7e41;
 }
+.error-form p{
+    text-align: center;
+}
 </style>

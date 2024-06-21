@@ -143,6 +143,12 @@
     }
 
 }
+@media screen and (max-width: 1024px) {
+    .accepting{
+        width: 70% !important;
+        left: 15% !important;
+    }
+}
 @media screen and (max-width: 650px) {
     .flex-row{
         flex-direction: column;

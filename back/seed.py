@@ -155,15 +155,29 @@ with Session(bind=engine) as session:
         itemtype3], item_implicits=[itemImplicit7])
     itemsubtype19 = models.Item_subtype(name='Ботинки', item_types=[
         itemtype2], item_implicits=[itemImplicit7])
+    itemsubtype20 = models.Item_subtype(name='Шлем', item_types=[
+        itemtype2], item_implicits=[itemImplicit8])
+    itemsubtype21 = models.Item_subtype(name='Нагрудник', item_types=[
+        itemtype2], item_implicits=[itemImplicit8])
+    itemsubtype22 = models.Item_subtype(name='Наручи', item_types=[
+        itemtype2], item_implicits=[itemImplicit8])
+    itemsubtype23 = models.Item_subtype(name='Ботинки', item_types=[
+        itemtype2], item_implicits=[itemImplicit2])
+    itemsubtype24 = models.Item_subtype(name='Шлем', item_types=[
+        itemtype2], item_implicits=[itemImplicit2])
+    itemsubtype25 = models.Item_subtype(name='Нагрудник', item_types=[
+        itemtype2], item_implicits=[itemImplicit2])
+    itemsubtype26 = models.Item_subtype(name='Наручи', item_types=[
+        itemtype2], item_implicits=[itemImplicit2])
 
     wpn1 = models.Weapon(
         name='Костяной', sub_id=itemsubtype1, image='/img/items/one_hand_sword_1.png')
     wpn2 = models.Weapon(
         name='Стальной', sub_id=itemsubtype1, image='/img/items/dagger_1.png')
     wpn3 = models.Weapon(
-        name='Стальной', sub_id=itemsubtype5, image='/img/items/one_hand_axe_1.png')
+        name='Стальной', sub_id=itemsubtype5, image='/img/items/one_hand_sword_3.png')
     wpn4 = models.Weapon(
-        name='Стальной', sub_id=itemsubtype6, image='/img/items/one_hand_axe_2.png')
+        name='Стальной', sub_id=itemsubtype6, image='/img/items/one_hand_sword_2.png')
     wpn5 = models.Weapon(
         name='Стальной', sub_id=itemsubtype15, image='/img/items/shield_1.png')
     wpn6 = models.Weapon(
@@ -179,6 +193,26 @@ with Session(bind=engine) as session:
         name='Рогатые', sub_id=itemsubtype19, image='/img/items/boots_1.png')
     armr5 = models.Armour(
         name='Рогатый', sub_id=itemsubtype17, image='/img/items/belt_1.png')
+    armr6 = models.Armour(
+        name='Волчий', sub_id=itemsubtype20, image='/img/items/head_2.png')
+    armr7 = models.Armour(
+        name='Рогатый', sub_id=itemsubtype21, image='/img/items/body_2.png')
+    armr8 = models.Armour(
+        name='Рогатый', sub_id=itemsubtype22, image='/img/items/gloves_2.png')
+    armr9 = models.Armour(
+        name='Рогатые', sub_id=itemsubtype19, image='/img/items/boots_2.png')
+    armr10 = models.Armour(
+        name='Рогатый', sub_id=itemsubtype17, image='/img/items/belt_2.png')
+    armr11 = models.Armour(
+        name='Рогатый', sub_id=itemsubtype24, image='/img/items/head_3.png')
+    armr12 = models.Armour(
+        name='Рогатый', sub_id=itemsubtype25, image='/img/items/body_3.png')
+    armr13 = models.Armour(
+        name='Рогатый', sub_id=itemsubtype26, image='/img/items/gloves_3.png')
+    armr14 = models.Armour(
+        name='Рогатые', sub_id=itemsubtype19, image='/img/items/boots_3.png')
+    armr15 = models.Armour(
+        name='Рогатый', sub_id=itemsubtype17, image='/img/items/belt_3.png')
 
     accry1 = models.Accessory(
         name='Изумрудное', sub_id=itemsubtype3, image='/img/items/neck_1.png')
@@ -190,6 +224,8 @@ with Session(bind=engine) as session:
         name='Ониксовое', sub_id=itemsubtype8, image='/img/items/ring_4.png')
     accry5 = models.Accessory(
         name='Ониксовое', sub_id=itemsubtype18, image='/img/items/relic_1.png')
+    accry6 = models.Accessory(
+        name='Изумрудное', sub_id=itemsubtype3, image='/img/items/neck_2.png')
 
     session.add_all([role1, eff, eff2, eff3, eff4, eff5, eff6, eff7, eff8, eff9, eff10, eff11,
                     pas1, pas2, pas3, pas4, pas5, pas6, pas7, pas8, pas9, pas10, pas11, pas12, pas13, pas14,
@@ -200,9 +236,9 @@ with Session(bind=engine) as session:
                     itemImplicit, itemImplicit2, itemImplicit3, itemImplicit7,itemImplicit8,
                     itemsubtype1, itemsubtype2, itemsubtype3, itemsubtype5, itemsubtype6, itemsubtype7, itemsubtype8,
                     itemsubtype9, itemsubtype10, itemsubtype12, itemsubtype13, itemsubtype17,
-                    itemsubtype16, itemsubtype18, itemsubtype19, itemsubtype15,
+                    itemsubtype16, itemsubtype18, itemsubtype19, itemsubtype15,itemsubtype21,itemsubtype22,
                     wpn1, wpn2, wpn3, wpn4, wpn5, wpn6,
-                    armr1, armr2, armr3, armr4, armr5,
-                    accry1, accry2, accry3, accry4, accry5
+                    armr1, armr2, armr3, armr4, armr5,armr6,armr7,armr8,armr9,armr10,armr11,armr12,armr13,armr14,armr15,
+                    accry1, accry2, accry3, accry4, accry5, accry6
                      ])
     session.commit()

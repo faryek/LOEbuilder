@@ -1,6 +1,6 @@
 <template>
     <div class="error-form container border-shine py-10 px-10">
-        <p class="font text-4xl">Ошибка авторизации!</p>
+        <p class="font text-4xl">Авторизуйтесь, чтобы продолжить</p>
     </div>
 </template>
 
@@ -21,5 +21,8 @@
     border-radius: 25px;
     border-color: #9b7e41 !important;
     box-shadow: 0 0 20px 0 #9b7e41;
+}
+.error-form p{
+    text-align: center;
 }
 </style>
