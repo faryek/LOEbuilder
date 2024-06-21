@@ -1,6 +1,7 @@
 <template>
     <div class="flex flex-row justify-center" style="width: 100%;">
         <BuildError v-if="error"></BuildError>
+        <button @click="() => { goToPrev() }" class="login-btn text-xl font py-1 px-5">Назад</button>
     </div>
     <div v-if="!error">
         <div v-if="!error" class="container flex flex-col">
@@ -423,6 +424,9 @@ export default {
                 })
             return null
         },
+        goToPrev() {
+            this.$router.go(-1);
+        },
     },
     beforeMount(){
         this.check_uri()
@@ -448,6 +452,15 @@ export default {
 .stat-value {
     width: 40%;
     text-align: end;
+}
+
+.login-btn {
+    border: 3px solid;
+    border-radius: 25px;
+    border-color: #9b7e41 !important;
+    box-shadow: 0 0 20px 0 #9b7e41;
+    width: 100%;
+    margin-bottom: 15px;
 }
 
 .selector-create {
